@@ -84,14 +84,17 @@ exports.signUp = async (req, res) => {
       otp,
     } = req.body;
 
+    // console.log("account type recieved on server : ", accountType);
+    
     // validate data
     if (
       !firstName ||
       !lastName ||
+      !accountType ||
       !email ||
       !password ||
       !confirmPassword ||
-      !contactNumber ||
+      // !contactNumber ||
       !otp
     ) {
       return res.status(403).json({
@@ -122,7 +125,7 @@ exports.signUp = async (req, res) => {
     const recentOtp = await Otp.findOne({ email })
       .sort({ createdAt: -1 })
       .limit(1);
-    console.log("recent Otp : ", recentOtp);
+    // console.log("recent Otp : ", recentOtp);
 
     // validate OTP
     if (recentOtp.length === 0) {

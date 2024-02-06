@@ -1,6 +1,6 @@
 import banner from "../assets/Images/banner.mp4";
 import CodeBlock from "../components/cors/HomePage/CodeBlock";
-import CtaButton from "../components/cors/HomePage/ctaButton";
+import CtaButton from "../components/cors/HomePage/CtaButton";
 import ExploreMore from "../components/cors/HomePage/ExploreMore";
 import Footer from "../components/common/Footer";
 import HighlightText from "../components/cors/HomePage/HighlightText";
@@ -8,14 +8,13 @@ import InstructorSection from "../components/cors/HomePage/InstructorSection";
 import LearningLanguageSection from "../components/cors/HomePage/LearningLanguageSection";
 import { Link } from "react-router-dom";
 import { MdArrowRight } from "react-icons/md";
+import Navbar from "../components/common/Navbar"
 import React from "react";
 import TimeLineSection from "../components/cors/HomePage/TimeLineSection";
 
 const Home = () => {
   return (
     <div>
-      {/* navbar */}
-      <nav>{/* todo */}</nav>
 
       {/* section 1 */}
       <header className="bg-richblack-900">
@@ -161,7 +160,7 @@ const Home = () => {
         </div>
 
         <div className="flex justify-between items-center flex-col lg:flex-row gap-10 mt-[5rem] mb-10">
-          <div className="text-4xl w-full text-center lg:text-start lg:w-[50%] font-bold">
+          <div className="text-4xl text-white w-full text-center lg:text-start lg:w-[50%] font-bold">
             <h3>
               Get the skills you need for a
               <HighlightText text={"Job that is in demand."} />
@@ -196,10 +195,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* footer */}
-      <footer>
-        <Footer />
-      </footer>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import HighlightText from './HighlightText'
 import Compare_with_others from "../../../assets/Images/Compare_with_others.png"
 import Know_your_progress from "../../../assets/Images/Know_your_progress.png"
 import Plan_your_lessons from "../../../assets/Images/Plan_your_lessons.png"
-import CtaButton from './ctaButton'
+import CtaButton from './CtaButton'
 
 const LearningLanguageSection = () => {
   return (

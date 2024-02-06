@@ -1,5 +1,5 @@
 import React from "react";
-import CtaButton from "./ctaButton";
+import CtaButton from "./CtaButton";
 // import HighlightText from "./HighlightText";
 import { MdArrowRight } from "react-icons/md";
 import { TypeAnimation } from "react-type-animation";
@@ -39,7 +39,7 @@ const CodeBlock = ({
         </div>
         {/* code section */}
           <div className="relative flex w-full lg:w-[40%] gap-3 border border-richblack-700 bg-transparent py-3 rounded-xl text-richblack-100 text-xl">
-            <div className="w-3/4 top-0 left-0 translate-x-[20%] translate-y-[20%] h-3/4 bg-richblack-700 absolute rounded-full blur-3xl z-[1]"></div>
+            <div className="w-3/4 top-0 left-0 translate-x-[20%] translate-y-[20%] h-3/4 bg-richblack-600 absolute rounded-full blur-3xl z-[1]"></div>
             <div className="text-center flex flex-col w-[10%] font-inter font-bold relative z-[2]">
                 <p>1</p>
                 <p>2</p>

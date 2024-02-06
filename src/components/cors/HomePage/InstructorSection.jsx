@@ -1,7 +1,7 @@
 import React from "react";
 import Instructor from "../../../assets/Images/Instructor.png";
 import HighlightText from "./HighlightText";
-import CtaButton from "./ctaButton";
+import CtaButton from "./CtaButton";
 import { MdArrowRight } from "react-icons/md";
 
 const InstructorSection = () => {
@@ -10,7 +10,7 @@ const InstructorSection = () => {
       <div className="w-4/5 mx-auto lg:w-1/2 relative">
         <img src={Instructor} className="w-full z-[2] relative" alt="" />
         <div className="w-full absolute  z-[1] bg-white left-[-2%] top-[-2%] right-0 bottom-[2%]"></div>
-        <div className="w-full absolute z-[0] bg-richblue-300 blur-2xl right-0 left-0 top-0 bottom-0"></div>
+        <div className="w-full absolute z-[0] bg-richblue-500 blur-2xl right-0 left-0 top-0 bottom-0"></div>
       </div>
       <div className="px-10 flex flex-col justify-center items-center lg:items-start gap-5 w-full lg:w-1/2">
         <div>
