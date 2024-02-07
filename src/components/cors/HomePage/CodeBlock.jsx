@@ -1,5 +1,5 @@
 import React from "react";
-import CtaButton from "./CtaButton";
+import CtaButton from "../../common/CtaButton";
 // import HighlightText from "./HighlightText";
 import { MdArrowRight } from "react-icons/md";
 import { TypeAnimation } from "react-type-animation";

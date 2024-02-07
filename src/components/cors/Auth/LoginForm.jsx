@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
-import Ctabutton from "../HomePage/CtaButton";
+import Ctabutton from "../../common/CtaButton";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";

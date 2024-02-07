@@ -1,7 +1,7 @@
 import React from "react";
 import Instructor from "../../../assets/Images/Instructor.png";
-import HighlightText from "./HighlightText";
-import CtaButton from "./CtaButton";
+import HighlightText from "../../common/HighlightText";
+import CtaButton from "../../common/CtaButton";
 import { MdArrowRight } from "react-icons/md";
 
 const InstructorSection = () => {
@@ -14,8 +14,8 @@ const InstructorSection = () => {
       </div>
       <div className="px-10 flex flex-col justify-center items-center lg:items-start gap-5 w-full lg:w-1/2">
         <div>
-          <h3 className="text-4xl font-bold text-center lg:text-start">Become an </h3>
-          <h3 className="text-4xl font-bold text-center lg:text-start">
+          <h3 className="text-3xl xl:text-4xl  font-bold text-center lg:text-start">Become an </h3>
+          <h3 className="text-3xl xl:text-4xl  font-bold text-center lg:text-start">
             <HighlightText text={"Instructor"} />
           </h3>
         </div>

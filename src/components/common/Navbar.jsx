@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/Logo/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Form, Link, NavLink } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useSelector } from "react-redux";
 import { FiShoppingBag } from "react-icons/fi";
 import ProfileDropDown from "../../components/cors/Auth/ProfileDropDown";
-import CtaButton from "../cors/HomePage/CtaButton";
-import { apiConnector } from "../../services/apiconnector";
+import CtaButton from "./CtaButton";
 import { categories } from "../../services/apis";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { apiConnector } from "../../services/apiConnector";
 
 const Navbar = () => {
   const token = useSelector((state) => state.auth.token);
@@ -19,7 +19,7 @@ const Navbar = () => {
   const fetchSublinks = async () => {
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
-      // console.log("result", result?.data?.data);
+      console.log("result", result?.data?.data);
       setSubLinks(result?.data?.data);
     } catch (e) {
       console.log("could not fetch categories : ", e);

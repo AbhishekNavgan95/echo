@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HomePageExplore } from "../../../data/homepage-explore";
-import HighlightText from "./HighlightText";
+import HighlightText from "../../common/HighlightText";
 import CourseCard from "./CourseCard";
 
 const ExploreMore = () => {
@@ -27,7 +27,7 @@ const ExploreMore = () => {
 
   return (
     <div className="flex items-center flex-col relative">
-      <div className="text-4xl font-bold text-white text-center">
+      <div className="text-3xl xl:text-4xl  font-bold text-white text-center">
         Unlock the <HighlightText text={"Power of Code"} />
       </div>
 

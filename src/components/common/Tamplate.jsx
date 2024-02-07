@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SignupForm from "../cors/Auth/SignUpForm";
 import LoginForm from "../cors/Auth/LoginForm";
 import signup from "../../assets/Images/signup.webp";
-import HighlightText from "../cors/HomePage/HighlightText";
+import HighlightText from "../common/HighlightText";
 import login from "../../assets/Images/login.webp";
 import frame from "../../assets/Images/Frame.png";
 import { useSelector } from "react-redux";

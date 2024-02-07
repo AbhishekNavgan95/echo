@@ -1,18 +1,60 @@
-import React from 'react'
-import { TiArrowSortedDown } from "react-icons/ti";
+import { useRef, useState } from "react"
+import { AiOutlineCaretDown } from "react-icons/ai"
+import { VscDashboard, VscSignOut } from "react-icons/vsc"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
 
-const ProfileDropDown = () => {
+// import useOnClickOutside from "../../../hooks/useOnClickOutside"
+import { logout } from "../../../services/operations/authAPI"
 
-  
+export default function ProfileDropdown() {
+  const { user } = useSelector((state) => state.profile)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  // useOnClickOutside(ref, () => setOpen(false))
+
+  if (!user){
+    console.log("no user");
+    return localStorage.setItem("token",null)
+  } 
 
   return (
-    <div className='text-white'>
-      <div className='flex  gap-2 items-center bg-richblack-500 rounded-full pr-2'>
-        <div className='rounded-full w-[30px] h-[30px] bg-brown-700'></div>
-        <p><TiArrowSortedDown /></p>
+    <button className="relative rounded-full pr-3 bg-richblack-700" onClick={() => setOpen(!open)}>
+      <div className="flex items-center gap-x-1">
+        <img
+          src={user?.image}
+          alt={`profile-${user?.firstName}`}
+          className="aspect-square w-[30px] rounded-full object-cover"
+        />
+        <AiOutlineCaretDown className="text-sm text-richblack-100" />
       </div>
-    </div>
+      {open && (
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="absolute left-[50%] top-[150%] translate-x-[-50%] z-[10] overflow-hidden rounded-md border border-richblack-700 bg-richblack-800"
+          ref={ref}
+        >
+          <Link to="/dashboard/my-profile" onClick={() => setOpen(false)}>
+            <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+              <VscDashboard className="text-lg" />
+              Dashboard
+            </div>
+          </Link>
+          <div
+            onClick={() => {
+              dispatch(logout(navigate))
+              setOpen(false)
+            }}
+            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25"
+          >
+            <VscSignOut className="text-lg" />
+            Logout
+          </div>
+        </div>
+      )}
+    </button>
   )
 }
-
-export default ProfileDropDown

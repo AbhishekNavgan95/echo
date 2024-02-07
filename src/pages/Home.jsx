@@ -1,36 +1,44 @@
 import banner from "../assets/Images/banner.mp4";
 import CodeBlock from "../components/cors/HomePage/CodeBlock";
-import CtaButton from "../components/cors/HomePage/CtaButton";
+import CtaButton from "../components/common/CtaButton";
 import ExploreMore from "../components/cors/HomePage/ExploreMore";
-import Footer from "../components/common/Footer";
-import HighlightText from "../components/cors/HomePage/HighlightText";
+import HighlightText from "../components/common/HighlightText";
 import InstructorSection from "../components/cors/HomePage/InstructorSection";
 import LearningLanguageSection from "../components/cors/HomePage/LearningLanguageSection";
 import { Link } from "react-router-dom";
 import { MdArrowRight } from "react-icons/md";
-import Navbar from "../components/common/Navbar"
 import React from "react";
 import TimeLineSection from "../components/cors/HomePage/TimeLineSection";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const { token } = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.profile.user);
+  // console.log(user)
+
   return (
     <div>
-
       {/* section 1 */}
       <header className="bg-richblack-900">
         <div className="max-w-maxContent mx-auto px-def">
           {/* Hero section */}
-          <div className="relative mx-auto pt-16  text-white justify-between flex flex-col items-center ">
-            <Link to={"/signup"}>
-              <div className="mx-auto group rounded-full bg-richblack-700 font-bold text-richblack-200 transition-all duration-200 hover:scale-[0.97] shadow-sm shadow-richblack-300">
-                <button className="flex items-center gap-2 rounded-full py-1 transition-all duration-200 px-def text-lg group-hover:bg-richblack-800 ">
-                  <p>Become an instructor</p>
-                  <MdArrowRight />
-                </button>
+          <div className="relative mx-auto pt-16 flex flex-col items-center text-white justify-between text-center">
+            {!(token === null) ? (
+              <div className="text-3xl xl:text-4xl  border-b pb-6">
+                Welcome Back <HighlightText text={user.firstName} />
               </div>
-            </Link>
+            ) : (
+              <Link to={"/signup"} className="rounded-full">
+                <div className="mx-auto group rounded-full bg-richblack-700 font-bold text-richblack-200 transition-all duration-200 hover:scale-[0.97] shadow-sm shadow-richblack-300">
+                  <div className="flex items-center gap-2 rounded-full py-1 transition-all duration-200 px-def text-lg group-hover:bg-richblack-800 ">
+                    <p>Become an instructor</p>
+                    <MdArrowRight />
+                  </div>
+                </div>
+              </Link>
+            )}
 
-            <div className=" text-4xl text-center font-semibold mt-6 max-w-[90%]">
+            <div className="text-3xl xl:text-4xl  text-center font-semibold mt-6 max-w-[90%]">
               Empower Your Future with
               <HighlightText text={"Coding Skills"} />
             </div>
@@ -74,7 +82,7 @@ const Home = () => {
               <CodeBlock
                 position={"lg:flex-row"}
                 heading={
-                  <div className="text-4xl font-semibold">
+                  <div className="text-3xl xl:text-4xl  font-semibold">
                     Unlock Your <HighlightText text={"Coding Potantial"} />
                     with our online courses
                   </div>
@@ -109,7 +117,7 @@ const Home = () => {
               <CodeBlock
                 position={"lg:flex-row-reverse"}
                 heading={
-                  <div className="text-4xl font-semibold">
+                  <div className="text-3xl xl:text-4xl font-semibold">
                     Start <HighlightText text={"Coding in Seconds"} />
                   </div>
                 }
@@ -160,7 +168,7 @@ const Home = () => {
         </div>
 
         <div className="flex justify-between items-center flex-col lg:flex-row gap-10 mt-[5rem] mb-10">
-          <div className="text-4xl text-white w-full text-center lg:text-start lg:w-[50%] font-bold">
+          <div className="text-3xl xl:text-4xl  text-white w-full text-center lg:text-start lg:w-[50%] font-bold">
             <h3>
               Get the skills you need for a
               <HighlightText text={"Job that is in demand."} />
@@ -188,13 +196,12 @@ const Home = () => {
             <InstructorSection />
           </div>
           <div>
-            <h2 className="text-center text-white py-10 text-4xl font-bold">
+            <h2 className="text-center text-white py-10 text-3xl xl:text-4xl  font-bold">
               Reviews from other learners
             </h2>
           </div>
         </div>
       </section>
-
     </div>
   );
 };

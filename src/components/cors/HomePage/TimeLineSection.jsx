@@ -32,7 +32,7 @@ const TimeLineSection = () => {
 
   return (
     <div className='mt-[6rem] mb-20'>
-        <div className="flex flex-col md:flex-row items-center gap-5 justify-between">
+        <div className="flex  flex-col md:flex-row items-center gap-5 justify-between">
           {/* timeline */}
           <div className="flex flex-col items-center lg:items-start gap-10 w-full lg:w-2/5">
             {
@@ -41,8 +41,8 @@ const TimeLineSection = () => {
                         <div key={index} className='flex items-center gap-5'>
                             <div className=''><img src={elem.logo} className='w-[30px]' alt="logo" /></div>
                             <div>
-                                <h5 className='text-xl font-bold'>{elem.heading}</h5>
-                                <p className='text-lg'>{elem.description}</p>
+                                <h5 className='text-xl  text-white font-bold'>{elem.heading}</h5>
+                                <p className='text-lg  text-richblack-300'>{elem.description}</p>
                             </div>
                         </div>
                     )
