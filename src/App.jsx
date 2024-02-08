@@ -12,6 +12,10 @@ import OpenRoute from "./components/cors/Auth/OpenRoute";
 import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import MyProfile from "./pages/MyProfile";
+import Dashboard from "./pages/Dashboard";
+import PrivateRoute from "./components/cors/Auth/PrivateRoute";
+import Cart from "./components/dashboard/Cart";
+import Settings from "./pages/Settings";
 
 function App() {
 
@@ -22,8 +26,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="dashboard">
-            <Route path="my-profile" element={<MyProfile />}/>
+          <Route path="dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
+            <Route path="my-profile" element={<MyProfile />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="enrolled-courses" element={<Cart />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
           <Route path="signup" element={<OpenRoute><SignUp /></OpenRoute>} />
           <Route path="login" element={<OpenRoute><LogIn /></OpenRoute>} />

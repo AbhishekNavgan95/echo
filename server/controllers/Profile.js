@@ -6,18 +6,20 @@ const { uploadImageTocloudinary } = require("../utils/imageUploader");
 exports.updateProfile = async (req, res) => {
   try {
     // fetch data with user id
-    const { dateOfBirth = "", about = "", contactNumber, gender } = req.body;
+    const { dateOfBirth , about , contactNumber, gender } = req.body;
+    console.log("date of birth", dateOfBirth);
 
-    console.log(dateOfBirth, about, gender, contactNumber)
+    
+    // console.log(dateOfBirth, about, gender, contactNumber)
     const id = req.user.id;
-
+    
     // vailidate data
-    if (!contactNumber || !gender || !id) {
-      return res.status(400).json({
-        success: false,
-        message: "contact number and gender are required",
-      });
-    }
+    // if (!contactNumber || !gender) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "contact number and gender are required",
+    //   });
+    // }
 
     //  find profile
     const userDetails = await User.findById(id);

@@ -22,7 +22,7 @@ export default function ProfileDropdown() {
   } 
 
   return (
-    <button className="relative rounded-full pr-3 bg-richblack-700" onClick={() => setOpen(!open)}>
+    <button className="relative rounded-full pr-3" onClick={() => setOpen(!open)}>
       <div className="flex items-center gap-x-1">
         <img
           src={user?.image}
@@ -43,7 +43,7 @@ export default function ProfileDropdown() {
               Dashboard
             </div>
           </Link>
-          <div
+          {/* <div
             onClick={() => {
               dispatch(logout(navigate))
               setOpen(false)
@@ -52,7 +52,7 @@ export default function ProfileDropdown() {
           >
             <VscSignOut className="text-lg" />
             Logout
-          </div>
+          </div> */}
         </div>
       )}
     </button>

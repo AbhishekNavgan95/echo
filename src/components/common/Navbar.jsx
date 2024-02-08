@@ -19,7 +19,7 @@ const Navbar = () => {
   const fetchSublinks = async () => {
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
-      console.log("result", result?.data?.data);
+      // console.log("result", result?.data?.data);
       setSubLinks(result?.data?.data);
     } catch (e) {
       console.log("could not fetch categories : ", e);
@@ -58,7 +58,7 @@ const Navbar = () => {
                       <p className="">{category.name}</p>
                     </NavLink>
                   ))}
-                  <div className="w-[50px] h-[50px] bg-richblack-25 absolute -top-1 left-[50%] translate-x-[-50%] z-[3] rotate-[45deg] "></div>
+                  {/* <div className="w-[50px] h-[50px] bg-richblack-25 absolute -top-1 left-[50%] translate-x-[-50%] z-[3] rotate-[45deg] "></div> */}
                 </div>
               </button>
             ) : (

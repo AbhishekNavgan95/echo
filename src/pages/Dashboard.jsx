@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import Sidebar from "../components/dashboard/Sidebar";
 
 const Dashboard = () => {
   const { loading: authLoading } = useSelector((state) => state.auth);
@@ -11,12 +12,10 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-richblack-900 flex min-h-[calc(100vh-5rem)]">
+    <div className="bg-richblack-900 w-full flex">
       <Sidebar />
-      <div className="h-full">
-        <div>
-          <Outlet />
-        </div>
+      <div className="text-white h-full w-full">
+        <Outlet />
       </div>
     </div>
   );

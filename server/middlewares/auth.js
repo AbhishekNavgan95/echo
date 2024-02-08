@@ -12,6 +12,8 @@ exports.auth = async (req, res, next) => {
       req.body.token ||
       req.header("Authorization").replace("Bearer ", "");
 
+      console.log(token)
+
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -23,7 +25,7 @@ exports.auth = async (req, res, next) => {
     try {
       const decode = jwt.verify(token, process.env.JWT_SECRET);
       console.log("decodede jwt token ", decode);
-
+      
       req.user = decode;
     } catch (e) {
       // varification failed
@@ -31,6 +33,7 @@ exports.auth = async (req, res, next) => {
         success: false,
         message: "token is invalid",
       });
+      
     }
     next();
   } catch (e) {
@@ -50,7 +53,6 @@ exports.isStudent = async (req, res, next) => {
         message: "This is a protected route for students",
       });
     }
-
     next();
   } catch (e) {
     return res.status(401).json({
@@ -69,7 +71,7 @@ exports.isInstructor = async (req, res, next) => {
         message: "This is a protected route for Instructor",
       });
     }
-
+    
     next();
   } catch (e) {
     return res.status(401).json({
@@ -88,7 +90,7 @@ exports.isAdmin = async (req, res, next) => {
         message: "This is a protected route for Admin",
       });
     }
-
+    
     next();
   } catch (e) {
     return res.status(401).json({

@@ -6,15 +6,16 @@ import HighlightText from "../common/HighlightText";
 import login from "../../assets/Images/login.webp";
 import frame from "../../assets/Images/Frame.png";
 import { useSelector } from "react-redux";
+import { SyncLoader } from "react-spinners";
 
 const Tamplate = ({ formType }) => {
   const loading = useSelector((state) => state.auth.loading);
   const [accountType, setAccountType] = useState("Student");
 
   return (
-    <div className="bg-richblack-900">
+    <div className="flex justify-center  min-h-[calc(100vh-5rem)] items-center">
       {loading ? (
-        <div className="text-white ">Loading</div>
+                  <SyncLoader color="#E7C009" />
       ) : (
         <div className="max-w-maxContent py-28 mx-auto gap-10 items-center justify-between flex flex-col xl:flex-row">
           <div className="flex flex-col gap-3 xl:w-2/5 md:w-8/12 w-10/12">

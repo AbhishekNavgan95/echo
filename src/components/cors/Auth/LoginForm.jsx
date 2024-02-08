@@ -4,11 +4,11 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import Ctabutton from "../../common/CtaButton";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login } from "../../../services/operations/authAPI";
 
-const LoginForm = ({title, description1, description2}) => {
+const LoginForm = ({ title, description1, description2 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPass, setShowPass] = useState(false);
@@ -34,23 +34,13 @@ const LoginForm = ({title, description1, description2}) => {
   return (
     <form onSubmit={handleOnSubmit}>
       <div className="w-full">
-      <div className="flex flex-col gap-3">
-            <h2 className="text-3xl font-bold text-white">
-              {title}
-            </h2>
-            <p className="text-xl flex flex-col text-richblack-300 my-2">
-              <span>
-                {
-                  description1
-                }
-              </span>
-              <span>
-                {
-                  description2
-                }
-              </span>
-            </p>
-          </div>
+        <div className="flex flex-col gap-3">
+          <h2 className="text-3xl font-bold text-white">{title}</h2>
+          <p className="text-xl flex flex-col text-richblack-300 my-2">
+            <span>{description1}</span>
+            <span>{description2}</span>
+          </p>
+        </div>
         <div className="flex flex-col">
           <label htmlFor="email" className="font-semibold mt-3 mb-2 text-white">
             Enter Email <sup>*</sup>
@@ -94,10 +84,11 @@ const LoginForm = ({title, description1, description2}) => {
             </span>
           </div>
 
-          <Link to="/reset-password" className="mt-3 hover:cursor-pointer text-richblack-300 hover:text-white focus:text-white transition-all duration-200">
-            <p className=" text-end select-none ">
-              Forgot password?
-            </p>
+          <Link
+            to="/reset-password"
+            className="mt-3 hover:cursor-pointer text-richblack-300 hover:text-white focus:text-white transition-all duration-200"
+          >
+            <p className=" text-end select-none ">Forgot password?</p>
           </Link>
         </div>
         <button
