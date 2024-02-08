@@ -8,7 +8,7 @@ import ProfileDropDown from "../../components/cors/Auth/ProfileDropDown";
 import CtaButton from "./CtaButton";
 import { categories } from "../../services/apis";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { apiConnector } from "../../services/apiConnector";
+import { apiConnector } from "../../services/apiconnector";
 
 const Navbar = () => {
   const token = useSelector((state) => state.auth.token);
@@ -42,17 +42,17 @@ const Navbar = () => {
         <div className="flex font-semibold text-lg items-center justify-center gap-5">
           {NavbarLinks.map((link, index) => {
             return link.title === "Catalog" ? (
-              <div
+              <button
                 className="text-richblack-25 group hover:cursor-pointer relative flex items-center gap-2"
                 key={index}
               >
                 <p>{link.title}</p>
                 <MdOutlineKeyboardArrowDown />
-                <div className="bg-richblack-25 text-richblack-900 p-2 absolute min-w-[250px] rounded-xl top-[10%] left-[50%] z-[5] translate-x-[-50%] translate-y-10 group-hover:scale-y-100 transition-all duration-300 hover:flex flex-col scale-y-0 delay-100 origin-top flex items-start">
+                <div className="bg-richblack-25 text-richblack-900 p-2 absolute min-w-[250px] rounded-xl top-[10%] left-[50%] z-[5] translate-x-[-50%] translate-y-10 group-hover:scale-y-100 group-focus:scale-y-100 focus:scale:y-100  transition-all duration-300 hover:flex flex-col scale-y-0 delay-100 origin-top flex items-start">
                   {subLinks.map((category, index) => (
                     <NavLink
                       to={`/courses/${category.name}`}
-                      className="relative z-[5] rounded-xl transition-all duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full"
+                      className="relative z-[5] rounded-xl transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full"
                       key={index}
                     >
                       <p className="">{category.name}</p>
@@ -60,7 +60,7 @@ const Navbar = () => {
                   ))}
                   <div className="w-[50px] h-[50px] bg-richblack-25 absolute -top-1 left-[50%] translate-x-[-50%] z-[3] rotate-[45deg] "></div>
                 </div>
-              </div>
+              </button>
             ) : (
               <NavLink
                 className={({ isActive }) =>

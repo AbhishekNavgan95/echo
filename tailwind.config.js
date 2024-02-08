@@ -129,9 +129,6 @@ module.exports = {
         maxContent: "1260px",
         maxContentTab: "650px"
       },
-      padding : {
-        def: "1.5rem"
-      }
     },
   },
   plugins: [],

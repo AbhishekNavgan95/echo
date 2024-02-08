@@ -16,8 +16,8 @@ const Tamplate = ({ formType }) => {
       {loading ? (
         <div className="text-white ">Loading</div>
       ) : (
-        <div className="max-w-maxContent py-28 mx-auto gap-10 px-3 items-center justify-between flex">
-          <div className="px-3 flex flex-col gap-3 w-2/5">
+        <div className="max-w-maxContent py-28 mx-auto gap-10 items-center justify-between flex flex-col xl:flex-row">
+          <div className="flex flex-col gap-3 xl:w-2/5 md:w-8/12 w-10/12">
             {formType === "login" ? (
               <LoginForm
                 title={"Welcome Back"}
@@ -37,10 +37,10 @@ const Tamplate = ({ formType }) => {
             )}
           </div>
 
-          <div className="relative w-2/5 hidden lg:block">
+          <div className="relative  xl:w-2/5 hidden md:block md:w-8/12 w-11/12">
             <div className="relative">
               <img
-                className="object-cover border-2 shadow-2xl border-white relative z-[2]"
+                className="object-cover border-2 shadow-2xl border-white relative z-[2] w-full"
                 src={!(formType === "login")? signup : login}
                 alt=""
               />

@@ -46,11 +46,11 @@ const ContactUsForm = () => {
       <div className="flex flex-col gap-5">
         <div className="flex flex-col md:flex-row justify-between gap-5">
           {/* firstName */}
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-col gap-3 w-full ">
             <label htmlFor="firstName">First Name</label>
             <input
               type="text"
-              className="text-xl bg-richblack-800 py-3 px-4 rounded-xl focus:outline-none"
+              className="text-xl bg-richblack-800 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
               name="firstName"
               id="firstName"
               placeholder="First Name"
@@ -64,7 +64,7 @@ const ContactUsForm = () => {
             <label htmlFor="lastName">Last Name</label>
             <input
               type="text"
-              className="text-xl bg-richblack-800 py-3 px-4 rounded-xl focus:outline-none"
+              className="text-xl bg-richblack-800 py-3 px-4 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none"
               name="lastName"
               id="lastName"
               placeholder="Last Name"
@@ -78,7 +78,7 @@ const ContactUsForm = () => {
           <label htmlFor="email">Email Address</label>
           <input
             type="email"
-            className="text-xl bg-richblack-800 py-3 px-4 rounded-xl focus:outline-none"
+            className="text-xl bg-richblack-800 py-3 px-4 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none"
             name="email"
             id="email"
             placeholder="Enter your Email"
@@ -94,7 +94,7 @@ const ContactUsForm = () => {
             <select
               id="countryCode"
               name="countryCode"
-              className="bg-richblack-800 text-richblack-300 w-[90px] py-3 rounded-xl px-4 focus:outline-none"
+              className="bg-richblack-800 text-richblack-300 shadow-sm shadow-richblack-300 w-[90px] py-3 rounded-lg px-4 focus:outline-none"
               {...register("countryCode", { required: true })}
             >
               {cuntryCodes.map((code, index) => (
@@ -108,7 +108,7 @@ const ContactUsForm = () => {
               name="phone"
               id="phone"
               placeholder="123 456 7890"
-              className="text-xl w-full bg-richblack-800 py-3 px-4 rounded-xl focus:outline-none"
+              className="text-xl w-full bg-richblack-800 py-3 px-4 shadow-sm shadow-richblack-300 rounded-lg focus:outline-none"
               {...register("phone", {required: true,
                 maxLength: {value: 10, message: "Invalid Phone Number!"},
                 minLength: {value: 8, message: "Invalid Phone Number"}
@@ -127,7 +127,7 @@ const ContactUsForm = () => {
           <label htmlFor="message">Message</label>
           <textarea
             name="message"
-            className="text-xl bg-richblack-800 py-3 px-4 rounded-xl focus:outline-none"
+            className="text-xl bg-richblack-800 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
             id="message"
             cols="30"
             rows="4"
@@ -141,7 +141,7 @@ const ContactUsForm = () => {
         </div>
 
         <button
-          className="bg-yellow-100 text-richblack-900 py-3 rounded-xl focus:outline-none hover:bg-yellow-200 focus:bg-yellow-200 hover:scale-95 focus:scale-95 transition-all dration-200"
+          className="bg-yellow-100 text-richblack-900 py-3 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none hover:bg-yellow-200 focus:bg-yellow-200 active:scale-95 focus:scale-95 transition-all dration-200"
           type="submit"
         >
           Send message

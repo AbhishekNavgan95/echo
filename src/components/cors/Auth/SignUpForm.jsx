@@ -84,12 +84,13 @@ const SignupForm = ({
             <span>{description2}</span>
           </p>
         </div>
-        <div className="bg-richblack-800 px-2 rounded-full py-2 text-white w-max my-3 flex gap-2">
+        {/* acccounttype */}
+        <div className="bg-richblack-800 px-2 rounded-full py-2 text-white w-max my-3 flex gap-2 shadow-sm shadow-richblack-300">
           <div
             onClick={() => setAccountType("Student")}
             className={
               accountType === "Student"
-                ? "px-7 py-2  bg-richblack-900 rounded-full hover:bg-richblack-900 transition-color duration-300 "
+                ? "px-7 py-2  bg-richblack-900 rounded-full hover:bg-richblack-900 transition-color duration-300 shadow-sm shadow-richblack-300"
                 : "px-7 py-2  bg-richblack-800 rounded-full hover:bg-richblack-900 transition-color duration-300 "
             }
           >
@@ -99,24 +100,27 @@ const SignupForm = ({
             onClick={() => setAccountType("Instructor")}
             className={
               accountType === "Instructor"
-                ? "px-7 py-2 bg-richblack-900 rounded-full hover:bg-richblack-900 transition-color duration-300 "
+                ? "px-7 py-2 bg-richblack-900 rounded-full hover:bg-richblack-900 transition-color duration-300 shadow-sm shadow-richblack-300"
                 : "px-7 py-2 bg-richblack-800 rounded-full hover:bg-richblack-900 transition-color duration-300 "
             }
           >
             Intructor
           </div>
         </div>
-        <div className="flex gap-5 justify-between">
-          <div className="flex flex-col">
+        {/* name */}
+        <div className="flex flex-col gap-3">
+          
+        <div className="flex flex-col md:flex-row gap-2 md:gap-5 justify-between">
+          <div className="flex flex-col gap-2 w-full">
             <label
               htmlFor="firstName"
-              className="font-semibold my-3 text-white"
+              className="font-semibold text-white"
             >
               First Name
             </label>
             <input
               required
-              className="w-full py-3 px-3 text-xl bg-richblack-800 text-white rounded-lg focus:outline-none"
+              className="w-full py-3 px-3 text-xl shadow-sm shadow-richblack-300 bg-richblack-800 text-white rounded-lg focus:outline-none"
               type="text"
               placeholder="First Name"
               onChange={handleOnChange}
@@ -125,13 +129,13 @@ const SignupForm = ({
               id="firstName"
             />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="lastName" className="font-semibold my-3 text-white">
+          <div className="flex flex-col gap-2 w-full">
+            <label htmlFor="lastName" className="font-semibold text-white">
               Last Name
             </label>
             <input
               required
-              className="w-full py-3 px-3 text-xl bg-richblack-800 text-white rounded-lg focus:outline-none"
+              className="w-full py-3 px-3 text-xl bg-richblack-800 shadow-sm shadow-richblack-300 text-white rounded-lg focus:outline-none"
               type="text"
               placeholder="Last Name"
               onChange={handleOnChange}
@@ -141,13 +145,14 @@ const SignupForm = ({
             />
           </div>
         </div>
-        <div className="flex flex-col">
-          <label htmlFor="email" className="font-semibold mt-3 mb-2 text-white">
+        {/* email */}
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email" className="font-semibold text-white">
             Enter Email <sup>*</sup>
           </label>
           <input
             required
-            className="w-full py-3 px-3 text-xl bg-richblack-800 text-white rounded-lg focus:outline-none"
+            className="w-full py-3 px-3 text-xl shadow-sm shadow-richblack-300 bg-richblack-800 text-white rounded-lg focus:outline-none"
             type="email"
             placeholder="Email"
             onChange={handleOnChange}
@@ -156,16 +161,17 @@ const SignupForm = ({
             id="email"
           />
         </div>
-        <div className="flex gap-4 my-3">
-          <div className="flex flex-col gap-2">
+        {/* passowrd */}
+        <div className="flex flex-col md:flex-row md:gap-5 gap-2">
+          <div className="flex flex-col gap-2 w-full">
             <label className="font-semibold  text-white" htmlFor="password">
               Password
             </label>
-            <div className="flex items-center">
+            <div className="flex items-center shadow-sm shadow-richblack-300 overflow-hidden rounded-lg">
               <input
                 required
                 placeholder="password"
-                className="w-full py-3 px-3 text-xl rounded-s-lg bg-richblack-800 text-white focus:outline-none "
+                className="w-full py-3 px-3 text-xl bg-richblack-800 text-white focus:outline-none "
                 type={showPass === true ? "text" : "password"}
                 onChange={handleOnChange}
                 name="password"
@@ -173,7 +179,7 @@ const SignupForm = ({
                 id="password"
               />
               <span
-                className="px-3 py-4 text-xl bg-richblack-800 text-white hover:cursor-pointer rounded-e-lg"
+                className="px-3 py-4 text-xl bg-richblack-800 text-white hover:cursor-pointer"
                 onClick={() => {
                   setShowPass((prev) => !prev);
                 }}
@@ -182,18 +188,18 @@ const SignupForm = ({
               </span>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 w-full">
             <label
               className="font-semibold  text-white"
               htmlFor="confirmPassword"
             >
               Confirm Password
             </label>
-            <div className="flex items-center">
+            <div className="flex items-center shadow-sm shadow-richblack-300 overflow-hidden rounded-lg">
               <input
                 required
                 placeholder="cofirm password"
-                className="w-full py-3 px-3 text-xl rounded-s-lg bg-richblack-800 text-white focus:outline-none "
+                className="w-full py-3 px-3 text-xl bg-richblack-800 text-white focus:outline-none "
                 type={showConfirmPass === true ? "text" : "password"}
                 onChange={handleOnChange}
                 name="confirmPassword"
@@ -201,7 +207,7 @@ const SignupForm = ({
                 id="confirmPassword"
               />
               <span
-                className="px-3 py-4 text-xl bg-richblack-800 text-white hover:cursor-pointer rounded-e-lg"
+                className="px-3 py-4 text-xl bg-richblack-800 text-white hover:cursor-pointer"
                 onClick={() => {
                   setShowConfirmPass((prev) => !prev);
                 }}
@@ -211,13 +217,17 @@ const SignupForm = ({
             </div>
           </div>
         </div>
+        
+        {/* button */}
         <button
           type="submit"
           // onClick={()=>{dispatch(setProgress(60))}}
-          className="mt-6 w-full rounded-lg bg-yellow-50 hover:bg-yellow-100 focus:bg-yellow-100 focus:outline-none transition-all duration-200 hover:scale-95 focus:scale-95 py-2 font-medium text-richblack-900"
+          className="w-full mt-3 rounded-lg bg-yellow-50 hover:bg-yellow-100 focus:bg-yellow-100 focus:outline-none transition-all duration-200 active:scale-95 py-2 font-medium text-richblack-900 shadow-sm shadow-richblack-300"
         >
           Create Account
         </button>
+        
+        </div>
       </form>
     </div>
   );

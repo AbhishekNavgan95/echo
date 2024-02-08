@@ -17,10 +17,10 @@ const Home = () => {
   // console.log(user)
 
   return (
-    <div>
+    <div className="w-11/12 mx-auto">
       {/* section 1 */}
       <header className="bg-richblack-900">
-        <div className="max-w-maxContent mx-auto px-def">
+        <div className="max-w-maxContent mx-auto">
           {/* Hero section */}
           <div className="relative mx-auto pt-16 flex flex-col items-center text-white justify-between text-center">
             {!(token === null) ? (
@@ -29,8 +29,8 @@ const Home = () => {
               </div>
             ) : (
               <Link to={"/signup"} className="rounded-full">
-                <div className="mx-auto group rounded-full bg-richblack-700 font-bold text-richblack-200 transition-all duration-200 hover:scale-[0.97] shadow-sm shadow-richblack-300">
-                  <div className="flex items-center gap-2 rounded-full py-1 transition-all duration-200 px-def text-lg group-hover:bg-richblack-800 ">
+                <div className="mx-auto group rounded-full bg-richblack-700 font-bold text-richblack-200 transition-all duration-200 active:scale-95 shadow-sm shadow-richblack-300">
+                  <div className="flex items-center gap-2 rounded-full py-1 transition-all duration-200 text-lg group-hover:bg-richblack-800 px-3">
                     <p>Become an instructor</p>
                     <MdArrowRight />
                   </div>
@@ -155,10 +155,9 @@ const Home = () => {
       </header>
 
       {/* section 2 */}
-      <section className="max-w-maxContent mx-auto px-def">
+      <section className="max-w-maxContent mx-auto lg:mt-48">
         <div className="py-5 flex flex-col justify-between items-center">
-          <div className="h-[50px] lg:h-[200px]"></div>
-          <div className="flex items-center justify-center gap-5">
+          <div className="flex items-center lg:mt-14 justify-center gap-5">
             <CtaButton active={true}>
               Explore full catalog
               <MdArrowRight />
@@ -167,7 +166,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center flex-col lg:flex-row gap-10 mt-[5rem] mb-10">
+        <div className="flex justify-between items-center flex-col lg:flex-row gap-10 my-10">
           <div className="text-3xl xl:text-4xl  text-white w-full text-center lg:text-start lg:w-[50%] font-bold">
             <h3>
               Get the skills you need for a
@@ -191,7 +190,7 @@ const Home = () => {
 
       {/* section 3 */}
       <section className="bg-richblack-900">
-        <div className="max-w-maxContent mx-auto px-def">
+        <div className="max-w-maxContent mx-auto">
           <div className="flex justify-between items-center py-20">
             <InstructorSection />
           </div>

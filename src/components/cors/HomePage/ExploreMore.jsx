@@ -35,14 +35,14 @@ const ExploreMore = () => {
         Learn to build anything u can imagin
       </p>
 
-      <div className="lg:mb-[15rem] flex flex-col lg:flex-row justify-center gap-2 w-full lg:w-max bg-richblack-700 py-2 items-center mb-5 text-white rounded-xl lg:rounded-full px-3">
+      <div className="lg:mb-[15rem] flex flex-col lg:flex-row justify-center gap-2 w-full lg:w-max bg-richblack-700 py-2 items-center mb-5 text-white rounded-xl lg:rounded-full px-3 shadow-sm shadow-richblack-300">
         {tabs.map((tab, index) => {
           return (
             <button
               key={index}
               className={
                 currentTab === tab
-                  ? "bg-richblack-900 text-lg flex flex-row justify-center item-center gap-2 py-2 px-4 rounded-full w-full lg:w-auto"
+                  ? "bg-richblack-900 text-lg flex flex-row justify-center item-center gap-2 py-2 px-4 rounded-full w-full lg:w-auto shadow-sm shadow-richblack-300"
                   : "bg-richblack-700 text-lg flex flex-row justify-center item-center gap-2 py-2 px-4 rounded-full text-richblack-100 hover:bg-richblack-900 transition-all duration-200 w-full lg:w-auto"
               }
               onClick={() => setMyCards(tab)}

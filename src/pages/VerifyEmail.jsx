@@ -56,7 +56,7 @@ const VerifyEmail = () => {
           <SyncLoader color="#E7C009" />
         ) : (
           <div className="">
-            <h1 className="text-3xl font-bold">Verify Email</h1>
+            <h1 className="text-3xl xl:text-4xl font-bold">Verify Email</h1>
             <div className="py-5">
               <p className="text-xl text-richblack-300">
                 A varification code has been sent to your email
@@ -73,7 +73,7 @@ const VerifyEmail = () => {
                 className="px-7 rounded-lg py-5 bg-richblack-800 hover:outline outline-richblack-100"
                 />}
               />
-              <button className="mt-6 w-full rounded-lg bg-yellow-50 hover:bg-yellow-100 focus:bg-yellow-100 focus:outline-none transition-all duration-200 hover:scale-95 focus:scale-95 py-2 font-medium text-richblack-900">
+              <button className="mt-6 w-full rounded-lg bg-yellow-100 hover:bg-yellow-200 focus:bg-yellow-200 focus:outline-none transition-all duration-200 active:scale-95 py-2 font-medium text-richblack-900">
                 Verify Email
               </button>
             </div>

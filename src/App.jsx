@@ -11,6 +11,7 @@ import Footer from "./components/common/Footer";
 import OpenRoute from "./components/cors/Auth/OpenRoute";
 import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
+import MyProfile from "./pages/MyProfile";
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="dashboard">
+            <Route path="my-profile" element={<MyProfile />}/>
+          </Route>
           <Route path="signup" element={<OpenRoute><SignUp /></OpenRoute>} />
           <Route path="login" element={<OpenRoute><LogIn /></OpenRoute>} />
           <Route path="reset-password" element={<OpenRoute><ResetPassword /></OpenRoute>} />

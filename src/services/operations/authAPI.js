@@ -3,7 +3,7 @@ import { setLoading, setToken } from "../../slices/authSlice"
 import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../slices/profileSlice"
 import { endpoints } from "../apis"
-import {apiConnector} from "../apiConnector"
+import { apiConnector } from "../apiconnector"
 // import {setProgress} from "../../slices/loadingBarSlice"
 
 const {
@@ -60,7 +60,6 @@ export function signUp(
       const toastId = toast.loading("Loading...")
       dispatch(setLoading(true))
       try {
-        console.log("here")
         
         const response = await apiConnector("POST", SIGNUP_API, {
         accountType,
@@ -71,8 +70,6 @@ export function signUp(
         confirmPassword,
         otp,
       })
-
-      console.log("here 2")
       
       console.log("SIGNUP API RESPONSE : ", response)
       
@@ -80,10 +77,9 @@ export function signUp(
         throw new Error("Request failed ", response.data.message)
       }
       
-      console.log("here 3")
       // dispatch(setProgress(100));
       toast.success("Signup Successful")
-      navigate("/")
+      navigate("/login")
 
     } catch (error) {
 
@@ -127,7 +123,7 @@ export function login(email, password, navigate) {
       
       localStorage.setItem("user", JSON.stringify(response.data.user))
       localStorage.setItem("token", JSON.stringify(response.data.token))
-      navigate("/")
+      navigate("/dashboard/my-profile")
       
     } catch (error) {
       // dispatch(setProgress(100))
@@ -204,7 +200,6 @@ export function logout(navigate) {
     navigate("/")
   }
 }
-
 
 export function forgotPassword(email,setEmailSent) {
   return async (dispatch) => {

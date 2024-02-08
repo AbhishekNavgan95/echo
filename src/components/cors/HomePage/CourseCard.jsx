@@ -11,7 +11,7 @@ const CourseCard = ({ course, currentCard, setCurrentCard }) => {
       <div
         className={
           currentCard === course.heading
-            ? "bg-richblack-25 text-black relative z-[1] h-full transition-all duration-200 py-5 px-10 flex flex-col justify-between"
+            ? "bg-richblack-5 text-richblack-900 relative z-[1] h-full transition-all duration-200 py-5 px-10 flex flex-col justify-between"
             : "bg-richblack-700 text-white h-full transition-all duration-200 py-5 px-10 flex flex-col justify-between"
         }
         onClick={() => setCurrentCard(course.heading)}
