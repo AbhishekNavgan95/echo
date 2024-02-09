@@ -7,7 +7,7 @@ exports.updateProfile = async (req, res) => {
   try {
     // fetch data with user id
     const { dateOfBirth , about , contactNumber, gender } = req.body;
-    console.log("date of birth", dateOfBirth);
+    // console.log("Details recieved",dateOfBirth, about, contactNumber, gender);
 
     
     // console.log(dateOfBirth, about, gender, contactNumber)
@@ -28,7 +28,7 @@ exports.updateProfile = async (req, res) => {
     const profileId = userDetails.additionalDetails;
     
     const profileDetails = await Profile.findById(profileId);
-    console.log("profileDetails : ", profileDetails);
+    // console.log("profileDetails : ", profileDetails);
 
     // update profile
     profileDetails.DOB = dateOfBirth;
@@ -57,24 +57,24 @@ exports.deleteAccount = async (req, res) => {
   try {
     // get id
     const id = req.user.id;
-
+    
     // validation
     const userDetails = await User.findById(id);
-
+    
     if (!userDetails) {
       return res.status(404).json({
         success: false,
         message: "User not found!",
       });
     }
-
+    
     // delete user profile
     await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
 
     // #TODO delete user from all enrolled courses
 
     // delete user
-    await User.findByIdAndDelete({ _id: id });
+    await User.findByIdAndDelete(id);
 
     // res
     return res.status(200).json({
@@ -132,6 +132,7 @@ exports.updateDisplayPicture = async (req, res) => {
     // find user with that id
     const  user = await User.findById(id);
     const image = req.files?.thumbnail;
+    console.log("file recieved : ", image);
 
     // validate user
     if(!user) {

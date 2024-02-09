@@ -9,18 +9,18 @@ const MyProfile = () => {
   const user = useSelector((state) => state.profile.user);
 
   return (
-    <div className="w-full my-10">
-      <div className="flex flex-col w-11/12 md:w-9/12 gap-10 justify-center  mx-auto py-10">
+    <div className="w-full">
+      <div className="flex flex-col w-11/12 md:w-9/12 gap-10 justify-center mx-auto py-10 xl:py-20">
         <h2 className="text-3xl xl:text-4xl font bold">My Profile</h2>
 
-        <section className="flex justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
-          <div className="flex gap-5 items-center">
+        <section className="flex flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
+          <div className="flex flex-col xl:flex-row gap-5 items-center">
             <img
               src={user.image}
               alt=""
-              className="rounded-full border-2 border-richblack-100 w-[100px]"
+              className=" border-2 border-richblack-100 w-[100px] aspect-square rounded-full object-cover"
             />
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col items-center xl:items-start gap-2">
               <h5 className="text-xl font-semibold">
                 {user.firstName + " " + user.lastName}
               </h5>
@@ -55,12 +55,6 @@ const MyProfile = () => {
         <section className="flex flex-col justify-between items-start bg-richblack-800 px-10 py-10 rounded-lg">
           <div className="flex items-center justify-between w-full mb-5">
             <h4 className="text-2xl font-semibold">Personal Details</h4>
-            {/* <CtaButton onClick={navigate("../settings")} active={true}>
-              <span className="flex gap-3 items-center">
-                <FaEdit />
-                Edit
-              </span>
-            </CtaButton> */}
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full py-2 gap-5">
             <div className="w-full py-1 flex flex-col gap-1">

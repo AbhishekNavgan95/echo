@@ -26,15 +26,14 @@ export function sendOtp(email, navigate) {
 
       // dispatch(setProgress(100));
       // console.log("SENDOTP API RESPONSE : ", response)
-      // console.log(response.data.success)
+      console.log(response.data)
 
       if (!response.data.success) {
         throw new Error("Request failed : " ,response.data.message)
       }
 
       toast.success("OTP Sent Successfully")
-      navigate("/verify-email"
-      )
+      navigate("/verify-email")
     } catch (error) {
 
       console.log("SENDOTP API ERROR............", error)
@@ -105,7 +104,7 @@ export function login(email, password, navigate) {
         password,
       })
       
-      console.log("LOGIN API RESPONSE............", response)
+      // console.log("LOGIN API RESPONSE............", response)
       
       if (!response.data.success) {
         throw new Error(response.data.message)

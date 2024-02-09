@@ -27,8 +27,10 @@ const Sidebar = () => {
           if (link.type && user?.accountType === link.type) {
             return <SidebarLink key={index} link={link} />;
           }
+          if(link.path === "settings"){
+            return <SidebarLink key={index} link={link} />;
+          }
         })}
-        {/* <div className="bg-richblack-600 mx-3 my-2 h-[1px]"></div> */}
         <div className="flex flex-col gap-1">
           {/* <SidebarLink
             link={}

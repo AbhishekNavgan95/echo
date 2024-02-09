@@ -273,13 +273,14 @@ exports.changePassword = async (req, res) => {
       oldPassword,
       userDetails.password
     );
-
+    
     // If old password does not match, return a 401 (Unauthorized) error
     if (!isPasswordMatch) {
       return res
-        .status(401)
-        .json({ success: false, message: "The password is incorrect" });
+      .status(401)
+      .json({ success: false, message: "The password is incorrect" });
     }
+    
 
     // Update password
     const encryptedPassword = await bcrypt.hash(newPassword, 10);
@@ -302,8 +303,6 @@ exports.changePassword = async (req, res) => {
         "Password for your account has been updated",
         mailBody
       );
-
-      console.log("Email sent successfully:");
 
     } catch (error) {
 

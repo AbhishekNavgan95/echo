@@ -1,28 +1,31 @@
-import { useRef, useState } from "react"
-import { AiOutlineCaretDown } from "react-icons/ai"
-import { VscDashboard, VscSignOut } from "react-icons/vsc"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import { useRef, useState } from "react";
+import { AiOutlineCaretDown } from "react-icons/ai";
+import { VscDashboard, VscSignOut } from "react-icons/vsc";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 // import useOnClickOutside from "../../../hooks/useOnClickOutside"
-import { logout } from "../../../services/operations/authAPI"
+import { logout } from "../../../services/operations/authAPI";
 
 export default function ProfileDropdown() {
-  const { user } = useSelector((state) => state.profile)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
+  const { user } = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
 
   // useOnClickOutside(ref, () => setOpen(false))
 
-  if (!user){
+  if (!user) {
     console.log("no user");
-    return localStorage.setItem("token",null)
-  } 
+    return localStorage.setItem("token", null);
+  }
 
   return (
-    <button className="relative rounded-full pr-3" onClick={() => setOpen(!open)}>
+    <button
+      className="relative rounded-full pr-3"
+      onClick={() => setOpen(!open)}
+    >
       <div className="flex items-center gap-x-1">
         <img
           src={user?.image}
@@ -43,18 +46,8 @@ export default function ProfileDropdown() {
               Dashboard
             </div>
           </Link>
-          {/* <div
-            onClick={() => {
-              dispatch(logout(navigate))
-              setOpen(false)
-            }}
-            className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25"
-          >
-            <VscSignOut className="text-lg" />
-            Logout
-          </div> */}
         </div>
       )}
     </button>
-  )
+  );
 }
