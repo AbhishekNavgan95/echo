@@ -6,13 +6,12 @@ const { uploadImageTocloudinary } = require("../utils/imageUploader");
 exports.updateProfile = async (req, res) => {
   try {
     // fetch data with user id
-    const { dateOfBirth , about , contactNumber, gender } = req.body;
+    const { dateOfBirth, about, contactNumber, gender } = req.body;
     // console.log("Details recieved",dateOfBirth, about, contactNumber, gender);
 
-    
     // console.log(dateOfBirth, about, gender, contactNumber)
     const id = req.user.id;
-    
+
     // vailidate data
     // if (!contactNumber || !gender) {
     //   return res.status(400).json({
@@ -24,9 +23,9 @@ exports.updateProfile = async (req, res) => {
     //  find profile
     const userDetails = await User.findById(id);
     // console.log("userDetails : ", userDetails);
-    
+
     const profileId = userDetails.additionalDetails;
-    
+
     const profileDetails = await Profile.findById(profileId);
     // console.log("profileDetails : ", profileDetails);
 
@@ -57,17 +56,17 @@ exports.deleteAccount = async (req, res) => {
   try {
     // get id
     const id = req.user.id;
-    
+
     // validation
     const userDetails = await User.findById(id);
-    
+
     if (!userDetails) {
       return res.status(404).json({
         success: false,
         message: "User not found!",
       });
     }
-    
+
     // delete user profile
     await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
 
@@ -110,48 +109,77 @@ exports.getAllUserDetails = async (req, res) => {
     user.password = undefined;
 
     return res.status(200).json({
-        success: true,
-        message: "User details fetched successfully",
-        data: user
-    })
-} catch (e) {
+      success: true,
+      message: "User details fetched successfully",
+      data: user,
+    });
+  } catch (e) {
     return res.status(500).json({
+      success: false,
+      message: "something went wrong while fetching user details",
+    });
+  }
+};
+
+// get all enrolled courses
+exports.getEnrolledCourses = async (req, res) => {
+  try {
+    const id = req.user.id;
+
+    const userDetails = await User.findById(id).populate("courses").exec();
+
+    if (!userDetails) {
+      return res.status(400).json({
         success: false,
-        message: "something went wrong while fetching user details",
-    })
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "User details fetched successfully",
+      data: userDetails?.courses,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      success: false,
+      message: "something went wrong while fetching user details",
+    });
   }
 };
 
 // upload disaply picture
 exports.updateDisplayPicture = async (req, res) => {
   try {
-
     // get id
     const id = req.user.id;
 
     // find user with that id
-    const  user = await User.findById(id);
+    const user = await User.findById(id);
     const image = req.files?.thumbnail;
     console.log("file recieved : ", image);
 
     // validate user
-    if(!user) {
+    if (!user) {
       return res.status(404).json({
         success: false,
         message: "User not found",
-      })
+      });
     }
-    
+
     // validate image
-    if(!image) {
+    if (!image) {
       return res.status(404).json({
         success: false,
         message: "image not found",
-      })
+      });
     }
 
     // upload file to cloud
-    const uploadDetails = await uploadImageTocloudinary(image, process.env.FOLDER_NAME)
+    const uploadDetails = await uploadImageTocloudinary(
+      image,
+      process.env.FOLDER_NAME
+    );
 
     console.log("image uplaod details : ", uploadDetails);
 
@@ -160,23 +188,22 @@ exports.updateDisplayPicture = async (req, res) => {
         _id: id,
       },
       {
-        image: uploadDetails.secure_url
+        image: uploadDetails.secure_url,
       },
       {
-        new: true
+        new: true,
       }
-    )
+    );
 
     res.status(200).json({
       success: true,
       message: "Image uploaded to successfully",
-      userDetails
-    })
-
-  } catch(e) {
+      userDetails,
+    });
+  } catch (e) {
     res.status(500).json({
       success: false,
       message: "something went wrong while uploading the image",
-    })
+    });
   }
-}
+};

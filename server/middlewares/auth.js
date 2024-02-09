@@ -39,6 +39,7 @@ exports.auth = async (req, res, next) => {
     }
     next();
   } catch (e) {
+    console.log(e)
     return res.status(401).json({
       success: false,
       message: "Soemthing went wrong while validating the token",

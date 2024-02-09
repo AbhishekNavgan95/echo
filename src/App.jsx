@@ -16,6 +16,7 @@ import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/cors/Auth/PrivateRoute";
 import Cart from "./components/dashboard/Cart";
 import Settings from "./pages/Settings";
+import EnrolledCourses from "./pages/EnrolledCourses";
 
 function App() {
 
@@ -26,17 +27,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
-            <Route path="my-profile" element={<MyProfile />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="enrolled-courses" element={<Cart />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
           <Route path="signup" element={<OpenRoute><SignUp /></OpenRoute>} />
           <Route path="login" element={<OpenRoute><LogIn /></OpenRoute>} />
           <Route path="reset-password" element={<OpenRoute><ResetPassword /></OpenRoute>} />
           <Route path="update-password/:id" element={<OpenRoute><UpdatePassword /></OpenRoute>} />
           <Route path="verify-email" element={<OpenRoute><VerifyEmail /></OpenRoute>} />
+          <Route path="dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
+            <Route path="my-profile" element={<MyProfile />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="enrolled-courses" element={<EnrolledCourses />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
           <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

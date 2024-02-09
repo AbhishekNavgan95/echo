@@ -17,10 +17,10 @@ const Home = () => {
   // console.log(user)
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-full mx-auto">
       {/* section 1 */}
       <header className="bg-richblack-900">
-        <div className="max-w-maxContent mx-auto">
+        <div className="max-w-maxContent mx-auto w-11/12">
           {/* Hero section */}
           <div className="relative mx-auto pt-16 flex flex-col items-center text-white justify-between text-center">
             {!(token === null) ? (
@@ -155,9 +155,11 @@ const Home = () => {
       </header>
 
       {/* section 2 */}
-      <section className="max-w-maxContent mx-auto lg:mt-48">
+      <section className="bg-white py-10">
+        <div className="max-w-maxContent mx-auto lg:mt-48 w-11/12">
+          
         <div className="py-5 flex flex-col justify-between items-center">
-          <div className="flex items-center lg:mt-14 justify-center gap-5">
+          <div className="flex items-center justify-center gap-5">
             <CtaButton active={true}>
               Explore full catalog
               <MdArrowRight />
@@ -166,15 +168,15 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center flex-col lg:flex-row gap-10 my-10">
-          <div className="text-3xl xl:text-4xl  text-white w-full text-center lg:text-start lg:w-[50%] font-bold">
+        <div className="flex justify-between items-center flex-col lg:flex-row gap-10 my-10 text-richblack-900">
+          <div className="text-3xl   xl:text-4xl  w-11/12 text-center lg:text-start lg:w-[50%] font-bold">
             <h3>
               Get the skills you need for a
               <HighlightText text={"Job that is in demand."} />
             </h3>
           </div>
           <div className="flex flex-col items-center lg:items-start text-center w-full lg:text-start lg:w-[50%] gap-10">
-            <p className="text-xl font-semibold text-richblack-500">
+            <p className="text-xl font-semibold text-richblack-500 w-11/12">
               The modern Echo is the dictates its our terms, Today, to be a
               compititive specialist requires more than professional skills.
             </p>
@@ -186,11 +188,13 @@ const Home = () => {
         <TimeLineSection />
 
         <LearningLanguageSection />
+        
+        </div>
       </section>
 
       {/* section 3 */}
       <section className="bg-richblack-900">
-        <div className="max-w-maxContent mx-auto">
+        <div className="mx-auto w-11/12">
           <div className="flex justify-between items-center py-20">
             <InstructorSection />
           </div>

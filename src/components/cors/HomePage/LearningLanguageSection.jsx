@@ -7,7 +7,7 @@ import CtaButton from '../../common/CtaButton'
 
 const LearningLanguageSection = () => {
   return (
-    <div className='lg:mt-[10rem]  text-white mb-10'>
+    <div className='lg:mt-[10rem] text-richblack-900 mb-10'>
         <div className=''>
             <h3 className='text-3xl xl:text-4xl font-bold text-center'>Your swiis knife for <HighlightText text={"learning any language."}/></h3>
             <p className='text-center text-richblack-300 w-full lg:w-2/3 mx-auto text-xl mt-3 font-semibold'>Using spin making learning multiple language easy. with 20+ languages realistic voice-over, Progress tracking, custom schedule and more...</p>

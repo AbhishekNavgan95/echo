@@ -1,9 +1,10 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiconnector";
-import { settingsEndpoints } from "../apis";
+import { settingsEndpoints, profileEndpoints } from "../apis";
 import { setToken } from "../../slices/authSlice";
 import { setUser } from "../../slices/profileSlice";
 
+// update Profile Picture of user
 export const updatePfp = async (token, file) => {
   const toastId = toast.loading("Uploading...");
   try {
@@ -42,6 +43,7 @@ export const updatePfp = async (token, file) => {
   toast.dismiss(toastId);
 };
 
+// update additional details of user
 export const updateProfile = async (token, formData) => {
   const toastId = toast.loading("Loading...");
   try {
@@ -69,6 +71,7 @@ export const updateProfile = async (token, formData) => {
   }
 };
 
+// delete user account
 export const deleteAccount = async (token, dispatch, navigate) => {
   const toastId = toast.loading();
 
@@ -100,6 +103,7 @@ export const deleteAccount = async (token, dispatch, navigate) => {
   }
 };
 
+// update password
 export const updatePassword = async (token, formData) => {
   const toastid = toast.loading("Loading...");
   try {
@@ -127,3 +131,29 @@ export const updatePassword = async (token, formData) => {
     toast.dismiss(toastid);
   }
 };
+
+// get user enrolled courses
+export async function getUserCourses(token,dispatch){
+  let result = []
+  try {
+    const response = await apiConnector(
+      "GET",
+      profileEndpoints.GET_USER_ENROLLED_COURSES_API,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    )
+
+    if (!response.data.success) {
+      throw new Error(response.data.message)
+    }
+    result = response.data.data;
+    toast.success("fetched all enrolled courses // remove from profileAPI.getUserCourses")
+  } catch (error) {
+    console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error)
+    toast.error("Could Not Get Enrolled Courses")
+  }
+  // dispatch(setProgress(100));
+  return result
+}
