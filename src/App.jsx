@@ -14,7 +14,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import MyProfile from "./pages/MyProfile";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/cors/Auth/PrivateRoute";
-import Cart from "./components/dashboard/Cart";
+import Cart from "./pages/Cart";
 import Settings from "./pages/Settings";
 import EnrolledCourses from "./pages/EnrolledCourses";
 
