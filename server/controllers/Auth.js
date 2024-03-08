@@ -194,7 +194,7 @@ exports.login = async (req, res) => {
     }
 
     // check if user exists
-    const tempUser = await User.findOne({ email }).populate("additionalDetails");
+    const tempUser = await User.findOne({ email }).populate("additionalDetails courses");
 
     if (!tempUser) {
       return res.status(401).json({
@@ -215,7 +215,7 @@ exports.login = async (req, res) => {
       };
 
       const token = jwt.sign(paylaod, process.env.JWT_SECRET, {
-        expiresIn: "2h",
+        expiresIn: "24h",
       });
 
       user.token = token;

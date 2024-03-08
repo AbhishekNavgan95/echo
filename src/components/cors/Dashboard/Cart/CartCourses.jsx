@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactStars from "react-stars";
 import { MdDelete } from "react-icons/md";
-import { removeFromCart } from "../../../slices/cartSlice";
+import { removeFromCart } from "../../../../slices/cartSlice";
 
 const CartCourses = () => {
   //   const {cart} = useSelector(state => state.cart);

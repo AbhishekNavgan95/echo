@@ -38,7 +38,11 @@ const courseSchema = new mongoose.Schema({
   tag: {
     type: String,
     required: true
-  },
+  },  
+  instructions: {
+		type: String,
+    required: true
+	},
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
@@ -50,9 +54,6 @@ const courseSchema = new mongoose.Schema({
       required: true,
     },
   ],
-  instructions: {
-		type: [String],
-	},
 	status: {
 		type: String,
     default: "Draft",

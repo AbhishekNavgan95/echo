@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import CtaButton from "../components/common/CtaButton";
+import CtaButton from "../../common/CtaButton";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 

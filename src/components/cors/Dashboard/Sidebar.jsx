@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { sidebarLinks } from "../../data/dashboard-links";
-import { logout } from "../../services/operations/authAPI";
+import { sidebarLinks } from "../../../data/dashboard-links";
+import { logout } from "../../../services/operations/authAPI";
 import { useDispatch, useSelector } from "react-redux";
-import SidebarLink from "./SidebarLink";
+import SidebarLink from "./sidebar/SidebarLink";
 import { useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
-import Modal from "../common/Modal";
+import Modal from "../../common/Modal";
 
 const Sidebar = () => {
   const { user, loading: userLoading } = useSelector((state) => state.profile);
@@ -24,7 +24,7 @@ const Sidebar = () => {
     <div className="w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800">
       <div className="flex flex-col ">
         {sidebarLinks.map((link, index)  => {
-          if (link.type && user?.accountType === link.type) {
+          if (link.type && user?.accountType === link.type || link.type === undefined) {
             return <SidebarLink key={index} link={link} />;
           }
           if(link.path === "settings"){
@@ -32,9 +32,6 @@ const Sidebar = () => {
           }
         })}
         <div className="flex flex-col gap-1">
-          {/* <SidebarLink
-            link={}
-          /> */}
           <button
             onClick={() =>
               setModal({

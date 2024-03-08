@@ -9,7 +9,7 @@ import {
   updateProfile,
   deleteAccount,
   updatePassword,
-} from "../services/operations/profileAPI";
+} from "../../../services/operations/profileAPI";
 import { useNavigate } from "react-router-dom";
 
 const Settings = () => {

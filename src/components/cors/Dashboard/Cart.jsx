@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import CartCourses from "../components/cors/Cart/CartCourses";
-import TotalCartAmount from "../components/cors/Cart/TotalCartAmount";
+import CartCourses from "./Cart/CartCourses";
+import TotalCartAmount from "./Cart/TotalCartAmount";
 
 const Cart = () => {
   const { total, totalItems } = useSelector((state) => state.cart);

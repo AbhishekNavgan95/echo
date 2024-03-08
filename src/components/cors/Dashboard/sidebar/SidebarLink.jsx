@@ -15,7 +15,7 @@ const SidebarLink = ({ link }) => {
       to={link.path}
     >
       <div className="flex items-center gap-3 text-lg ">
-        <Icon className="" />
+        <Icon />
         {link.name}
       </div>
     </NavLink>

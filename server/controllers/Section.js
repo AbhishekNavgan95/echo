@@ -14,6 +14,15 @@ exports.createSection = async (req, res) => {
       });
     }
 
+    const validateCourse = await Course.findById(courseId);
+    if(!validateCourse) {
+      return res.status(404).json({
+        success: false,
+        message: "Course not found",
+      })
+    }
+
+
     // add section in db
     const newSection = await Section.create({ sectionName: sectionName });
 
@@ -59,10 +68,10 @@ exports.createSection = async (req, res) => {
 exports.updateSection = async (req, res) => {
   try {
     // fetch data
-    const { sectionName, sectionId } = req.body;
-
+    const { sectionName, sectionId, courseId } = req.body;
+ 
     // validate data
-    if (!sectionName || !sectionId) {
+    if (!sectionName || !sectionId || !courseId) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -76,11 +85,18 @@ exports.updateSection = async (req, res) => {
       { new: true }
     );
 
+    const course = await Course.findById(courseId).populate({
+      path: "courseContent",
+      populate: {
+        path : "subSection",
+      }
+    }).exec();
+
     // res
     return res.status(200).json({
       success: true,
       message: "Section updated successfully",
-      updatedSection,
+      data: course,
     });
   } catch (e) {
     return res.status(500).json({
@@ -95,7 +111,7 @@ exports.updateSection = async (req, res) => {
 exports.deleteSection = async (req, res) => {
   try {
     // fetch data
-    const { sectionId } = req.body;
+    const { sectionId, courseId } = req.body;
 
     // validate data
     if (!sectionId) {
@@ -108,10 +124,21 @@ exports.deleteSection = async (req, res) => {
     // delete data in db
     await Section.findByIdAndDelete(sectionId);
 
+
+    // #TODO delete section from course here
+
+    const course = await Course.findById(courseId).populate({
+      path: "courseContent",
+      populate: {
+        path : "subSection",
+      }
+    }).exec();
+
     // res
     return res.status(200).json({
       success: true,
       message: "Section deleted successfully",
+      data: course,
     });
   } catch (e) {
     return res.status(500).json({

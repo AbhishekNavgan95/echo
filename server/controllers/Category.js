@@ -15,12 +15,12 @@ exports.createCategory = async (req, res) => {
     }
 
     // check if category already exists
-    const checkExist = await Category.findOne({name: name});
-    if(checkExist) {
+    const checkExist = await Category.findOne({ name: name });
+    if (checkExist) {
       return res.status(400).json({
         success: false,
-        message: "This category already exists"
-      })
+        message: "This category already exists",
+      });
     }
 
     // create entry in db
@@ -105,7 +105,7 @@ exports.categoryPageDetails = async (req, res) => {
     const categoriesExceptSelected = await Category.find({
       _id: { $ne: categoryId },
     });
-    
+
     let differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id

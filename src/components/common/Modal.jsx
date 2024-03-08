@@ -2,7 +2,7 @@ import React from "react";
 
 const Modal = ({ modalData }) => {
   return (
-    <div className="w-full h-full bg-[#0000008b] fixed top-0">
+    <div className="w-full h-full bg-[#0000008b] fixed top-0 left-0">
       <div className="text-white absolute bg-richblack-800 top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%] rounded-lg">
         <div className="flex flex-col py-10 px-14 items-center gap-5">
           <div className="flex flex-col gap-2 items-center">

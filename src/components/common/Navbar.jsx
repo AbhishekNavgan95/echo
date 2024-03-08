@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/Logo/logo.png";
-import { Form, Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useSelector } from "react-redux";
 import { FiShoppingBag } from "react-icons/fi";
