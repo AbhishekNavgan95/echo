@@ -28,7 +28,7 @@ const MyProfile = () => {
             </div>
           </div>
           <div>
-            <CtaButton onClick={navigate("../settings")} active={true}>
+            <CtaButton onClick={() => navigate("../settings")} active={true}>
               <span className="flex gap-3 items-center">
                 <FaEdit />
                 Edit
