@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/Logo/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FiShoppingBag } from "react-icons/fi";
 import ProfileDropDown from "../../components/cors/Auth/ProfileDropDown";
 import CtaButton from "./CtaButton";
 import { categories } from "../../services/apis";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { apiConnector } from "../../services/apiconnector";
+import { IoIosMenu } from "react-icons/io";
+import { toggleDashboard } from "../../slices/DashboardSlice";
 
 const Navbar = () => {
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.profile.user);
+  const dispatch = useDispatch();
   const totalItems = useSelector((state) => state.cart.totalItems);
   const [subLinks, setSubLinks] = useState([]);
 
@@ -32,11 +35,16 @@ const Navbar = () => {
 
   return (
     <div className="border-b border-richblack-600 bg-richblack-900 py-5">
-      <div className="flex max-w-maxContent mx-auto px-def justify-between items-center">
+      <div className="flex max-w-maxContent mx-auto justify-between px-3 items-center">
         {/* logo */}
-        <Link to={"/"} className="max-w-[5rem] ml-5">
-          <img src={logo} alt="" />
-        </Link>
+         <div className="max-w-[5rem] flex items-center gap-3">
+          <button className="text-richblack-5 text-2xl md:hidden" onClick={ () => dispatch(toggleDashboard())}>
+            <IoIosMenu />
+          </button>
+          <Link to={"/"} className="">
+            <img src={logo} alt="" />
+          </Link>
+        </div>
 
         {/* nav links*/}
         <div className="flex font-semibold text-lg items-center justify-center gap-5">
