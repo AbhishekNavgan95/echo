@@ -39,7 +39,6 @@ exports.createSection = async (req, res) => {
       }
     )
       .populate({
-        // ## nested populate homework
         path: "courseContent",
         model: "Section",
         populate: {

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const Upload = ({ name, label, register, errors, setValue }) => {
+const Upload = ({ name, label, register, errors, setValue, video }) => {
 
   const [image, setImage] = useState(null);
   const { editCourse, course } = useSelector((state) => state.course);
@@ -69,7 +69,7 @@ const Upload = ({ name, label, register, errors, setValue }) => {
                   id={name}
                   name={name}
                   type="file"
-                  accept="image/*,.jpeg,.jpg,.png"
+                  accept={video? ".mp4" : "image/*,.jpeg,.jpg,.png"}
                   tabIndex="-1"
                   multiple=""
                   {...register(name, { required: true })}

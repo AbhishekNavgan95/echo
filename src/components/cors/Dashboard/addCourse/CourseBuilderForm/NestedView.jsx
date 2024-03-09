@@ -4,6 +4,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import { CiCirclePlus } from "react-icons/ci";
+import { CiViewBoard } from "react-icons/ci";
 import {
   deleteSection,
   deleteSubSection,
@@ -61,7 +62,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
 
   return (
     <div className="text-xl text-richblack-5 select-none">
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5">
         {course?.courseContent?.map((section) => (
           <details
             className="py-3 px-3 gap-3 flex rounded-lg bg-richblack-800"
@@ -71,7 +72,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
             <summary className="flex items-center justify-between hover:cursor-pointer">
               <div className="flex gap-2 items-center">
                 <IoMdArrowDropdown className="text-xl" />
-                <p>{section?.sectionName}</p>
+                <p className="font-semibold text-2xl">{section?.sectionName}</p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="flex gap-5">
@@ -103,15 +104,19 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                 </div>
               </div>
             </summary>
-            <div className="flex mt-2">
+            <div className="flex mt-2 flex-col divide-y divide-richblack-600">
               {section?.subSection?.map((data) => (
                 <div
                   key={data?._id}
-                  onClick={() => setViewSubSection(data)}
-                  className="flex items-center justify-between gap-2"
+                  className="flex items-center justify-between gap-2 py-3"
                 >
                   <p>{data?.title}</p>
-                  <div>
+                  <div className="flex gap-5">
+                    <button
+                      onClick={() => setViewSubSection(data)}
+                    >
+                      <CiViewBoard />
+                    </button>
                     <button
                       onClick={() =>
                         setEditSubSection({ ...data, sectionId: section._id })
@@ -137,13 +142,15 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                   </div>
                 </div>
               ))}
-              <button
-                onClick={() => setAddSubSection(section._id)}
-                className="text-center flex items-center px-2 py-2 rounded-md text-lg  text-yellow-100 active:scale-95 focus:scale-95 transition-all duration-200 gap-3"
-              >
-                Add Lecture <CiCirclePlus />
-              </button>
             </div>
+              <div>
+                <button
+                  onClick={() => setAddSubSection(section._id)}
+                  className="text-center flex items-center py-2 rounded-md text-lg  text-yellow-100 active:scale-95 focus:scale-95 transition-all duration-200 gap-3"
+                >
+                  Add Lecture <CiCirclePlus />
+                </button>
+              </div>
           </details>
         ))}
       </div>
@@ -155,22 +162,22 @@ const NestedView = ({ handleChangeEditSectionName }) => {
           add={true}
         />
       ) : viewSubSection ? (
-        <SubSectionModal 
+        <SubSectionModal
           modalData={viewSubSection}
           setModalData={setViewSubSection}
           view={true}
         />
       ) : editSubSection ? (
-        <SubSectionModal 
+        <SubSectionModal
           modalData={editSubSection}
           setModalData={setEditSubSection}
           edit={true}
         />
       ) : null}
 
-    {
-      confirmationModal !== null ? <Modal modalData={confirmationModal} / >  : <div></div>
-    }
+      {
+        confirmationModal !== null ? <Modal modalData={confirmationModal} /> : <div></div>
+      }
     </div>
   );
 };
