@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // pages
@@ -31,6 +31,7 @@ import AddCourse from "./components/cors/Dashboard/AddCourse";
 function App() {
   const user = useSelector((state) => state.profile.user);
   console.log("User : ", user, "REMOVE FROM App.jsx / 24 ");
+  const location = useLocation();
 
   return (
     <div className="w-screen min-h-screen bg-richblack-900">
@@ -105,8 +106,11 @@ function App() {
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
-
-      <Footer />
+      
+      {
+        location.pathname.includes("dashboard")? 
+        null  : <Footer />
+      }
       
     </div>
   );

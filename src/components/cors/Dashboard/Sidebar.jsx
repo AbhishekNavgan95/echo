@@ -22,7 +22,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className={isOpen ? "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[0%] transition-all duration-300 z-[4] md:static" : "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[-100%] md:translate-x-0 transition-all duration-300 md:static"}>
+    <div className={isOpen ? "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[0%] transition-all duration-300 z-[4] md:static" : "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[-100%] md:translate-x-0 transition-all duration-300 md:static"}> 
       <div className="flex flex-col ">
         {sidebarLinks.map((link, index) => {
           if (link.type && user?.accountType === link.type || link.type === undefined) {
