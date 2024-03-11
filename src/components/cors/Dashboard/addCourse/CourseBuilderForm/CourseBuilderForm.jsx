@@ -13,6 +13,7 @@ import {
   createSection,
   updateSection,
 } from "../../../../../services/operations/courseDetailsAPI";
+import toast from "react-hot-toast";
 
 const CourseBuilderForm = () => {
   const {
@@ -76,15 +77,15 @@ const CourseBuilderForm = () => {
   };
 
   const goNext = () => {
-    if (course?.courseContent.length === 0) {
-      teast.error("Please add atleast one Section");
+    if (course?.courseContent?.length === 0) {
+      toast.error("Please add atleast one Section");
       return;
     }
 
     if (
-      course.courseContent.some((section) => section?.subsection.length === 0)
+      course?.courseContent?.some((section) => section?.subSection?.length === 0)
     ) {
-      teast.error("Please add atleast one Lecture in each Section");
+      toast.error("Please add atleast one Lecture in each Section");
       return;
     }
 

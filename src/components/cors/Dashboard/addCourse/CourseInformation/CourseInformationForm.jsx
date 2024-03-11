@@ -51,7 +51,7 @@ const CourseInformationForm = () => {
       setValue("coursePrice", course.price);
       setValue("courseTags", course.tag.toString());
       setValue("courseBenifits", course.whatYouWillLearn);
-      setValue("courseCategory", course.category);
+      setValue("category", course.category);
       setValue("courseRequirements", course.instructions);
       setValue("courseImage", course.thumbnail);
     }
@@ -68,7 +68,7 @@ const CourseInformationForm = () => {
       currentValues.tag.toString() !== course.tag.toString() ||
       currentValues.coursePrice !== course.price ||
       currentValues.courseBenifits !== course.whatYouWillLearn ||
-      currentValues.courseCategory !== course.category
+      currentValues.category !== course.category
     ) {
       console.log("no changes has been done to the course");
       return true;
@@ -110,9 +110,7 @@ const CourseInformationForm = () => {
 
         // course category
         if (currentValues.category !== course.category) {
-          formData.append("category", data.courseCategory);
-        } else {
-          formData.append("category", course.category);
+          formData.append("category", data.category);
         }
 
         // course tags
@@ -130,12 +128,9 @@ const CourseInformationForm = () => {
           formData.append("instructions", data.courseRequirements);
         }
 
-        // course category
-        if (currentValues.category !== course.category) {
-          formData.append("category", data.category);
+        if(currentValues.courseImage !== course.thumbnail) {
+          formData.append("thumbnail", data.courseImage)
         }
-
-        // formData.append("thumbnail", data.courseImage); // not working
 
         setLoading(true);
         const result = await editCourseDetails(formData, token);

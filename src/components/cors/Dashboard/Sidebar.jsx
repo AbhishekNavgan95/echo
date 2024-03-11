@@ -22,38 +22,40 @@ const Sidebar = () => {
   }
 
   return (
-    <div className={isOpen ? "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[0%] transition-all duration-300 z-[4] md:static" : "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[-100%] md:translate-x-0 transition-all duration-300 md:static"}> 
-      <div className="flex flex-col ">
-        {sidebarLinks.map((link, index) => {
-          if (link.type && user?.accountType === link.type || link.type === undefined) {
-            return <SidebarLink key={index} link={link} />;
-          }
-          if (link.path === "settings") {
-            return <SidebarLink key={index} link={link} />;
-          }
-        })}
-        <div className="flex flex-col gap-1">
-          <button
-            onClick={() =>
-              setModal({
-                heading: "Are you sure?",
-                subHeading: "You'll be logged out",
-                btn1Text: "Log out",
-                btn2Text: "Cancel",
-                isOpen: true,
-                btn1Handler: () => dispatch(logout(navigate)),
-                btn2Handler: () => setModal({ isOpen: false }),
-              })
+    <>
+      <div className={isOpen ? "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[0%] transition-all duration-300 z-[4] md:static" : "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[-100%] md:translate-x-0 transition-all duration-300 md:static"}>
+        <div className="flex flex-col ">
+          {sidebarLinks.map((link, index) => {
+            if (link.type && user?.accountType === link.type || link.type === undefined) {
+              return <SidebarLink key={index} link={link} />;
             }
-            className=" flex gap-3 text-lg items-center px-4 text-white w-full py-2 bg-[#721414] "
-          >
-            <GrLogout />
-            Logout
-          </button>
+            if (link.path === "settings") {
+              return <SidebarLink key={index} link={link} />;
+            }
+          })}
+          <div className="flex flex-col gap-1">
+            <button
+              onClick={() =>
+                setModal({
+                  heading: "Are you sure?",
+                  subHeading: "You'll be logged out",
+                  btn1Text: "Log out",
+                  btn2Text: "Cancel",
+                  isOpen: true,
+                  btn1Handler: () => dispatch(logout(navigate)),
+                  btn2Handler: () => setModal({ isOpen: false }),
+                })
+              }
+              className=" flex gap-3 text-lg items-center px-4 text-white w-full py-2 bg-[#721414] "
+            >
+              <GrLogout />
+              Logout
+            </button>
+          </div>
         </div>
       </div>
       {modal.isOpen === true ? <Modal modalData={modal} /> : null}
-    </div>
+    </>
   );
 };
 

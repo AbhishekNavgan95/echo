@@ -69,7 +69,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
             key={section?._id}
             open
           >
-            <summary className="flex items-center justify-between hover:cursor-pointer">
+            <summary className="flex items-center justify-start gap-5 hover:cursor-pointer">
               <div className="flex gap-2 items-center">
                 <IoMdArrowDropdown className="text-xl" />
                 <p className="font-semibold text-2xl">{section?.sectionName}</p>
@@ -104,11 +104,11 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                 </div>
               </div>
             </summary>
-            <div className="flex mt-2 flex-col divide-y divide-richblack-600">
+            <div className="flex mt-2 flex-col divide-y divide-richblack-600 font-light">
               {section?.subSection?.map((data) => (
                 <div
                   key={data?._id}
-                  className="flex items-center justify-between gap-2 py-3"
+                  className="flex items-center justify-between gap-2 py-3 px-2 lg:px-5"
                 >
                   <p>{data?.title}</p>
                   <div className="flex gap-5">
@@ -146,7 +146,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
               <div>
                 <button
                   onClick={() => setAddSubSection(section._id)}
-                  className="text-center flex items-center py-2 rounded-md text-lg  text-yellow-100 active:scale-95 focus:scale-95 transition-all duration-200 gap-3"
+                  className="text-center flex items-center py-2 rounded-md text-lg  text-yellow-100 active:scale-95 focus:scale-95 transition-all duration-200 gap-2"
                 >
                   Add Lecture <CiCirclePlus />
                 </button>
