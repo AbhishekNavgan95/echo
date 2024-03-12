@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import CtaButton from "../../common/CtaButton";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -27,25 +28,23 @@ const MyProfile = () => {
             </div>
           </div>
           <div>
-            <CtaButton onClick={() => navigate("../settings")} active={true}>
+            <Link to={"../settings"} className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3" active={true}>
               <span className="flex gap-3 items-center">
                 <FaEdit />
                 Edit
               </span>
-            </CtaButton>
-          </div>
-        </section>
-
-        <section className="flex flex-col justify-between items-start bg-richblack-800 px-10 py-10 rounded-lg">
-          <h3 className="text-2xl font-semibold">About</h3>
-          <div className="flex items-center justify-between w-full mb-5">
-            {/* <CtaButton onClick={navigate("../settings")} active={true}>
+            </Link>
+            {/* <CtaButton onClick={() => navigate("./settings")} active={true}>
               <span className="flex gap-3 items-center">
                 <FaEdit />
                 Edit
               </span>
             </CtaButton> */}
           </div>
+        </section>
+
+        <section className="flex flex-col justify-between items-start bg-richblack-800 px-10 py-10 rounded-lg gap-3">
+          <h3 className="text-2xl font-semibold">About</h3>
           <div>
             <p className="text-xl">{user.additionalDetails.about ?? "You haven't added your Bio yet!"}</p>
           </div>
@@ -89,7 +88,7 @@ const MyProfile = () => {
               <h4 className="text-lg text-richblack-300">Data Of Birth</h4>
               <p className="text-semibold text-xl">
                 {
-                user.additionalDetails.DOB ?? 
+                  user.additionalDetails.DOB ??
                   "Please add your Date of Birth"}
               </p>
             </div>

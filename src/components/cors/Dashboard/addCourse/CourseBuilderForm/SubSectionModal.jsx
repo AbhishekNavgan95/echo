@@ -7,7 +7,7 @@ import {
 } from "../../../../../services/operations/courseDetailsAPI";
 import { setCourse } from "../../../../../slices/CourseSlice";
 import { RxCross2 } from "react-icons/rx";
-import Upload from "../CourseInformation/Upload";
+import Upload from "./Upload";
 import toast from "react-hot-toast";
 
 const SubSectionModal = ({
@@ -31,6 +31,7 @@ const SubSectionModal = ({
   const { course } = useSelector((state) => state.course);
 
   useEffect(() => {
+    console.log("modal data: ", modalData);
     if (view || edit) {
       setValue("lectureTitle", modalData.title);
       setValue("lectureDescription", modalData.description);
@@ -109,7 +110,7 @@ const SubSectionModal = ({
       formData.append("description", currentValues.lectureDescription);
     }
 
-    if(currentValues.timeDuration !== modalData.timeDuration) {
+    if (currentValues.timeDuration !== modalData.timeDuration) {
       formData.append("timeDuration", currentValues.timeDuration);
     }
 
@@ -127,9 +128,9 @@ const SubSectionModal = ({
       const updatedCourseContent = course?.courseContent?.map(section => {
         console.log(modalData.sectionId);
         return section._id === modalData.sectionId ? result : section
-      } 
+      }
       )
-      const updatedCourse = {...course, courseContent : updatedCourseContent};
+      const updatedCourse = { ...course, courseContent: updatedCourseContent };
       dispatch(setCourse(updatedCourse));
     }
 
@@ -139,7 +140,8 @@ const SubSectionModal = ({
 
   return (
     <div className="fixed z-[3] top-0 left-0 right-0 bottom-0 text-richblack-5 flex flex-col justify-center items-center bg-[#0000008b] w-full">
-      <div className="bg-richblack-900 border border-richblack-600 px-5 pb-5 rounded-lg w-5/12 flex flex-col gap-5 ">
+      <div className="bg-richblack-900 overflow-auto my-5 border border-richblack-600 px-5 pb-5 rounded-lg w-6/12 flex flex-col gap-5 ">
+
         {/* form Heading */}
         <div className="flex justify-between py-5 border-b border-richblack-600">
           <p>
@@ -153,7 +155,7 @@ const SubSectionModal = ({
 
         {/* Form */}
         <div>
-          <form className="flex flex-col gap-5" onSubmit={handleSubmit(submitHandler)}>
+          <form className="flex flex-col justify-between gap-5" onSubmit={handleSubmit(submitHandler)}>
             <Upload
               name="lectureVideo"
               label="Lecture Video"
@@ -164,6 +166,7 @@ const SubSectionModal = ({
               viewData={view ? modalData.videoUrl : null}
               editData={edit ? modalData.videoUrl : null}
             />
+
             <div className="flex flex-col gap-2">
               <label htmlFor="lectureTitle" className="text-lg">Lecture Title</label>
               <input
@@ -196,7 +199,7 @@ const SubSectionModal = ({
                 type="text"
                 name="lectureDescription"
                 id="lectureDescription"
-                rows={5}
+                rows={3}
                 className="text-xl bg-richblack-800 w-full py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
                 placeholder="Enter Lecture Description"
                 {...register("lectureDescription", { required: true })}
@@ -204,13 +207,13 @@ const SubSectionModal = ({
               {errors.lectureDescription && (
                 <span>Lecture Description is required</span>
               )}
-            </div>
 
-            {!view && (
-              <div>
-                <button  className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3">{edit ? "Save Changes" : "Save"}</button>
-              </div>
-            )}
+            </div>
+              {!view && (
+                <div>
+                  <button className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3">{edit ? "Save Changes" : "Save"}</button>
+                </div>
+              )}
           </form>
         </div>
       </div>

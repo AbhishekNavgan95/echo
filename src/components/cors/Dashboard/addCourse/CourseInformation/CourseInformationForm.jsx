@@ -246,7 +246,7 @@ const CourseInformationForm = () => {
             <select
               name="category"
               className="text-xl bg-richblack-800 text-richblack-300 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
-              defaultValue={""}
+              value={getValues?.category ? getValues?.category : course?.category}
               {...register("category", { required: true })}
               id="category"
             >
