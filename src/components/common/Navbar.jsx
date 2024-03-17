@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/Logo/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useDispatch, useSelector } from "react-redux";
 import { FiShoppingBag } from "react-icons/fi";
@@ -16,6 +16,7 @@ const Navbar = () => {
   const token = useSelector((state) => state.auth.token);
   const user = useSelector((state) => state.profile.user);
   const dispatch = useDispatch();
+  const location = useLocation();
   const totalItems = useSelector((state) => state.cart.totalItems);
   const [subLinks, setSubLinks] = useState([]);
 
@@ -37,12 +38,20 @@ const Navbar = () => {
     <div className="border-b border-richblack-600 bg-richblack-900 py-5">
       <div className="flex max-w-maxContent mx-auto justify-between px-3 items-center">
         {/* logo */}
-         <div className="max-w-[5rem] flex items-center gap-3">
-          <button className="text-richblack-5 text-2xl md:hidden" onClick={ () => dispatch(toggleDashboard())}>
-            <IoIosMenu />
-          </button>
+        <div className="flex items-center gap-3">
+
+          {
+            !location.pathname.includes("dashboard") ?
+              null : <button
+                className="text-richblack-5 text-2xl md:hidden"
+                onClick={() => dispatch(toggleDashboard())}>
+                <IoIosMenu />
+              </button>
+          }
+
+
           <Link to={"/"} className="">
-            <img src={logo} alt="" />
+             <img className="max-w-[5rem]" src={logo} alt="" />
           </Link>
         </div>
 

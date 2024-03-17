@@ -49,7 +49,7 @@ const CourseInformationForm = () => {
       setValue("courseName", course.courseTitle);
       setValue("courseDescription", course.courseDescription);
       setValue("coursePrice", course.price);
-      setValue("courseTags", course.tag.toString());
+      setValue("tag", course.tag.toString());
       setValue("courseBenifits", course.whatYouWillLearn);
       setValue("category", course.category);
       setValue("courseRequirements", course.instructions);
@@ -61,6 +61,7 @@ const CourseInformationForm = () => {
 
   const isFormUpdated = () => {
     const currentValues = getValues();
+    console.log("current values : ", currentValues);
 
     if (
       currentValues.courseName !== course.courseTitle ||
@@ -68,7 +69,8 @@ const CourseInformationForm = () => {
       currentValues.tag.toString() !== course.tag.toString() ||
       currentValues.coursePrice !== course.price ||
       currentValues.courseBenifits !== course.whatYouWillLearn ||
-      currentValues.category !== course.category
+      currentValues.category !== course.category ||
+      currentValues.courseImage !== course.thumbnail
     ) {
       console.log("no changes has been done to the course");
       return true;
@@ -91,32 +93,44 @@ const CourseInformationForm = () => {
         // course name
         if (currentValues.courseTitle !== course.courseTitle) {
           formData.append("courseName", data.courseName);
+        } else {
+          formData.append("courseName", course?.courseTitle);
         }
 
         // course description
         if (currentValues.courseDescription !== course.courseDescription) {
           formData.append("courseDescription", data.courseDescription);
+        } else {
+          formData.append("courseDescription", course?.courseDescription);
         }
 
         // course prince
         if (currentValues.coursePrice !== course?.price) {
           formData.append("price", data.coursePrice);
+        } else {
+          formData.append("price", course?.price);
         }
 
         // course what you will learn
         if (currentValues.courseBenifits !== course?.whatYouWillLearn) {
           formData.append("whatYouWillLearn", data.courseBenifits);
+        } else {
+          formData.append("whatYouWillLearn", course?.whatYouWillLearn);
         }
 
         // course category
         if (currentValues.category !== course.category) {
           formData.append("category", data.category);
+        } else {
+          formData.append("category", course.category);
         }
 
         // course tags
         if (currentValues.tag.toString() !== course.tag.toString()) {
           // data.tag.forEach((tag) => formData.append("tag", tag));
           formData.append("tag", data?.tag);
+        } else {
+          formData.append("tag", course?.tag);
         }
 
         // course requirements
@@ -126,9 +140,12 @@ const CourseInformationForm = () => {
         ) {
           // data.courseRequirements.forEach(requirement => formData.append("instructions", requirement));
           formData.append("instructions", data.courseRequirements);
+        } else {
+          formData.append("instructions", course.instructions);
         }
 
-        if(currentValues.courseImage !== course.thumbnail) {
+        // if image exists
+        if(data.courseImage) {
           formData.append("thumbnail", data.courseImage)
         }
 
@@ -246,7 +263,7 @@ const CourseInformationForm = () => {
             <select
               name="category"
               className="text-xl bg-richblack-800 text-richblack-300 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
-              value={getValues?.category ? getValues?.category : course?.category}
+              defaultValue={""}
               {...register("category", { required: true })}
               id="category"
             >

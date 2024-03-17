@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CourseInformationForm from "./CourseInformation/CourseInformationForm";
 import CourseBuilderForm from "./CourseBuilderForm/CourseBuilderForm";
+import PublishCourse from "./PublishCourse/PublishCourse";
 
 const RenderSteps = () => {
   const step = useSelector((state) => state.course.step);
@@ -54,7 +55,7 @@ const RenderSteps = () => {
             {step === 1 && <CourseInformationForm />}
           </div>
           <div>{step === 2 && <CourseBuilderForm />}</div>
-          {/* <div>{step === 3 && <PublishCourse />}</div> */}
+          <div>{step === 3 && <PublishCourse />}</div>
         </div>
       </section>
     </>

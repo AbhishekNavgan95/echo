@@ -25,6 +25,7 @@ const {
   LECTURE_COMPLETION_API,
   ADD_COURSE_TO_CATEGORY_API,
   SEARCH_COURSES_API,
+  EDIT_COURSE_STATUS,
 } = courseEndpoints;
 
 export const getAllCourses = async () => {
@@ -123,7 +124,7 @@ export const editCourseDetails = async (data, token) => {
       throw new Error("Could Not Update Course Details");
     }
     toast.success("Course Details Updated Successfully");
-    result = response?.data?.updatedCourse;
+    result = response?.data?.data;
   } catch (error) {
     console.log("EDIT COURSE API ERROR............", error);
     toast.error(error.response.data.message);
@@ -131,6 +132,28 @@ export const editCourseDetails = async (data, token) => {
   toast.dismiss(toastId);
   return result;
 };
+
+// edit course status 
+export const editCourseStatus = async (data, token) => {
+  let result = null;
+  const toastId = toast.loading("Loading...");
+  try {
+    const response = await apiConnector("POST", EDIT_COURSE_STATUS, data, {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    });
+    console.log("EDIT COURSE STATUS API RESPONSE............", response);
+    if (!response?.data?.success) {
+      throw new Error("Could Not Update Course Details");
+    }
+    result = response?.data?.data;
+  } catch (error) {
+    console.log("EDIT COURSE STATUS API ERROR............", error);
+    toast.error(error?.response?.data?.message);
+  }
+  toast.dismiss(toastId);
+  return result;
+}
 
 // create a section
 export const createSection = async (data, token) => {
