@@ -11,7 +11,6 @@ import { deleteCourse, fetchInstructorCourses } from '../../../../services/opera
 import { useNavigate } from 'react-router-dom';
 
 export default function CoursesTable({ courses, setCourses }) {
-  console.log("courses : ", courses);
 
   const { token } = useSelector(state => state.auth);
   const dispatch = useDispatch()

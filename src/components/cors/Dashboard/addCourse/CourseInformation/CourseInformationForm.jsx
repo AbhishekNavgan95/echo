@@ -33,8 +33,8 @@ const CourseInformationForm = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    console.log("Course : ", course);
-    console.log("set edit course : ", editCourse);
+    // console.log("Course : ", course);
+    // console.log("set edit course : ", editCourse);
 
     const getCategories = async () => {
       setLoading(true);

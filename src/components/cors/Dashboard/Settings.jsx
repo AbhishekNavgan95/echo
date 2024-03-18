@@ -11,6 +11,7 @@ import {
   updatePassword,
 } from "../../../services/operations/profileAPI";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../../slices/profileSlice";
 
 const Settings = () => {
   const { token } = useSelector((state) => state.auth);
@@ -34,14 +35,14 @@ const Settings = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // pending
-  const imageUpload = (e) => {
+  const imageUpload = async (e) => {
     e.preventDefault();
     const file = e.target[0].files[0];
-    updatePfp(token, file);
+    const result = await updatePfp(token, file);
+    dispatch(setUser({...user, image: result}));
   };
 
   const updateImage = (e) => {
-    console.log("e : ", e);
     const file = e.target.files[0];
     setFile(URL.createObjectURL(file));
   };

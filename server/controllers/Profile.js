@@ -198,7 +198,7 @@ exports.updateDisplayPicture = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Image uploaded to successfully",
-      userDetails,
+      data: userDetails,
     });
   } catch (e) {
     res.status(500).json({

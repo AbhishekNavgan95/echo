@@ -23,7 +23,6 @@ const MyCourses = () => {
 
     useEffect(() => {
         fetchCourses();
-        console.log("Courses : ", courses)
     }, [])
 
     return (

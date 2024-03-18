@@ -9,7 +9,6 @@ const EditCourse = () => {
 
     const dispatch = useDispatch();
     const courseId = useParams();
-    console.log("course Id : ", courseId.id)
     const { course } = useSelector(state => state.course);
     const [loading, setLoading] = useState();
     const { token } = useSelector(state => state.auth);

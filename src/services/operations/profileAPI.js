@@ -9,10 +9,10 @@ export const updatePfp = async (token, file) => {
   const toastId = toast.loading("Uploading...");
   try {
     const formData = new FormData();
-    console.log("formData: ", formData);
+    // console.log("formData: ", formData);
     formData.append("thumbnail", file);
 
-    const response = await apiConnector(
+      const response = await apiConnector(
       "PUT",
       settingsEndpoints.UPDATE_DISPLAY_PICTURE_API,
       formData,
@@ -26,21 +26,13 @@ export const updatePfp = async (token, file) => {
       throw new Error(response.data.message);
     }
 
+    toast.dismiss(toastId);
     toast.success("Profile picture updated successfully!");
-
-    const imageUrl = response.userDetails.image;
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        ...JSON.parse(localStorage.getItem("user")),
-        image: imageUrl,
-      })
-    );
+    return response?.data?.data?.image;
   } catch (e) {
     console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", e);
     toast.dismiss(toastId);
   }
-  toast.dismiss(toastId);
 };
 
 // update additional details of user

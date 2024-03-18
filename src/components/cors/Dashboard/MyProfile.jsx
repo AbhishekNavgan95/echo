@@ -28,18 +28,12 @@ const MyProfile = () => {
             </div>
           </div>
           <div>
-            <Link to={"../settings"} className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3" active={true}>
+            <CtaButton linkTo={"../settings"} active={true}>
               <span className="flex gap-3 items-center">
                 <FaEdit />
                 Edit
               </span>
-            </Link>
-            {/* <CtaButton onClick={() => navigate("./settings")} active={true}>
-              <span className="flex gap-3 items-center">
-                <FaEdit />
-                Edit
-              </span>
-            </CtaButton> */}
+            </CtaButton>
           </div>
         </section>
 
