@@ -1,0 +1,48 @@
+import React, { useEffect, useState } from 'react'
+import CtaButton from '../../common/CtaButton'
+import { VscAdd } from "react-icons/vsc";
+import { useSelector } from 'react-redux';
+import { fetchInstructorCourses } from "../../../services/operations/courseDetailsAPI"
+import CoursesTable from './instructorCourses/CoursesTable';
+import { useNavigate } from 'react-router-dom';
+import { SyncLoader } from "react-spinners";
+
+const MyCourses = () => {
+
+    const { token } = useSelector(state => state.auth);
+    const navigate = useNavigate();
+    const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchCourses = async () => {
+        const result = await fetchInstructorCourses(token)
+        if (result) {
+            setCourses(result);
+        }
+    }
+
+    useEffect(() => {
+        fetchCourses();
+        console.log("Courses : ", courses)
+    }, [])
+
+    return (
+        <div className="w-full">
+            <div className="flex flex-col w-11/12 md:w-9/12 gap-10 justify-center mx-auto py-10 xl:py-20">
+                <div className='flex justify-between'>
+                    <h2 className="text-3xl xl:text-4xl font bold">My Courses</h2>
+                    <CtaButton linkTo={"../add-course"} active={true} ><span className='flex gap-3 items-center'>Add Course <VscAdd /></span></CtaButton>
+                </div>
+                <section className="flex flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-900 border border-richblack-600 px-5 lg:px-10 py-10 rounded-lg">
+                    {
+                        courses 
+                        ? <CoursesTable courses={courses} setCourses={setCourses} /> 
+                        : <SyncLoader color="#E7C009" />
+                    }
+                </section>
+            </div>
+        </div>
+    )
+}
+
+export default MyCourses

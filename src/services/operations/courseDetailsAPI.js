@@ -301,7 +301,7 @@ export const fetchInstructorCourses = async (token) => {
       GET_ALL_INSTRUCTOR_COURSES_API,
       null,
       {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       }
     );
     console.log("INSTRUCTOR COURSES API RESPONSE............", response);
@@ -322,7 +322,7 @@ export const deleteCourse = async (data, token) => {
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("DELETE COURSE API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -349,7 +349,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
         courseId,
       },
       {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       }
     );
     console.log("COURSE_FULL_DETAILS_API API RESPONSE............", response);
@@ -360,8 +360,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
     result = response?.data?.data;
   } catch (error) {
     console.log("COURSE_FULL_DETAILS_API API ERROR............", error);
-    result = error.response.data;
-    // toast.error(error.response.data.message);
+    result = error?.response?.data;
   }
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));

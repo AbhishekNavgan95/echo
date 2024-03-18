@@ -27,6 +27,8 @@ import Cart from "./components/cors/Dashboard/Cart";
 import Settings from "./components/cors/Dashboard/Settings";
 import EnrolledCourses from "./components/cors/Dashboard/EnrolledCourses";
 import AddCourse from "./components/cors/Dashboard/AddCourse";
+import MyCourses from "./components/cors/Dashboard/MyCourses";
+import EditCourse from "./components/cors/Dashboard/editCourse/editCourse";
 
 function App() {
   const user = useSelector((state) => state.profile.user);
@@ -100,6 +102,8 @@ function App() {
           {user?.accountType === "Instructor" ? (
             <>
               <Route path="add-course" element={<AddCourse />} />
+              <Route path="my-courses" element={<MyCourses />} />
+              <Route path="edit-course/:id" element={<EditCourse />} />
             </>
           ) : null}
           <Route path="settings" element={<Settings />} />

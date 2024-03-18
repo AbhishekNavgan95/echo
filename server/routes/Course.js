@@ -7,11 +7,11 @@ const {
   createCourse,
   showAllCourses,
   getCourseDetails,
-  // getFullCourseDetails,
+  getFullCourseDetails,
   editCourse,
   makeCoursePublic,
-  // getInstructorCourses,
-  // deleteCourse,
+  getInstructorCourses,
+  deleteCourse,
 } = require("../controllers/Course")
 
 const {
@@ -67,7 +67,7 @@ router.get("/showAllCourses", showAllCourses)
 router.get("/getCourseDetails", getCourseDetails)
 
 // Get Details for a Specific Courses
-// router.post("/getFullCourseDetails", auth, getFullCourseDetails)
+router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 
 // Edit Course routes
 router.post("/editCourse", auth, isInstructor, editCourse)
@@ -76,9 +76,9 @@ router.post("/editCourse", auth, isInstructor, editCourse)
 router.post("/editStatus", auth, isInstructor, makeCoursePublic)
 
 // Get all Courses Under a Specific Instructor
-// router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 // Delete a Course
-// router.delete("/deleteCourse", deleteCourse)
+router.delete("/deleteCourse", auth, isInstructor, deleteCourse)
 
 // router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 
