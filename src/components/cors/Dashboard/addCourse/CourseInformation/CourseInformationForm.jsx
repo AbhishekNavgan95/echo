@@ -245,7 +245,7 @@ const CourseInformationForm = () => {
                 name="coursePrice"
                 id="coursePrice"
                 className="text-xl bg-richblack-800 w-full rounded-lg focus:outline-none"
-                placeholder="Course Title"
+                placeholder="Course Price"
                 {...register("coursePrice", {
                   required: true,
                   valueAsNumber: true,

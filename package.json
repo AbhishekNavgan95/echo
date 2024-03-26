@@ -29,6 +29,7 @@
     "react-spinners": "^0.13.8",
     "react-stars": "^2.2.5",
     "react-type-animation": "^3.2.0",
+    "swiper": "^11.0.7",
     "video-react": "^0.16.0"
   },
   "devDependencies": {

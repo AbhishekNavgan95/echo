@@ -31,7 +31,7 @@ const TimeLineSection = () => {
     ]
 
   return (
-    <div className='my-20'>
+    <div className='my-20 group'>
         <div className="flex flex-col-reverse md:flex-row items-center gap-20 nd:gap-2 justify-between">
           {/* timeline */}
           <div className="flex flex-col items-center lg:items-start gap-10 w-full lg:w-2/5">
@@ -50,8 +50,10 @@ const TimeLineSection = () => {
             }
           </div>
           {/* image */}
-          <div className="flex w-11/12 lg:w-3/5 relative">
-            <img className='w-full rounded-3xl' src={TimelineImage} alt="" />
+          <div className="flex  w-11/12 lg:w-3/5 relative">
+            <div className='overflow-hidden rounded-3xl'>
+                <img className='w-full group-hover:scale-105 transition-scale delay-100 duration-300 ' src={TimelineImage} alt="" />
+            </div>
             <div className='w-auto lg:w-3/4 absolute left-[50%] bottom-0 translate-x-[-50%] translate-y-[50%] flex justify-center  gap-2 lg:gap-4 bg-caribbeangreen-700 text-white uppercase py-5 px-5 rounded-xl '> 
                 <div className='flex flex-col lg:flex-row  items-center gap-3 '>
                     <h3 className='text-4xl font-bold'>10+</h3>

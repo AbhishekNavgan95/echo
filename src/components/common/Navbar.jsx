@@ -8,7 +8,7 @@ import ProfileDropDown from "../../components/cors/Auth/ProfileDropDown";
 import CtaButton from "./CtaButton";
 import { categories } from "../../services/apis";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { apiConnector } from "../../services/apiconnector";
+import { apiConnector } from "../../services/apiConnector";
 import { IoIosMenu } from "react-icons/io";
 import { toggleDashboard } from "../../slices/DashboardSlice";
 
@@ -68,7 +68,7 @@ const Navbar = () => {
                 <div className="bg-richblack-25 text-richblack-900 p-2 absolute min-w-[250px] rounded-xl top-[10%] left-[50%] z-[5] translate-x-[-50%] translate-y-10 group-hover:scale-y-100 group-focus:scale-y-100 focus:scale:y-100  transition-all duration-300 hover:flex flex-col scale-y-0 delay-100 origin-top flex items-start">
                   {subLinks.map((category, index) => (
                     <NavLink
-                      to={`/courses/${category.name}`}
+                      to={`/catalog/${category.name}`}
                       className="relative z-[5] rounded-xl transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full"
                       key={index}
                     >
