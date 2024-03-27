@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
 
 const CourseSlider = ({ courses }) => {
-  console.log("courses : ", courses);
+  // console.log("courses : ", courses);
   return (
     <div>
       {

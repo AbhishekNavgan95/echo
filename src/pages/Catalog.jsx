@@ -9,11 +9,11 @@ import CourseCard from '../components/cors/CatalogPage/CourseCard';
 const Catalog = () => {
 
     const [catalogPageData, setCatalogPageData] = useState();
-    console.log("cataologPage data : ", catalogPageData)
+    // console.log("cataologPage data : ", catalogPageData)
     const [categoryId, setCategoryId] = useState(null);
     const { category } = useParams();
     const [coursesType, setCoursesType] = useState("most-popular");
-    console.log("Current category : ", category)
+    // console.log("Current category : ", category)
 
     const getCategories = async () => {
         const res = await apiConnector("GET", categories.CATEGORIES_API);
@@ -24,10 +24,10 @@ const Catalog = () => {
     const getCategoryDetails = async () => {
         try {
             const res = await getCatalogPageData(categoryId);
-            console.log("res : ", res);
+            // console.log("res : ", res);
             setCatalogPageData(res);
         } catch (e) {
-            console.log("error : ", e);
+            // console.log("error : ", e);
         }
     }
 
@@ -37,46 +37,45 @@ const Catalog = () => {
     }, [category])
 
     useEffect(() => {
-        if(categoryId) {
+        if (categoryId) {
             getCategoryDetails();
         }
     }, [categoryId])
 
     return (
-        <div className="py-10">
-            <section className="bg-richblack-900 py-5 md:py-14 px-3 text-white max-w-maxContent mx-auto">
+        <div className="py-5 w-11/12 mx-auto">
+            <section className="bg-richblack-900 py-5 md:py-14 text-white max-w-maxContent mx-auto">
                 <div className="relative space-y-10">
 
-                    <div className='text-2xl'>
-                        <h4>Home / Catalog / <span className='text-yellow-100'>{`  ${category}`}</span></h4>
-                    </div>
-
-                    <div className='relative rounded-lg my-3 w-max overflow-hidden flex justify-between bg-richblack-300'>
-                        <div className="py-2 cursor-pointer text-richblack-900 px-3" onClick={() => setCoursesType("most-popular")}>
-                            <p className='relative z-[2]'>Most Popular</p>
+                    <div className='flex flex-col gap-y-5 md:flex-row items-center justify-between'>
+                        <h4 className='text-2xl '>Home / Catalog / <span className='text-yellow-100'>{`  ${category}`}</span></h4>
+                        <div className='relative rounded-lg w-max overflow-hidden flex justify-between bg-richblack-300'>
+                            <div className="py-2 cursor-pointer text-richblack-900 px-3" onClick={() => setCoursesType("most-popular")}>
+                                <p className='relative z-[2]'>Most Popular</p>
+                            </div>
+                            <div className="py-2 cursor-pointer text-richblack-900 px-3" onClick={() => setCoursesType("new")}>
+                                <p className='relative z-[2]'>Newly Launched</p>
+                            </div>
+                            <div className={`bg-yellow-100 rounded-lg absolute w-full top-0 bottom-0 transition-all duration-300 ${coursesType === "most-popular" ? "translate-x-[-55%]" : "translate-x-[45%]"}`}></div>
                         </div>
-                        <div className="py-2 cursor-pointer text-richblack-900 px-3" onClick={() => setCoursesType("new")}>
-                            <p className='relative z-[2]'>Newly Launched</p>
-                        </div>
-                        <div className={`bg-yellow-100 rounded-lg absolute w-full top-0 bottom-0 transition-all duration-300 ${coursesType === "most-popular" ? "translate-x-[-55%]" : "translate-x-[45%]"}`}></div>
                     </div>
 
                     <div className='space-y-3'>
-                        <p className='text-2xl'>{
+                        <p className='text-2xl border-b pb-5 border-richblack-600 mb-5 text-center md:text-start'>{
                             coursesType === "new" ? "New Courses" : `Top Courses in ${category}`
                         }</p>
                         <CourseSlider courses={coursesType === "most-popular" ? catalogPageData?.selectedCategory?.courses : catalogPageData?.mostSellingCourses} />
                     </div>
 
                     <div className='space-y-3'>
-                        <p className='text-2xl'>Courses to get you started</p>
+                        <p className='text-2xl border-b pb-5 border-richblack-600 mb-5 text-center md:text-start'>Courses to get you started</p>
                         <CourseSlider courses={catalogPageData?.differentCategory?.courses} />
                     </div>
 
                     <div className='space-y-3'>
-                        <p className='text-2xl'>Frequently Bought</p>
+                        <p className='text-2xl border-b pb-5 border-richblack-600 mb-5 text-center md:text-start'>Frequently Bought</p>
                         <div className=''>
-                            <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-5'>
                                 {
                                     catalogPageData?.mostSellingCourses?.slice(0, 4)
                                         ?.map((course, index) => (
