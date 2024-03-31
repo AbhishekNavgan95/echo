@@ -49,7 +49,6 @@ const Navbar = () => {
               </button>
           }
 
-
           <Link to={"/"} className="">
              <img className="max-w-[5rem]" src={logo} alt="" />
           </Link>
@@ -65,11 +64,11 @@ const Navbar = () => {
               >
                 <p>{link.title}</p>
                 <MdOutlineKeyboardArrowDown />
-                <div className="bg-richblack-25 text-richblack-900 p-2 absolute min-w-[250px] rounded-xl top-[10%] left-[50%] z-[5] translate-x-[-50%] translate-y-10 group-hover:scale-y-100 group-focus:scale-y-100 focus:scale:y-100  transition-all duration-300 hover:flex flex-col scale-y-0 delay-100 origin-top flex items-start">
+                <div className="bg-richblack-25 text-richblack-900 p-2 absolute min-w-[250px] rounded-xl top-[10%] left-[50%] z-[5] translate-x-[-50%] translate-y-10 group-hover:scale-y-100 group-focus:scale-y-100 focus:scale:y-100  transition-all duration-300 hover:flex flex-col scale-y-0 delay-100 origin-top flex ">
                   {subLinks.map((category, index) => (
                     <NavLink
                       to={`/catalog/${category.name}`}
-                      className="relative z-[5] rounded-xl transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full"
+                      className="relative z-[5] rounded-xl transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center"
                       key={index}
                     >
                       <p className="">{category.name}</p>
@@ -93,13 +92,7 @@ const Navbar = () => {
         </div>
 
         {/* Login / signup / dashboard */}
-        <div className="flex items-center gap-5">
-          {user && user?.accountType !== "Instructor" && (
-            <Link to="/dashboard/cart" className="relative">
-              <FiShoppingBag />
-              {totalItems > 0 && <span>{totalItems}</span>}
-            </Link>
-          )}
+        <div className="flex items-center gap-3 text-richblack-25 text-xl">
           {token === null && (
             <CtaButton active={true} linkTo={"/login"}>
               Log in
@@ -111,6 +104,12 @@ const Navbar = () => {
             </CtaButton>
           )}
           {token !== null && <ProfileDropDown />}
+          {user && user?.accountType !== "Instructor" && (
+            <Link to="/dashboard/cart" className="relative">
+              <FiShoppingBag />
+              {totalItems > 0 && <span className="absolute top-[50%] right-[-50%] text-xs font-bold bg-yellow-100 rounded-full px-2 text-richblack-900">{totalItems}</span>}
+            </Link>
+          )}
         </div>
       </div>
     </div>

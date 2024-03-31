@@ -360,11 +360,14 @@ exports.getCourseDetails = async (req, res) => {
         path: "instructor",
         select: "firstName lastName email image",
         populate: {
-          select: "contactNumber",
           path: "additionalDetails",
+          select: "about",
         },
       })
-      .populate("category")
+      .populate({
+        path: "category",
+        select: "name description"
+      })
       .populate("ratingAndReviews")
       .populate({
         path: "courseContent",

@@ -24,7 +24,7 @@ const Home = () => {
           {/* Hero section */}
           <div className="relative mx-auto pt-16 flex flex-col items-center text-white justify-between text-center">
             {!(token === null) ? (
-              <div className="text-3xl xl:text-4xl  border-b pb-6">
+              <div className="text-3xl xl:text-4xl border-b pb-6">
                 Welcome Back <HighlightText text={user.firstName} />
               </div>
             ) : (
