@@ -18,6 +18,7 @@ const Dashboard = () => {
         <Sidebar />
       </div>
       <div className="text-white h-full w-full  mx-auto  max-w-maxContent">
+        
         <Outlet />
       </div>
     </div>

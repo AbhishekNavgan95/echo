@@ -74,7 +74,7 @@ export default function CoursesTable({ courses, setCourses }) {
                           course?.status === COURSE_STATUS.DRAFT ? (
                             <p className='bg-richblack-100 text-richblack-900 text-center rounded-lg font-semibold my-2 self-start px-5'>Draft</p>
                           ) : (
-                            <p className='bg-yellow-100 text-richblack-900 text-center rounded-lg font-semibold my-2 self-start px-5'>Published</p>
+                            <p className='border border-yellow-100 text-yellow-100 text-center rounded-lg font-semibold my-2 self-start px-5'>Published</p>
                           )
                         }
                       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { apiConnector } from '../services/apiConnector';
+import { apiConnector } from '../services/apiconnector';
 import { categories } from '../services/apis';
 import { getCatalogPageData } from "../services/operations/PageAndComponentData"
 import CourseSlider from '../components/cors/CatalogPage/CourseSlider';
@@ -48,7 +48,7 @@ const Catalog = () => {
                 <div className="relative space-y-10">
 
                     <div className='flex flex-col gap-y-5 md:flex-row items-center justify-between'>
-                        <h4 className='text-2xl '>Home / Catalog / <span className='text-yellow-100'>{`  ${category}`}</span></h4>
+                        <h4 className='text-2xl text-center md:text-start'>Home / Catalog / <span className='text-yellow-100'>{`  ${category}`}</span></h4>
                         <div className='relative rounded-lg w-max overflow-hidden flex justify-between bg-richblack-300'>
                             <div className="py-2 cursor-pointer text-richblack-900 px-3" onClick={() => setCoursesType("most-popular")}>
                                 <p className='relative z-[2]'>Most Popular</p>

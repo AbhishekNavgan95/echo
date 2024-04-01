@@ -11,7 +11,7 @@ module.exports = {
       white: "#fff",
       black: "#000",
       transparent: "#ffffff00",
-      opec: "rgba( 0, 8, 20, 0.6)",
+      opec: "rgba( 0, 8, 20, 0.85)",
       richblack: {
         5: "#F1F2FF",
         25: "#DBDDEA",

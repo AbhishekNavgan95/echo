@@ -11,10 +11,10 @@ const MyProfile = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col w-11/12 md:w-9/12 gap-10 justify-center mx-auto py-10 xl:py-20">
+      <div className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10 xl:py-20">
         <h2 className="text-3xl xl:text-4xl font bold">My Profile</h2>
-        <section className="flex flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
-          <div className="flex flex-col xl:flex-row gap-5 items-center">
+        <section className="flex flex-col md:flex-row gap-5 justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
+          <div className="flex flex-col md:flex-row gap-5 items-center">
             <img
               src={user.image}
               alt=""

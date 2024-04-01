@@ -27,7 +27,7 @@ const MyCourses = () => {
 
     return (
         <div className="w-full">
-            <div className="flex flex-col w-11/12 md:w-9/12 gap-10 justify-center mx-auto py-10 xl:py-20">
+            <div className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10 xl:py-20">
                 <div className='flex justify-between'>
                     <h2 className="text-3xl xl:text-4xl font bold">My Courses</h2>
                     <CtaButton linkTo={"../add-course"} active={true} ><span className='flex gap-3 items-center'>Add Course <VscAdd /></span></CtaButton>

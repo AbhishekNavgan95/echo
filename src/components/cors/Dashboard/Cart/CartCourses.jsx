@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactStars from "react-stars";
 import { MdDelete } from "react-icons/md";
-import { removeFromCart } from "../../../../slices/CartSlice";
+import { removeFromCart } from "../../../../slices/cartSlice";
 
 const CartCourses = () => {
   const { cartItems, total, totalItems } = useSelector(state => state.cart);
@@ -20,7 +20,7 @@ const CartCourses = () => {
             <img className="max-w-[250px] rounded-lg object-cover aspect-video" src={course?.thumbnail} alt="" />
             <div className="flex items-start flex-col gap-2">
               <h3 className="text-xl text-start font-semibold">{course?.courseTitle}</h3>
-              <p className="py-1 bg-yellow-100 font-semibold w-max px-3 rounded-lg text-richblack-900">{course?.category?.name}</p>
+              <p className="py-1 border text-yellow-100 border-yellow-100 font-semibold w-max px-3 rounded-lg ">{course?.category?.name}</p>
               <div className="flex items-center gap-3">
                 <div className="text-xl">4.5</div>
                 <ReactStars
@@ -46,6 +46,7 @@ const CartCourses = () => {
               onClick={() => dispatch(removeFromCart(course?._id))}
             >
               <MdDelete />
+              Remove
             </button>
           </div>
         </div>

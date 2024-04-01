@@ -86,14 +86,14 @@ const Settings = () => {
 
   return (
     <div className="w-full">
-      <div className="flex flex-col w-11/12 md:w-9/12 gap-10 justify-center mx-auto py-10 xl:py-20">
+      <div className="flex flex-col px-5 w-full gap-10 justify-center mx-auto py-10 xl:py-20">
         <h2 className="text-3xl xl:text-4xl font bold">Update Profile</h2>
 
         {/* Update Profile Picture */}
         <form onSubmit={imageUpload}>
           <section className="flex justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
-            <div className="flex flex-col xl:flex-row gap-5 items-center justify-between w-full">
-              <div className="flex flex-col xl:flex-row items-center gap-5">
+            <div className="flex flex-col lg:flex-row gap-5 items-center justify-between w-full">
+              <div className="flex flex-col lg:flex-row items-center gap-5">
                 <img
                   src={file}
                   alt=""

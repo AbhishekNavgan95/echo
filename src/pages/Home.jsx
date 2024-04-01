@@ -62,17 +62,17 @@ const Home = () => {
           </div>
 
           {/* Hero section video  */}
-          <div className="shadow-blue-200 flex justify-center my-20">
+          <div className="shadow-blue-200 flex justify-center mt-20">
             <div className="relative border border-yellow-100 flex justify-center">
               <div className="w-full h-full absolute top-[0px] left-[50%] translate-x-[-50%] blur-3xl z-[5] bg-richblack-500"></div>
               <video
                 muted
                 loop
                 autoPlay
-                className="relative z-[11] border-2 border-white"
+                className="relative z-[5] border-2 border-white"
                 src={banner}
               ></video>
-              <div className="absolute h-full w-full right-[-1%] bottom-[-2%] z-10 border-2 bg-white"></div>
+              <div className="absolute h-full w-full right-[-1%] bottom-[-2%] z-[4] border-2 bg-white"></div>
             </div>
           </div>
 
