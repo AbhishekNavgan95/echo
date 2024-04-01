@@ -6,6 +6,7 @@ import SidebarLink from "./sidebar/SidebarLink";
 import { useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
 import Modal from "../../common/Modal";
+import { toggleDashboard } from "../../../slices/DashboardSlice";
 
 const Sidebar = () => {
   const { user, loading: userLoading } = useSelector((state) => state.profile);
@@ -23,16 +24,21 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className={isOpen ? "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[0%] transition-all duration-300 z-[4] md:static" : "w-[250px] py-10 min-h-[calc(100vh-4rem)] border-r border-richblack-600 text-white bg-richblack-800 absolute translate-x-[-100%] md:translate-x-0 transition-all duration-300 md:static"}>
-        <div className="flex flex-col ">
-          {sidebarLinks.map((link, index) => {
-            if (link.type && user?.accountType === link.type || link.type === undefined) {
-              return <SidebarLink key={index} link={link} />;
-            }
-            if (link.path === "settings") {
-              return <SidebarLink key={index} link={link} />;
-            }
-          })}
+      <div
+        className={isOpen
+          ? "w-full max-w-maxContent mx-auto py-3 h-max z-[2] text-white bg-richblack-800 absolute translate-y-[0%] transition-all duration-300 md:static"
+          : "w-full max-w-maxContent mx-auto py-3 h-max z-[2] text-white bg-richblack-800 absolute translate-y-[-100%] md:translate-y-0 transition-all duration-300 md:static"}>
+        <div className="flex justify-between flex-col md:flex-row">
+          <div className="flex flex-col md:flex-row">
+            {sidebarLinks.map((link, index) => {
+              if (link.type && user?.accountType === link.type || link.type === undefined) {
+                return <SidebarLink key={index} link={link} />;
+              }
+              if (link.path === "settings") {
+                return <SidebarLink key={index} link={link} />;
+              }
+            })}
+          </div>
           <div className="flex flex-col gap-1">
             <button
               onClick={() =>
@@ -46,7 +52,7 @@ const Sidebar = () => {
                   btn2Handler: () => setModal({ isOpen: false }),
                 })
               }
-              className=" flex gap-3 text-lg items-center px-4 text-white w-full py-2 bg-[#721414] "
+              className=" flex gap-3 text-md items-center px-4 text-white w-full py-2 bg-[#721414] "
             >
               <GrLogout />
               Logout

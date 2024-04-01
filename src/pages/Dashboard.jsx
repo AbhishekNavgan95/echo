@@ -12,9 +12,12 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-richblack-900 w-full flex">
-      <Sidebar />
-      <div className="text-white h-full w-full">
+    <div
+      className="bg-richblack-900 flex flex-col">
+      <div className="w-full bg-richblack-800">
+        <Sidebar />
+      </div>
+      <div className="text-white h-full w-full  mx-auto  max-w-maxContent">
         <Outlet />
       </div>
     </div>

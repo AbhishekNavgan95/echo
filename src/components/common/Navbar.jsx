@@ -35,7 +35,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="border-b border-richblack-600 bg-richblack-900 py-5">
+    <div className="border-b border-richblack-600 bg-richblack-900 py-5 relative z-[10]">
       <div className="flex max-w-maxContent mx-auto justify-between px-3 items-center">
         {/* logo */}
         <div className="flex items-center gap-3">

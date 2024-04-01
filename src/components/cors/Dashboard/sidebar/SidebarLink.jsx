@@ -13,12 +13,12 @@ const SidebarLink = ({ link }) => {
       onClick={() => dispatch(toggleDashboard())}
       className={({ isActive }) =>
         isActive
-          ? "text-yellow-100 px-4 border-l border-yellow-100 bg-yellow-800 py-2 flex transition-all duration-200"
-          : "text-white px-4 border-l border-transparent flex py-2 transition-all duration-200 "
+          ? "text-yellow-100 px-4 md:px-0 md:mx-4 md:border-b bg-yellow-800 md:bg-transparent border-yellow-100 py-2 flex transition-all duration-200"
+          : "text-white px-4 md:px-0 md:mx-4 border-b border-transparent flex py-2 transition-all duration-200 hover:text-yellow-100"
       }
       to={link.path}
     >
-      <div className="flex items-center gap-3 text-lg ">
+      <div className="flex items-center gap-3 text-md ">
         <Icon />
         {link.name}
       </div>

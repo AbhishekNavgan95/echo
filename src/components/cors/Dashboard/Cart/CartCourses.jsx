@@ -18,8 +18,8 @@ const CartCourses = () => {
         >
           <div className="w-full flex gap-5 items-stretch md:items-center">
             <img className="max-w-[250px] rounded-lg object-cover aspect-video" src={course?.thumbnail} alt="" />
-            <div className="flex flex-col gap-2">
-              <h3 className="text-xl font-semibold">{course?.courseTitle}</h3>
+            <div className="flex items-start flex-col gap-2">
+              <h3 className="text-xl text-start font-semibold">{course?.courseTitle}</h3>
               <p className="py-1 bg-yellow-100 font-semibold w-max px-3 rounded-lg text-richblack-900">{course?.category?.name}</p>
               <div className="flex items-center gap-3">
                 <div className="text-xl">4.5</div>
