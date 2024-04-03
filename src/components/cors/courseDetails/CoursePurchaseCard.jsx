@@ -17,10 +17,15 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
   const dispatch = useDispatch();
 
   return (
-    <div className='bg-richblack-800 rounded-lg border border-richblack-600 overflow-hidden flex flex-col '>
-      <div className='px-3 pt-3' ><img loading="lazy"  className='w-full rounded-lg aspect-video h-[150px] md:h-[190px] lg:h-[220px] object-cover' src={courseData?.thumbnail} alt="" /></div>
-      <div className='p-5 flex flex-col gap-2'>
+    <div className='bg-richblack-800 rounded-lg border border-richblack-600 text-richblack-5 overflow-hidden flex flex-col group p-3'>
+      <div className='overflow-hidden rounded-lg aspect-video h-[150px] md:h-[190px] lg:h-[220px]' >
+        <img loading="lazy" className='w-full group-hover:scale-105 transition-scale duration-300' src={courseData?.thumbnail} alt="" />
+      </div>
+      <div className=' flex flex-col my-3 gap-2'>
+        <div className='flex items-center justify-between px-4'>
         <h4 className='text-2xl font-bold'>Rs. {courseData?.price}</h4>
+        <button className='mt-2 w-max text-yellow-50 hover:text-yellow-100 active:scale-95 transition-all duration-300 text-start flex items-center gap-3' onClick={handleShare}> Share <FaShare /></button>
+        </div>
         <div className='flex flex-col gap-3 mt-2'>
           <button
             onClick={() =>
@@ -44,7 +49,7 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
           <p className='flex gap-1 text-sm items-center text-caribbeangreen-200'> < MdDevices />Access on mobile and TV</p>
           <p className='flex gap-1 text-sm items-center text-caribbeangreen-200'> <TiDocumentText />Cirtificate of completion</p>
         </div>
-        <button className='mt-2 w-max text-yellow-50 hover:text-yellow-100 active:scale-95 transition-all duration-300 text-start flex items-center gap-3' onClick={handleShare}> Share <FaShare /></button>
+        
       </div>
     </div>
   )

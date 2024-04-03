@@ -13,9 +13,9 @@ const LearningLanguageSection = () => {
             <p className='text-center text-richblack-300 w-full lg:w-2/3 mx-auto text-xl mt-3 font-semibold'>Using spin making learning multiple language easy. with 20+ languages realistic voice-over, Progress tracking, custom schedule and more...</p>
         </div>
         <div className='flex flex-col md:flex-row justify-center my-10 relative'>
-            <img src={Know_your_progress}  className='-mb-36 md:mb-0 md:-mr-32'  alt="" />
-            <img src={Compare_with_others}  alt="" />
-            <img src={Plan_your_lessons} className='-mt-36 md:mt-0 md:-ml-32' alt="" />
+            <img src={Know_your_progress}  className='-mb-36 md:mb-0 md:-mr-32 relative hover:z-[4] hover:scale-105 transition-all duration-300'  alt="" />
+            <img src={Compare_with_others}  alt="" className=' relative hover:z-[4] hover:scale-105 transition-all duration-300' />
+            <img src={Plan_your_lessons} className='-mt-36 md:mt-0 md:-ml-32 relative hover:z-[4] hover:scale-105 transition-all duration-300' alt="" />
         </div>
         <div className='flex justify-center'>
             <CtaButton active={true} linkTo={"/signup"}>

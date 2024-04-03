@@ -15,7 +15,8 @@ import Requirements from '../components/cors/courseDetails/Requirements';
 import copy from 'copy-to-clipboard';
 import toast from 'react-hot-toast';
 import { ACCOUNT_TYPE } from '../utils/constants';
-import {addToCart} from "../slices/CartSlice"
+import { addToCart } from "../slices/CartSlice"
+import Accordian from '../components/cors/courseDetails/Accordian';
 
 const CourseDetails = () => {
 
@@ -91,12 +92,12 @@ const CourseDetails = () => {
     const handleAddToCart = (courseData) => {
         console.log("course id in add to cart : ", courseId);
 
-        if(user && user.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+        if (user && user.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
             toast.error("An Instructor cannot buy a course");
             return
         }
-        
-        if(!token) {
+
+        if (!token) {
             toast.error("Please Login")
             navigate('/login')
             return
@@ -131,9 +132,9 @@ const CourseDetails = () => {
 
 
     return (
-        <div className="">
+        <div className=" text-richblack-5">
             <div className='w-full bg-richblack-800 py-5 xl:py-10'>
-                <section className="py-5 md:py-14 px-3 relative text-richblack-5 max-w-maxContent mx-auto">
+                <section className="py-5 md:py-14 px-3 relative  max-w-maxContent mx-auto">
                     <div className='flex flex-col'>
                         <div className='flex flex-col gap-y-5 relative text-xl'>
                             <div className='flex flex-col gap-2 lg:w-7/12'>
@@ -178,7 +179,6 @@ const CourseDetails = () => {
                             </div>
                         </div>
                     </div>
-
                 </section>
             </div>
 
@@ -198,6 +198,34 @@ const CourseDetails = () => {
                     </div>
                 </section>
             </div>
+            <div className='w-full py-5 bg-richblack-800 text-richblack-5'>
+                <section className=" py-5 px-3 relative text-richblack-5 max-w-maxContent mx-auto flex flex-col gap-5">
+                    <h4 className='text-3xl xl:text-4xl'>Course Content</h4>
+                    <div className='w-full md:w-11/12 mx-auto'>
+                        <Accordian sections={courseData?.courseContent} />
+                    </div>
+                </section>
+            </div>
+
+            <div className='w-full py-5 bg-richblack-900 text-richblack-5'>
+                <section className=" py-5 px-3 relative text-richblack-5 max-w-maxContent mx-auto flex flex-col gap-5">
+                    <h4 className='text-3xl xl:text-4xl'>Instructor</h4>
+                    <div className='w-full md:w-11/12 mx-auto'>
+                        <div className='my-5 flex flex-col gap-5'>
+                            <span className='flex items-center gap-5'>
+                                <img className='w-[100px] h-[100px] rounded-full object-cover border border-richblack-600' src={courseData?.instructor?.image} alt="" />
+                                <div>
+                                    <p className='text-xl'>{`${courseData?.instructor.firstName} ${courseData?.instructor.lastName}`}</p>
+                                    <p className='text-richblack-300'>{courseData?.instructor?.email}</p>
+                                </div>
+                            </span>
+                            <p className='text-xl text-richblack-300'>{courseData?.instructor?.additionalDetails.about} </p>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
             {
                 confirmationModal && <Modal modalData={confirmationModal} />
             }

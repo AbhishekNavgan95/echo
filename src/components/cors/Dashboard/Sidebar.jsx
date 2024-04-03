@@ -23,7 +23,7 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className= "w-full max-w-maxContent mx-auto py-3 h-max z-[2] text-white bg-richblack-800 ">
+        className= "w-full max-w-maxContent mx-auto py-3 px-5 h-max z-[2] text-white bg-richblack-800 ">
         <div className="md:flex justify-between md:flex-row">
           <div className="flex md:flex-row justify-center md:justify-between ">
             {sidebarLinks.map((link, index) => {
@@ -48,7 +48,7 @@ const Sidebar = () => {
                   btn2Handler: () => setModal({ isOpen: false }),
                 })
               }
-              className=" flex gap-3 text-md items-center px-4 text-white w-full py-2 bg-[#721414] "
+              className=" flex gap-3 text-md rounded-lg items-center px-4 text-white w-full py-2 bg-[#721414] "
             >
               <GrLogout />
               Logout

@@ -109,7 +109,7 @@ const Navbar = () => {
           </div>
 
           {/* nav button */}
-          <div className="md:hidden text-richblack-5 text-3xl" onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}>
+          <div className="md:hidden cursor-pointer text-richblack-5 text-3xl" onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}>
             {
               !navOpen
                 ? <HiOutlineMenuAlt3 />
