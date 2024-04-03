@@ -12,11 +12,13 @@ import {
 } from "../../../services/operations/profileAPI";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../slices/profileSlice";
+import Modal from "../../common/Modal"
 
 const Settings = () => {
   const { token } = useSelector((state) => state.auth);
   const user = useSelector((state) => state.profile.user);
   const image = useSelector((state) => state.profile.user.image);
+  const [modalData, setModalData] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -285,7 +287,14 @@ const Settings = () => {
                 </p>
               </div>
               <button
-                onClick={() => deleteAccount(token, dispatch, navigate)}
+                onClick={() => setModalData({
+                  heading : "Delete this account?",
+                  subHeading : "All the purchased courses will be deleted",
+                  btn1Handler : () => deleteAccount(token, dispatch, navigate),
+                  btn1Text : "Delete",
+                  btn2Handler : () => setModalData(null),
+                  btn2Text : "Cancel"
+                })}
                 className="my-1 py-2 px-3 bg-[#721414] rounded-lg flex items-center gap-2"
               >
                 <MdAutoDelete />
@@ -295,6 +304,9 @@ const Settings = () => {
           </div>
         </section>
       </div>
+      {
+        modalData && <Modal modalData={modalData} /> 
+      }
     </div>
   );
 };
