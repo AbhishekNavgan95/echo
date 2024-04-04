@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CartCourses from "./Cart/CartCourses";
 import TotalCartAmount from "./Cart/TotalCartAmount";
 import { CiSearch } from "react-icons/ci";
-import { resetCart } from "../../../slices/cartSlice";
+import { resetCart } from "../../../slices/CartSlice";
 
 const Cart = () => {
   const { total, totalItems } = useSelector((state) => state.cart);
