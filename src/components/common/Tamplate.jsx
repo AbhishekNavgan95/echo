@@ -4,7 +4,7 @@ import LoginForm from "../cors/Auth/LoginForm";
 import signup from "../../assets/Images/signup.webp";
 import HighlightText from "../common/HighlightText";
 import login from "../../assets/Images/login.webp";
-import frame from "../../assets/Images/Frame.png";
+import frame from "../../assets/Images/frame.png";
 import { useSelector } from "react-redux";
 import { SyncLoader } from "react-spinners";
 

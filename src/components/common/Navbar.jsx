@@ -4,7 +4,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useDispatch, useSelector } from "react-redux";
 import { FiShoppingBag } from "react-icons/fi";
-import ProfileDropDown from "../../components/cors/Auth/ProfileDropDown";
+import ProfileDropdown from "../../components/cors/Auth/ProfileDropDown";
 import CtaButton from "./CtaButton";
 import { categories } from "../../services/apis";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -99,7 +99,7 @@ const Navbar = () => {
                 Sign up
               </CtaButton>
             )}
-            {token !== null && <ProfileDropDown />}
+            {token !== null && <ProfileDropdown />}
             {user && user?.accountType !== "Instructor" && (
               <Link to="/dashboard/cart" className="relative">
                 <FiShoppingBag />
