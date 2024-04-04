@@ -28,7 +28,7 @@ import Settings from "./components/cors/Dashboard/Settings";
 import EnrolledCourses from "./components/cors/Dashboard/EnrolledCourses";
 import AddCourse from "./components/cors/Dashboard/AddCourse";
 import MyCourses from "./components/cors/Dashboard/MyCourses";
-import EditCourse from "./components/cors/Dashboard/editCourse/editCourse";
+import EditCourse from "./components/cors/Dashboard/editCourse/EditCourse";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
 
