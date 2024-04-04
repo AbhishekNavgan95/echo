@@ -21,7 +21,7 @@ database.connectToDB();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://study-notion-an.netlify.app/",
     credentials: true,
 }));
 app.use(fileUpload({
