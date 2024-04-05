@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <>
       <div className="border-b border-richblack-600 bg-richblack-900 py-5 relative z-[10]">
-        <div className="flex max-w-maxContent mx-auto justify-between px-5 items-center">
+        <div className="flex max-w-maxContent mx-auto justify-between px-5 items-center relative z-[10]">
           {/* logo */}
 
           <Link to={"/"} className="">
@@ -119,7 +119,7 @@ const Navbar = () => {
         </div>
 
         {/* mobile navbar */}
-        <div className={` absolute z-[7] w-full top-[100%]  ${navOpen ? "translate-y-0" : "translate-y-[-150%]"} transition-all duration-300 border border-richblack-600 bg-opec flex flex-col gap-5 items-center justify-center py-20 text-xl`}>
+        <div className={`absolute z-[7] w-full md:hidden top-[100%]  ${navOpen ? "translate-y-0" : "translate-y-[-150%]"} transition-all duration-300 border border-richblack-600 bg-opec flex flex-col gap-5 items-center justify-center py-20 text-xl`}>
           {/* <div className=""> */}
           {NavbarLinks.map((link, index) => {
             return link.title === "Catalog" ? (

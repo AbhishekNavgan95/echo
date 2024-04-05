@@ -156,8 +156,8 @@ const Home = () => {
 
       {/* section 2 */}
       <section className="bg-white py-10">
-        <div className="max-w-maxContent mx-auto lg:mt-48 w-11/12">
-          <div className="py-5 flex flex-col justify-between items-center">
+        <div className="max-w-maxContent mx-auto my-0 lg:mt-48 w-11/12">
+          <div className="lg:py-5 flex flex-col justify-between items-center">
             <div className="flex items-center justify-center gap-5">
               <CtaButton active={true}>
                 Explore full catalog
@@ -167,7 +167,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex justify-between items-center flex-col lg:flex-row gap-10 my-10 text-richblack-900">
+          <div className="flex justify-between items-center flex-col lg:flex-row gap-5 md:gap-10 my-10 text-richblack-900">
             <div className="text-3xl   xl:text-4xl  w-11/12 text-center lg:text-start lg:w-[50%] font-bold">
               <h3>
                 Get the skills you need for a
@@ -194,7 +194,7 @@ const Home = () => {
       <section className="bg-richblack-900">
         <div className="max-w-maxContent mx-auto">
           <div className="mx-auto w-11/12">
-            <div className="flex justify-between items-center py-20">
+            <div className="flex justify-between items-center py-10 lg:py-16">
               <InstructorSection />
             </div>
             <div>

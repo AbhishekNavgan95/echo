@@ -27,7 +27,7 @@ const ExploreMore = () => {
 
   return (
     <div className="flex items-center flex-col relative">
-      <div className="text-3xl xl:text-4xl  font-bold text-white text-center">
+      <div className="text-3xl xl:text-4xl font-bold text-white text-center">
         Unlock the <HighlightText text={"Power of Code"} />
       </div>
 
@@ -54,7 +54,7 @@ const ExploreMore = () => {
       </div>
 
       {/* course cards */}
-      <div className="flex flex-col lg:flex-row my-10 lg:my-0 gap-8 lg:absolute bottom-0 lg:translate-y-[50%] max-w-maxContent">
+      <div className="flex flex-col lg:flex-row my-5 lg:my-0 gap-8 lg:absolute bottom-0 lg:translate-y-[50%] max-w-maxContent">
         {courses.map((course, index) => (
           <CourseCard
             key={index}
