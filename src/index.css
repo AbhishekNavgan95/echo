@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-    overflow-x: hidden;
+html,
+body {
+  overflow-x: hidden;
+}
+
+.move-circle {
+  animation: circle 2s linear infinite;
+}
+
+@keyframes circle {
+  0% {
+    transform: rotate(0deg) translate(5px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(5px) rotate(-360deg);
+  }
 }

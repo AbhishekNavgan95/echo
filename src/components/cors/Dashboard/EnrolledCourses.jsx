@@ -54,7 +54,7 @@ const EnrolledCourses = () => {
   // This is a mock function that simulates the behavior of getUserCourses
   const getUserCourses = async (token) => {
     // Simulate an asynchronous delay to mimic network request
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Return the mock enrolled courses data
     return mockEnrolledCourses;
@@ -77,42 +77,37 @@ const EnrolledCourses = () => {
 
   return (
     <div>
-      <section className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10 xl:py-20">
-        <h2 className="text-3xl xl:text-4xl font bold">Enrolled Courses</h2>
-        <div className="flex w-full flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
+      <section className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10 md:p-1 xl:py-20">
+        <h2 className="text-3xl xl:text-4xl">Enrolled Courses</h2>
+        <div className="flex w-full flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-800 p-5 lg:p-10 rounded-lg">
           {!enrolledCourses ? (
             <div className="flex justify-center items-center w-full ">
               <SyncLoader color="#E7C009" />
             </div>
-          ) : enrolledCourses.length <= 0 ? (
-            <p className="text-xl text-center w-full font-semibold text-richblack-25">Your have not enrolled in any course yet</p>
-          ) : (
-            <div className="flex gap-5 flex-col w-full">
-              <div className="flex justify-between">
-                <p className="w-4/12 text-start text-xl text-richblack-300">Course Name</p>
-                <p className="w-4/12 text-center text-xl text-richblack-300">Duration</p>
-                <p className="w-4/12 text-end text-xl text-richblack-300">Progress</p>
-              </div>
-              {/* Cards */}
+          ) : enrolledCourses.length <= 0 
+          ? <p className="text-xl text-center w-full font-semibold text-richblack-25">Your have not enrolled in any course yet</p>
+          : (
+            <div className="flex gap-3 flex-col w-full divide-y divide-richblack-600 ">
               {enrolledCourses.map((course, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  {/* Thumbnai of course */}
-                  <div className="flex gap-5 w-4/12 ">
-                    <img src={course.thumbnail} className="w-[100px] rounded-lg" alt="" />
-                    <div className="flex flex-col justify-center">
-                      <h3 className="text-xl">{course.courseTitle}</h3>
-                      <p className="text-richblack-300">{course.courseDescription}</p>
+                <div key={index} className="flex justify-between flex-col md:flex-row items-start py-5 gap-3">
+                  <div className="flex gap-5 items-center w-full ">
+                    <img src={course.thumbnail} className="aspect-square border border-richblack-600 w-[90px] md:w-[100px] rounded-lg" alt="" />
+                    <div className="flex flex-col justify-center gap-1">
+                      <h3 className="text-xl line-clamp-2">{course.courseTitle}</h3>
+                      <p className="text-richblack-300 line-clamp-1">{course.courseDescription}</p>
                     </div>
                   </div>
-                  <p className="w-4/12 text-xl text-center">{course?.totalDuration}</p>
-                  <div className="w-4/12 flex flex-col gap-5">
-                    <p className="self-end">Progress : {course.progressPercentage || 0}</p>
-                    <ProgressBar
-                    bgColor={"#E7C009"}
-                      completed={course.progressPercentage || 0}
-                      height="8px"
-                      isLabelVisible={false}
-                    />
+                  <p className="w-4/12 md:text-xl text-start md:self-center">{course?.totalDuration}</p>
+                  <div className="flex md:items-end self-center w-full flex-col gap-3 ">
+                    <p className="text-nowrap hidden md:block">progress : {course.progressPercentage || 0}%</p>
+                    <span className="md:block self-stretch">
+                      <ProgressBar
+                        bgColor={"#E7C009"}
+                        completed={course.progressPercentage || 0}
+                        height="8px"
+                        isLabelVisible={false}
+                      />
+                    </span>
                   </div>
                 </div>
               ))}

@@ -60,17 +60,21 @@ const Navbar = () => {
                 >
                   <p>{link.title}</p>
                   <MdOutlineKeyboardArrowDown />
-                  <div className="bg-richblack-25 text-richblack-900 p-2 absolute min-w-[250px] rounded-xl top-[10%] left-[50%] z-[5] translate-x-[-50%] translate-y-10 group-hover:scale-y-100 group-focus:scale-y-100 focus:scale:y-100  transition-all duration-300 hover:flex flex-col scale-y-0 delay-100 origin-top flex ">
-                    {subLinks.map((category, index) => (
-                      <NavLink
-                        to={`/catalog/${category.name}`}
-                        className="relative z-[5] rounded-xl transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center"
-                        key={index}
-                      >
-                        <p className="">{category.name}</p>
-                      </NavLink>
-                    ))}
-                    {/* <div className="w-[50px] h-[50px] bg-richblack-25 absolute -top-1 left-[50%] translate-x-[-50%] z-[3] rotate-[45deg] "></div> */}
+                  <div 
+                    className="bg-richblack-5 text-richblack-900 absolute min-w-[250px] rounded-xl top-[120%] left-[100%] z-[5] translate-x-[-70%] translate-y-[0] scale-y-0 origin-top group-hover:scale-y-100 group-focus:scale-y-100 transition-all duration-100 group-hover:opacity-100 flex flex-col items-center"
+                  >
+                    {
+                      subLinks?.length <= 0
+                        ? <div>No categories found</div>
+                        : subLinks.map((category, index) => (
+                          <NavLink
+                            to={`/catalog/${category.name}`}
+                            className="relative z-[5] rounded-xl transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center"
+                            key={index}
+                          >
+                            <p className="text-nowrap">{category.name}</p>
+                          </NavLink>
+                        ))}
                   </div>
                 </button>
               ) : (
@@ -136,16 +140,20 @@ const Navbar = () => {
                   `absolute top-[100%] ${subNav ? "scale-y-100 visible" : "invisible scale-y-0"} transition-scale duration-100 origin-top w-10/12 px-3 flex flex-col bg-richblack-800 rounded-lg py-2 border border-richblack-600`
                 }
                 >
-                  {subLinks?.map((category, index) => (
-                    <NavLink
-                      to={`/catalog/${category.name}`}
-                      className="py-2 rounded-lg hover:bg-richblack-100 hover:text-richblack-900"
-                      key={index}
-                      onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}
-                    >
-                      <p className="">{category.name}</p>
-                    </NavLink>
-                  ))}
+                  {
+                    subLinks?.length <= 0 ?
+                      <div>No categories found</div>
+                      :
+                      subLinks?.map((category, index) => (
+                        <NavLink
+                          to={`/catalog/${category.name}`}
+                          className="py-2 rounded-lg hover:bg-richblack-100 hover:text-richblack-900"
+                          key={index}
+                          onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}
+                        >
+                          <p className="">{category.name}</p>
+                        </NavLink>
+                      ))}
                 </div>
               </button>
             ) : (
@@ -162,15 +170,21 @@ const Navbar = () => {
             );
           })}
           <div className="flex items-center flex-col gap-y-5">
-            <button
-              onClick={() => {
-                navigate("/dashboard/my-profile");
-                setNavOpen(!navOpen);
-              }}
-              className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-300 focus:hover:bg-yellow-300 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300"
-            >
-              Dashboard
-            </button>
+            {
+              token &&
+              <NavLink
+                active
+                to={"/dashboard/my-profile"}
+                onClick={() => {
+                  setNavOpen(!navOpen);
+                }}
+                className={({ isActive }) =>
+                  isActive ? "text-yellow-25" : "text-richblack-25"
+                }
+              >
+                Dashboard
+              </NavLink>
+            }
             {
               token &&
               <button

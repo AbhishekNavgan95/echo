@@ -6,6 +6,7 @@ import SidebarLink from "./sidebar/SidebarLink";
 import { useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
 import Modal from "../../common/Modal";
+import DangerButton from "../../common/DangerButton"
 
 const Sidebar = () => {
   const { user, loading: userLoading } = useSelector((state) => state.profile);
@@ -36,8 +37,8 @@ const Sidebar = () => {
             })}
           </div>
           <div className="hidden md:flex flex-col gap-1">
-            <button
-              onClick={() =>
+            <DangerButton
+              action={() =>
                 setModal({
                   heading: "Are you sure?",
                   subHeading: "You'll be logged out",
@@ -48,11 +49,11 @@ const Sidebar = () => {
                   btn2Handler: () => setModal({ isOpen: false }),
                 })
               }
-              className=" flex gap-3 text-md rounded-lg items-center px-4 text-white w-full py-2 bg-[#721414] "
+              active
             >
               <GrLogout />
               Logout
-            </button>
+            </DangerButton>
           </div>
         </div>
       </div>

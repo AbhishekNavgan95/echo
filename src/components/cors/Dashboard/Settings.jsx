@@ -300,7 +300,6 @@ const Settings = () => {
                   btn2Handler: () => setModalData(null),
                   btn2Text: "Cancel"
                 })}
-                style="my-1 py-2 px-3 bg-danger rounded-lg flex items-center gap-2"
               >
                 <MdAutoDelete />
                 Delete Account

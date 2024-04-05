@@ -7,7 +7,7 @@ const DangerButton = ({
 }) => {
   return (
     <button
-    className={style}
+    className={`${style} w-min flex gap-3 text-md rounded-lg items-center px-4 text-white text-nowrap py-2 bg-[#721414]`}
         onClick={action}
     >{children}</button>
   )
