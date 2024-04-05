@@ -11,7 +11,7 @@ import ContactFormSection from "../components/cors/AboutPage/ContactFormSection"
 // h2
 const About = () => {
   return (
-    <div className="min-h-screen px-5 bg-richblack-900 text-richblack-5">
+    <div className="min-h-screen bg-richblack-900 text-richblack-5">
       {/* section 1 */}
       <div className="bg-richblack-800 relative ">
         <div className=" max-w-maxContent mx-auto">

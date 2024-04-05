@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { apiConnector } from "../../services/apiconnector";
 import { contactusEndpoint } from "../../services/apis";
 import cuntryCodes from "../../data/countrycode.json";
+import ActionButton from "./ActionButton";
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false);
@@ -50,7 +51,7 @@ const ContactUsForm = () => {
             <label htmlFor="firstName">First Name</label>
             <input
               type="text"
-              className="text-xl bg-richblack-800 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
+              className="md:text-xl bg-richblack-800 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
               name="firstName"
               id="firstName"
               placeholder="First Name"
@@ -64,7 +65,7 @@ const ContactUsForm = () => {
             <label htmlFor="lastName">Last Name</label>
             <input
               type="text"
-              className="text-xl bg-richblack-800 py-3 px-4 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none"
+              className="md:text-xl bg-richblack-800 py-3 px-4 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none"
               name="lastName"
               id="lastName"
               placeholder="Last Name"
@@ -78,7 +79,7 @@ const ContactUsForm = () => {
           <label htmlFor="email">Email Address</label>
           <input
             type="email"
-            className="text-xl bg-richblack-800 py-3 px-4 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none"
+            className="md:text-xl bg-richblack-800 py-3 px-4 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none"
             name="email"
             id="email"
             placeholder="Enter your Email"
@@ -108,7 +109,7 @@ const ContactUsForm = () => {
               name="phone"
               id="phone"
               placeholder="123 456 7890"
-              className="text-xl w-full bg-richblack-800 py-3 px-4 shadow-sm shadow-richblack-300 rounded-lg focus:outline-none"
+              className="md:text-xl w-full bg-richblack-800 py-3 px-4 shadow-sm shadow-richblack-300 rounded-lg focus:outline-none"
               {...register("phone", {required: true,
                 maxLength: {value: 10, message: "Invalid Phone Number!"},
                 minLength: {value: 8, message: "Invalid Phone Number"}
@@ -127,7 +128,7 @@ const ContactUsForm = () => {
           <label htmlFor="message">Message</label>
           <textarea
             name="message"
-            className="text-xl bg-richblack-800 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
+            className="md:text-xl bg-richblack-800 py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
             id="message"
             cols="30"
             rows="4"
@@ -140,12 +141,12 @@ const ContactUsForm = () => {
           </textarea>
         </div>
 
-        <button
-          className="bg-yellow-100 text-richblack-900 py-3 rounded-lg shadow-sm shadow-richblack-300 focus:outline-none hover:bg-yellow-200 focus:bg-yellow-200 active:scale-95 focus:scale-95 transition-all dration-200"
+        <ActionButton
+          active
           type="submit"
         >
           Send message
-        </button>
+        </ActionButton>
       </div>
     </form>
   );

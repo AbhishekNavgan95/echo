@@ -77,7 +77,7 @@ const LoginForm = ({ title, description1, description2 }) => {
                 id="password"
               />
               <span
-                className="px-3 py-4 text-xl bg-richblack-800 text-richblack-5 hover:cursor-pointer "
+                className="px-3 py-4 md:text-xl bg-richblack-800 text-richblack-5 hover:cursor-pointer "
                 onClick={() => {
                   setShowPass((prev) => !prev);
                 }}

@@ -21,12 +21,12 @@ const Contact = () => {
             <div className="max-w-maxContent mx-auto w-11/12 md:w-10/12 lg:w-10/12 xl:w-6/12 p-5 lg:p-10 border border-richblack-600">
               <div className="flex flex-col gap-3">
                 <div>
-                  <h2 className="text-3xl font-semibold">
+                  <h2 className="text-2xl md:text-3xl font-semibold">
                     Got an Idea? We've got the skills.
                   </h2>
-                  <h2 className="text-3xl font-semibold">Let's team up.</h2>
+                  <h2 className="text-2xl md:text-3xl font-semibold">Let's team up.</h2>
                 </div>
-                <p className="text-xl mb-7 text-richblack-300">
+                <p className="md:text-xl mb-7 text-richblack-300">
                   Tell us more about yourself and what's in your mind!
                 </p>
               </div>
