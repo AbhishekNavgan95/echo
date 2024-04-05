@@ -21,7 +21,7 @@ database.connectToDB();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN || "https://echo-an.netlify.app/",
     credentials: true,
     maxAge: 14400,
 }));
