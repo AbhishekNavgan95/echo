@@ -27,7 +27,7 @@ const TimeLineSection = () => {
             <div className='overflow-hidden md:rounded-lg'>
                 <img className='w-full group-hover:scale-105 transition-scale delay-100 duration-300 ' src={TimelineImage} alt="" />
             </div>
-            <div className='w-auto lg:w-3/4 md:absolute left-[50%] bottom-0 md:translate-x-[-50%] md:translate-y-[50%] flex justify-center  gap-2 lg:gap-4 bg-caribbeangreen-700 text-white uppercase py-5 px-5 md:rounded-lg '> 
+            <div className='w-auto lg:w-3/4 md:absolute left-[50%] bottom-0 md:translate-x-[-50%] md:translate-y-[50%] flex justify-center  gap-2 lg:gap-4 bg-caribbeangreen-700 text-richblack-5 uppercase py-5 px-5 md:rounded-lg '> 
                 <div className='flex flex-col lg:flex-row  items-center gap-3 '>
                     <h3 className='text-4xl font-bold'>10+</h3>
                     <h4 className='text-caribbeangreen-300 text-sm text-center'>Years of Experience</h4>

@@ -24,7 +24,7 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className= "w-full max-w-maxContent mx-auto py-3 px-5 h-max z-[2] text-white bg-richblack-800 ">
+        className= "w-full max-w-maxContent mx-auto py-3 px-5 h-max z-[2] text-richblack-5 bg-richblack-800 ">
         <div className="md:flex justify-between md:flex-row">
           <div className="flex md:flex-row justify-center md:justify-between ">
             {sidebarLinks.map((link, index) => {

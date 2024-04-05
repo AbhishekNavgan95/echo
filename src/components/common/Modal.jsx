@@ -19,7 +19,7 @@ const Modal = ({ modalData }) => {
               {modalData.btn1Text}
             </button>
             <button
-              className="text-center text-[13px] text-nowrap flex items-center px-4 py-2 rounded-md text-lg active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 bg-richblack-700 hover:bg-richblack-800 focus:bg-richblack-800 text-white"
+              className="text-center text-[13px] text-nowrap flex items-center px-4 py-2 rounded-md text-lg active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 bg-richblack-700 hover:bg-richblack-800 focus:bg-richblack-800 text-richblack-5"
               onClick={modalData?.btn2Handler}
             >
               {modalData?.btn2Text}

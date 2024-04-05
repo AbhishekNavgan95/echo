@@ -18,7 +18,7 @@ const CodeBlock = ({
     <div className={`flex ${position} flex-col py-5 lg:py-[5rem] gap-10 justify-between items-center`}>
 
         {/* text section */}
-        <div className="flex flex-col items-center lg:items-start lg:w-1/2 gap-2 text-white">
+        <div className="flex flex-col items-center lg:items-start lg:w-1/2 gap-2 text-richblack-5">
             <h2 className="my-3 text-center lg:text-start">
             {heading}
             </h2>

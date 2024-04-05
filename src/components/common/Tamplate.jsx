@@ -13,12 +13,12 @@ const Tamplate = ({ formType }) => {
   const [accountType, setAccountType] = useState("Student");
 
   return (
-    <div className="flex justify-center  min-h-[calc(100vh-5rem)] items-center">
+    <div className="flex justify-center  min-h-[calc(100vh-5rem)] items-center ">
       {loading ? (
-                  <SyncLoader color="#E7C009" />
+          <SyncLoader color="#E7C009" />
       ) : (
-        <div className="max-w-maxContent py-28 mx-auto gap-10 items-center justify-between flex flex-col xl:flex-row">
-          <div className="flex flex-col gap-3 xl:w-2/5 md:w-8/12 w-10/12">
+        <div className=" max-w-maxContent w-full mx-auto py-10 gap-10 items-center justify-between flex flex-col xl:flex-row">
+          <div className="flex flex-col gap-3 xl:w-2/5 md:w-8/12 w-11/12 ">
             {formType === "login" ? (
               <LoginForm
                 title={"Welcome Back"}
@@ -38,7 +38,7 @@ const Tamplate = ({ formType }) => {
             )}
           </div>
 
-          <div className="relative  xl:w-2/5 hidden md:block md:w-8/12 w-11/12">
+          <div className="px-5">
             <div className="relative">
               <img
                 className="object-cover border-2 shadow-2xl border-white relative z-[2] w-full"
@@ -47,7 +47,7 @@ const Tamplate = ({ formType }) => {
               />
               <img
                 src={frame}
-                className="w-full h-full bg-white top-0 z-[1] translate-x-6 translate-y-4 absolute"
+                className="w-full h-full bg-white z-[1] absolute top-2 left-2"
               />
               <div className="w-full h-full bg-richblack-500 top-0 z-[1] blur-3xl absolute"></div>
             </div>

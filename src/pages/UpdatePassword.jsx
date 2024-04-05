@@ -38,13 +38,13 @@ const UpdatePassword = () => {
         <div className="text-4xl text-center text-pink-300">Loading...</div>
       ) : (
         <form onSubmit={handleOnSubmit} className="">
-          <div className="text-white">
+          <div className="text-richblack-5">
             <h1 className="text-4xl font-bold">Choose new passowrd</h1>
             <p className="text-xl py-3 font-semibold text-richblack-300">
               Almost done, Enter your new password and you are all set.
             </p>
             <div className="flex flex-col">
-              <label htmlFor="" className="text-white">
+              <label htmlFor="" className="text-richblack-5">
                 New password<sup>*</sup>
               </label>
               <div className="flex mt-3 shadow-sm items-center shadow-richblack-100 rounded-xl overflow-hidden">
@@ -58,7 +58,7 @@ const UpdatePassword = () => {
                   placeholder="Password"
                 />
                 <span
-                  className="px-4 py-4 text-xl bg-richblack-700 text-white hover:cursor-pointer rounded-e-xl"
+                  className="px-4 py-4 text-xl bg-richblack-700 text-richblack-5 hover:cursor-pointer rounded-e-xl"
                   onClick={() => {
                     setShowPass((prev) => !prev);
                   }}
@@ -82,7 +82,7 @@ const UpdatePassword = () => {
                   placeholder="Confirm Password"
                 />
                 <span
-                  className="px-4 py-4 text-xl bg-richblack-700 text-white hover:cursor-pointer rounded-e-xl"
+                  className="px-4 py-4 text-xl bg-richblack-700 text-richblack-5 hover:cursor-pointer rounded-e-xl"
                   onClick={() => {
                     setShowConfirmPass((prev) => !prev);
                   }}
@@ -101,7 +101,7 @@ const UpdatePassword = () => {
             >
               Reset password
             </button>
-            <div className="pt-3 text-richblack-300 hover:text-white transition-all duration-200">
+            <div className="pt-3 text-richblack-300 hover:text-richblack-5 transition-all duration-200">
               <Link to="/login" className="flex gap-2 items-center">
                 {" "}
                 <MdArrowBackIos />

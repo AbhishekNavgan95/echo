@@ -67,7 +67,7 @@ export default function CoursesTable({ courses, setCourses }) {
                     <div className='flex flex-col lg:flex-row gap-x-3 justify-start'>
                       <img src={course?.thumbnail} alt="thumbnail" className='h-[140px] w-[200px] self-center my-2 rounded-lg object-cover hidden lg:block '/>
                       <div className='flex flex-col justify-center my-3'>
-                        <p className='text-xl text-white'>{course?.courseTitle}</p>
+                        <p className='text-xl text-richblack-5'>{course?.courseTitle}</p>
                         <p className=''>{course.courseDescription}</p>
                         <p className=''>Created: {formattedDate(course?.createdAt)}</p>
                         {
@@ -87,7 +87,7 @@ export default function CoursesTable({ courses, setCourses }) {
                   </div>
                   </td>
                   <td className='text-center'>
-                    <div className='flex gap-x-3 items-center text-white justify-center text-xl'>
+                    <div className='flex gap-x-3 items-center text-richblack-5 justify-center text-xl'>
                       <button
                       onClick={() => {
                         navigate(`/dashboard/edit-course/${course?._id}`);

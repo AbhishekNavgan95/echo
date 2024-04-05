@@ -8,7 +8,7 @@ const Contact = () => {
   return (
     <>
       <div className="py-5">
-        <section className="bg-richblack-900 py-5 md:py-14 text-white max-w-maxContent mx-auto">
+        <section className="bg-richblack-900 py-5 md:py-14 text-richblack-5 max-w-maxContent mx-auto">
           <div className="flex relative items-start flex-col-reverse xl:flex-row gap-10">
             <div className="sticky bottom-0 border border-richblack-600 max-w-maxContent mx-auto w-11/12 md:w-10/12 lg:w-10/12 xl:w-4/12 p-5 lg:p-10  bg-richblack-800">
               {

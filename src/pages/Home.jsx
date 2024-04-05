@@ -22,7 +22,7 @@ const Home = () => {
       <header className="bg-richblack-900">
         <div className="max-w-maxContent mx-auto w-11/12">
           {/* Hero section */}
-          <div className="relative mx-auto pt-16 flex flex-col items-center text-white justify-between text-center">
+          <div className="relative mx-auto pt-16 flex flex-col items-center text-richblack-5 justify-between text-center">
             {!(token === null) ? (
               <div className="text-3xl xl:text-4xl border-b pb-6">
                 Welcome Back <HighlightText text={user.firstName} />
@@ -52,7 +52,7 @@ const Home = () => {
           </div>
 
           {/* Hero section CTA buttons */}
-          <div className="flex gap-7 mt-10 justify-center text-white">
+          <div className="flex gap-7 mt-10 justify-center text-richblack-5">
             <CtaButton active={true} linkTo={"/signup"}>
               Learn more
             </CtaButton>
@@ -198,7 +198,7 @@ const Home = () => {
               <InstructorSection />
             </div>
             <div>
-              <h2 className="text-center text-white py-10 text-3xl xl:text-4xl  font-bold">
+              <h2 className="text-center text-richblack-5 py-10 text-3xl xl:text-4xl  font-bold">
                 Reviews from other learners
               </h2>
             </div>

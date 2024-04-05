@@ -5,17 +5,20 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { MdArrowBackIos, MdDisabledByDefault } from "react-icons/md";
 import { getPasswordResetToken } from "../services/operations/authAPI";
 import { SyncLoader } from "react-spinners";
+import ActionButton from "../components/common/ActionButton";
 
 const ResetPassword = () => {
   const [showPass, setShowPass] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
   const [email, setEmail] = useState("");
+  const [mailSent, setMailSent] = useState(false);
   const loading = useSelector((state) => state.auth.loading);
   const dispatch = useDispatch();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(getPasswordResetToken(email, setEmailSent));
+    setMailSent(true);
   };
 
   return (
@@ -24,13 +27,13 @@ const ResetPassword = () => {
         {loading ? (
           <SyncLoader color="#E7C009" />
         ) : (
-          <div className="w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12">
-            <p className="text-3xl xl:text-4xl font-bold text-white ">
-              {!emailSent ? "Reset Your Password." : "Check Your Email."}
+          <div className="w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12 flex flex-col gap-5">
+            <p className="text-2xl md:text-3xl xl:text-4xl font-bold text-richblack-5 ">
+              {!mailSent ? "Reset Your Password." : "Check Your Email."}
             </p>
-            <div className="text-xl font-semibold text-richblack-300">
-              {!email ? (
-                <div className="pt-3">
+            <div className="md:text-xl font-semibold text-richblack-300">
+              {!mailSent ? (
+                <div className="">
                   <p>
                     Have no fear. we'll email you instructions to reset your
                     password. If you dont have access to your email we can try
@@ -44,11 +47,11 @@ const ResetPassword = () => {
               )}
             </div>
             {!emailSent ? (
-              <div className="flex flex-col my-1">
-                <label className="text-white my-3">Email Address</label>
+              <div className="flex flex-col ">
+                <label className="text-richblack-5 my-3">Email Address</label>
                 <div className="flex shadow-sm items-center shadow-richblack-300 rounded-xl overflow-hidden">
                   <input
-                    className="hover:outline-none w-full text-white focus:outline-none py-3 px-4 text-xl bg-richblack-800"
+                    className="hover:outline-none w-full text-richblack-5 focus:outline-none py-3 px-4 md:text-xl bg-richblack-800"
                     type="email"
                     name="email"
                     placeholder="Enter your email address"
@@ -56,28 +59,20 @@ const ResetPassword = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
-                  <span
-                    className="hover:outline-none text-xl text-white focus:outline-none py-4 px-4 bg-richblack-800"
-                    onClick={() => {
-                      setShowPass((prev) => !prev);
-                    }}
-                  >
-                    {!(showPass === true) ? <FaRegEye /> : <FaRegEyeSlash />}
-                  </span>
                 </div>
               </div>
             ) : null}
-            <button
+            <ActionButton
               type="submit"
-              className="w-full bg-yellow-50 hover:bg-yellow-100 focus:bg-yellow-100 transition-all duration-200 active:scale-95 hover:outline-none focus:outline-none py-2 text-richblack-900 font-semibold mt-5 rounded-lg text-center shadow-sm shadow-richblack-300"
+              active
             >
-              {!emailSent ? "Reset Password" : "Resend Email"}
-            </button>
-            <Link to="/login" className="  items-center text-richblack-100 hover:text-white focus:text-white transition-all duration-200">
-            <div className="mt-5 flex gap-3 items-center">
+              {!mailSent ? "Reset Password" : "Resend Email"}
+            </ActionButton>
+            <Link to="/login" className="  items-center text-richblack-100 hover:text-richblack-5 focus:text-richblack-5 transition-all duration-200">
+              <div className=" flex gap-3 items-center">
                 <MdArrowBackIos />
                 Back to Log in
-            </div>
+              </div>
             </Link>
           </div>
         )}

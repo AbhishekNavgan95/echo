@@ -44,7 +44,7 @@ const Catalog = () => {
 
     return (
         <div className="py-5 w-11/12 mx-auto">
-            <section className="bg-richblack-900 py-5 md:py-14 text-white max-w-maxContent mx-auto">
+            <section className="bg-richblack-900 py-5 md:py-14 text-richblack-5 max-w-maxContent mx-auto">
                 <div className="relative space-y-10">
 
                     <div className='flex flex-col gap-y-5 md:flex-row items-center justify-between'>

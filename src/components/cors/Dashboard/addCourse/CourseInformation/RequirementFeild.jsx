@@ -67,7 +67,7 @@ const RequirementFeild = ({
                 <span>{item}</span>
                 <button
                   type="button"
-                  className="hover:text-white transition-all duration-200 "
+                  className="hover:text-richblack-5 transition-all duration-200 "
                   onClick={() => handleRemoveRequirement(index)}
                 >
                   Remove

@@ -50,7 +50,7 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="text-white flex justify-center items-center min-h-[calc(100vh-5rem)]">
+    <div className="text-richblack-5 flex justify-center items-center min-h-[calc(100vh-5rem)]">
       <form onSubmit={handleOnSubmit}>
         {loading ? (
           <SyncLoader color="#E7C009" />
@@ -63,7 +63,7 @@ const VerifyEmail = () => {
               </p>
               {/* <p className="text-xl text-richblack-300">Enter the code below</p> */}
             </div>
-            <div className="text-white">
+            <div className="text-richblack-5">
               <OTPInput
                 value={otp}
                 onChange={setOtp}
@@ -78,12 +78,12 @@ const VerifyEmail = () => {
               </button>
             </div>
             <div className="py-5 flex items-center text-xl justify-between">
-              <Link to={"/login"} className=" text-richblack-300 hover:text-white focus:text-white transition-all duration-200">
+              <Link to={"/login"} className=" text-richblack-300 hover:text-richblack-5 focus:text-richblack-5 transition-all duration-200">
                 <p className="  items-center flex">
                   <MdArrowBackIos /> Back to Login
                 </p>
               </Link>
-              <button className="flex items-center gap-2 text-richblack-300 focus:text-white hover:text-white transition-all duration-200" onClick={() => dispatch(sendOtp(signUpData.email))}>
+              <button className="flex items-center gap-2 text-richblack-300 focus:text-richblack-5 hover:text-richblack-5 transition-all duration-200" onClick={() => dispatch(sendOtp(signUpData.email))}>
                 <TiArrowSync /> Resent OTP
               </button>
             </div>
