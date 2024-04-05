@@ -13,6 +13,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../slices/profileSlice";
 import Modal from "../../common/Modal"
+import ActionButton from '../../common/ActionButton'
+import ActionLabel from "../../common/ActionLabel";
+import DangerButton from "../../common/DangerButton";
 
 const Settings = () => {
   const { token } = useSelector((state) => state.auth);
@@ -41,7 +44,7 @@ const Settings = () => {
     e.preventDefault();
     const file = e.target[0].files[0];
     const result = await updatePfp(token, file);
-    dispatch(setUser({...user, image: result}));
+    dispatch(setUser({ ...user, image: result }));
   };
 
   const updateImage = (e) => {
@@ -93,7 +96,7 @@ const Settings = () => {
 
         {/* Update Profile Picture */}
         <form onSubmit={imageUpload}>
-          <section className="flex justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
+          <section className="flex justify-between items-center bg-richblack-800 p-5 lg:p-10  rounded-lg">
             <div className="flex flex-col lg:flex-row gap-5 items-center justify-between w-full">
               <div className="flex flex-col lg:flex-row items-center gap-5">
                 <img
@@ -101,19 +104,22 @@ const Settings = () => {
                   alt=""
                   className=" border-2 border-richblack-100 w-[100px] aspect-square rounded-full object-cover"
                 />
-                <h5 className="text-xl font-semibold">
+                <h5 className="md:text-xl font-semibold">
                   {user.firstName + " " + user.lastName}
                 </h5>
               </div>
               <div className="flex flex-col gap-3 items-end">
                 <div className="flex gap-3">
-                  <label
-                    htmlFor="thumbnail"
-                    className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-richblack-600 hover:bg-richblack-700 focus:hover:bg-richblack-700 text-richblack-25 active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
+                  <ActionLabel
+                    use="thumbnail"
+                    active={false}
+                    className="text-center flex items-center px-4 py-2 rounded-md md:text-lg bg-richblack-600 hover:bg-richblack-700 focus:hover:bg-richblack-700 text-richblack-25 active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
                   >
+                    <span className="flex items-center gap-3">
                     <FaFileContract />
                     Select File
-                  </label>
+                    </span>
+                  </ActionLabel>
                   <input
                     onChange={updateImage}
                     type="file"
@@ -121,18 +127,19 @@ const Settings = () => {
                     name="thumbnail"
                     accept="image/*"
                     id="thumbnail"
-                    className="hidden w-[1px]"
+                    className="hidden w-[0x]"
                   />
                   <div className="flex gap-5"></div>
-                  <button
-                    type="submit"
-                    className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
-                  >
-                    <FaEdit />
-                    Save
-                  </button>
+                  <ActionButton
+                    active="true"
+                    type="submit">
+                    <span className="flex items-center gap-3">
+                      <FaEdit />
+                      Save
+                    </span>
+                  </ActionButton>
                 </div>
-                <p className="text-richblack-300 text-lg">
+                <p className="text-richblack-300 md:text-lg">
                   Do not forget to save the changes
                 </p>
               </div>
@@ -142,19 +149,9 @@ const Settings = () => {
 
         {/* Update Profile Account Details*/}
         <form onSubmit={detailsSubmitHandler}>
-          <section className="flex flex-col justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
-            <div className="flex items-center justify-between w-full mb-5">
-              <h4 className="text-2xl font-semibold">Personal Details</h4>
-              <button
-                type="submit"
-                className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
-              >
-                {/* onClick={navigate("../settings")} */}
-                <span className="flex gap-3 items-center">
-                  <FaEdit />
-                  Save
-                </span>
-              </button>
+          <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 rounded-lg gap-y-5">
+            <div className="flex items-center justify-between w-full">
+              <h4 className="text-xl md:text-2xl font-semibold">Personal Details</h4>
             </div>
             <div className="grid xl:grid-cols-2 w-full gap-x-10 gap-y-5">
               <div className="flex flex-col w-full gap-3">
@@ -165,7 +162,7 @@ const Settings = () => {
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={updateDetails}
-                  className="py-2 px-4 rounded-lg shadow-sm focus:outline-none shadow-richblack-300 text-xl text-richblack-100 bg-richblack-700"
+                  className="py-2 px-4 w-full rounded-lg shadow-sm focus:outline-none shadow-richblack-300 md:text-lg text-richblack-100 bg-richblack-700"
                   placeholder="dd/mm/yy"
                   id="dateOfBirth"
                 />
@@ -175,7 +172,7 @@ const Settings = () => {
 
                 <select
                   name="gender"
-                  className="py-2 px-4 text-xl rounded-lg focus:outline-none shadow-sm shadow-richblack-300  text-richblack-100 bg-richblack-700"
+                  className="py-2 px-4 md:text-lg  w-full rounded-lg focus:outline-none shadow-sm shadow-richblack-300  text-richblack-100 bg-richblack-700"
                   id="gender"
                   value={formData.gender}
                   onChange={updateDetails}
@@ -195,7 +192,7 @@ const Settings = () => {
                   value={formData.contactNumber}
                   onChange={updateDetails}
                   name="contactNumber"
-                  className="py-2 px-4 text-xl rounded-lg focus:outline-none shadow-sm shadow-richblack-300  text-richblack-100 bg-richblack-700"
+                  className="py-2 px-4 md:text-lg  w-full rounded-lg focus:outline-none shadow-sm shadow-richblack-300  text-richblack-100 bg-richblack-700"
                   placeholder="123 - 456 - 7890"
                   id="contactNumber"
                 />
@@ -207,77 +204,85 @@ const Settings = () => {
                   value={formData.about}
                   onChange={updateDetails}
                   name="about"
-                  className="py-2 text-xl px-4 rounded-lg focus:outline-none shadow-sm resize-none shadow-richblack-300 text-richblack-100 bg-richblack-700"
+                  className="py-2 md:text-lg px-4 w-full rounded-lg focus:outline-none shadow-sm resize-none shadow-richblack-300 text-richblack-100 bg-richblack-700"
                   placeholder="Tell us something about yourself"
                   id="about"
                 ></textarea>
               </div>
             </div>
+            <ActionButton
+              type="submit"
+              active={true}
+            >
+              <span className="flex gap-3 items-center">
+                <FaEdit />
+                Save
+              </span>
+            </ActionButton>
           </section>
         </form>
 
         {/* Change Password */}
         <form onSubmit={changePassword}>
-          <section className="flex flex-col justify-between items-center bg-richblack-800 px-10 py-10 rounded-lg">
-            <div className="flex items-center justify-between w-full mb-5">
-              <h4 className="text-2xl font-semibold">Change Password</h4>
-              <button
-                type="submit"
-                className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
-              >
-                {/* onClick={navigate("../settings")} */}
-                <span className="flex gap-3 items-center">
-                  <FaEdit />
-                  Save
-                </span>
-              </button>
+          <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 gap-5 rounded-lg">
+            <div className="flex items-center justify-between w-full">
+              <h4 className="text-xl md:text-2xl font-semibold">Change Password</h4>
             </div>
             <div className="grid xl:grid-cols-2 w-full gap-x-10 gap-y-5">
               <div className="flex flex-col w-full gap-3">
                 <label htmlFor="oldPassword">Old Password</label>
-                <div className="flex rounded-lg shadow-sm focus:outline-none shadow-richblack-300 text-xl text-richblack-100 bg-richblack-700">
+                <div className="flex rounded-lg shadow-sm focus:outline-none shadow-richblack-300 md:text-lg text-richblack-100 bg-richblack-700">
                   <input
-                    type={showPassword? "text" : "password"}
+                    type={showPassword ? "text" : "password"}
                     required
                     name="oldPassword"
                     value={password.oldPassword}
                     onChange={handlePasswordChange}
-                    className="py-2 px-4 w-full rounded-l=lg m focus:outline-none shadow-richblack-300 text-xl text-richblack-100 bg-richblack-700"
+                    className="py-2 px-4 w-full rounded-l=lg m focus:outline-none shadow-richblack-300 md:text-lg text-richblack-100 bg-richblack-700"
                     placeholder="Old Password"
                     id="oldPassword"
                   />
                   <span className="w-[50px] flex items-center justify-center" onClick={() => setShowPassword(!showPassword)}>{
-                      !showPassword ? <FaRegEye /> : <FaRegEyeSlash />
-                    }</span>
+                    !showPassword ? <FaRegEye /> : <FaRegEyeSlash />
+                  }</span>
                 </div>
               </div>
               <div className="flex flex-col w-full gap-3">
                 <label htmlFor="oldPassword">New Password</label>
-                <div className="flex rounded-lg shadow-sm focus:outline-none shadow-richblack-300 text-xl text-richblack-100 bg-richblack-700">
+                <div className="flex rounded-lg shadow-sm focus:outline-none shadow-richblack-300 md:text-lg text-richblack-100 bg-richblack-700">
                   <input
-                    type={showConfirmPassword? "text" : "password"}
+                    type={showConfirmPassword ? "text" : "password"}
                     required
                     name="newPassword"
                     value={password.newPassword}
                     onChange={handlePasswordChange}
-                    className="py-2 px-4 w-full rounded-l=lg m focus:outline-none shadow-richblack-300 text-xl text-richblack-100 bg-richblack-700"
+                    className="py-2 px-4 w-full rounded-l=lg m focus:outline-none shadow-richblack-300 md:text-lg text-richblack-100 bg-richblack-700"
                     placeholder="Old Password"
                     id="newPassword"
                   />
                   <span className="w-[50px] flex items-center justify-center" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>{
-                      !showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />
-                    }</span>
+                    !showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />
+                  }</span>
                 </div>
               </div>
             </div>
+            <ActionButton
+              type="submit"
+              active={true}
+            >
+              <span className="flex gap-3 items-center">
+                <FaEdit />
+                Save
+              </span>
+            </ActionButton>
           </section>
         </form>
 
         {/* Delete Acount */}
-        <section className="flex flex-col justify-between items-start bg-richblack-800 px-10 py-10 rounded-lg">
+        <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10  rounded-lg">
           <div className="flex w-full items-start py-2 gap-5">
             <div className="flex flex-col  items-start gap-3">
-              <h3 className="text-xl font-semibold">Delete Account</h3>
+              <h3 className="text-xl md:text-2xl font-semibold">Delete Account</h3>
               <div className="text-richblack-300">
                 <p>Would you like to delete your Account?</p>
                 <p>
@@ -286,26 +291,26 @@ const Settings = () => {
                   details
                 </p>
               </div>
-              <button
-                onClick={() => setModalData({
-                  heading : "Delete this account?",
-                  subHeading : "All the purchased courses will be deleted",
-                  btn1Handler : () => deleteAccount(token, dispatch, navigate),
-                  btn1Text : "Delete",
-                  btn2Handler : () => setModalData(null),
-                  btn2Text : "Cancel"
+              <DangerButton
+                action={() => setModalData({
+                  heading: "Delete this account?",
+                  subHeading: "All the purchased courses will be deleted",
+                  btn1Handler: () => deleteAccount(token, dispatch, navigate),
+                  btn1Text: "Delete",
+                  btn2Handler: () => setModalData(null),
+                  btn2Text: "Cancel"
                 })}
-                className="my-1 py-2 px-3 bg-[#721414] rounded-lg flex items-center gap-2"
+                style="my-1 py-2 px-3 bg-danger rounded-lg flex items-center gap-2"
               >
                 <MdAutoDelete />
                 Delete Account
-              </button>
+              </DangerButton>
             </div>
           </div>
         </section>
       </div>
       {
-        modalData && <Modal modalData={modalData} /> 
+        modalData && <Modal modalData={modalData} />
       }
     </div>
   );
