@@ -41,25 +41,15 @@ const About = () => {
       </div>
 
       {/* section 2 */}
-      <div className="bg-richblack-900 border-b border-richblack-700 md:pt-36">
+      <div className="bg-richblack-900 md:pt-24 ">
         <div className="max-w-maxContent mx-auto w-11/12">
-          {/* <section className="">
-            <h2 className="text-4xl font-semibold text-center text-richblack-5">
-              We are passionate about revolutionizing the way we learn. Our
-              innovative platform combines <HighlightText text={"technology"} />{" "}
-              <HighlightText text={"expertise"} />, and
-              <HighlightText text={"community"} />
-              to create an
-              <HighlightText text={"unparalleled educational experience"} />.
-            </h2>
-          </section> */}
           <Quote />
         </div>
       </div>
 
       {/* section 3 ✅ */}
-      <section className="bg-richblack-900">
-        <div className=" max-w-maxContent mx-auto  py-10 xl:py-28">
+      <section className="bg-richblack-900 ">
+        <div className=" max-w-maxContent mx-auto  py-0 xl:py-24">
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className=" w-full sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl font-semibold  text-center md:text-start">
@@ -94,6 +84,7 @@ const About = () => {
             </div>
           </div>
         </div>
+
         <div className="max-w-maxContent mx-auto py-10 xl:py-28">
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className="sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
@@ -164,76 +155,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* section 5 👍 */}
-      {/* <section className="bg-richblack-900">
-        <div className="max-w-maxContent mx-auto py-10 xl:py-28 ">
-          <div className="flex flex-col xl:flex-row items-center xl:place-items-stretch">
-            <div className="flex flex-col w-full sm:w-11/12 md:w-11/12 gap-5">
-              <div className="flex flex-col items-center xl:items-start gap-4 xl:gap-14 ">
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <h2 className="text-4xl text-center xl:text-start">World-Class Learning for </h2>
-                    <h2 className="text-4xl text-center xl:text-start">
-                      <HighlightText text={"Anyone, Anytime and Anywhere"} />
-                    </h2>
-                  </div>
-                  <p className="pr-10 text-xl text-center xl:text-start text-richblack-300">
-                    Studynotion partners with more than 275+ leading
-                    universities and companies to bring flexible, affordable,
-                    job-relevant online learning to individuals and
-                    organizations worldwide.
-                  </p>
-                </div>
-                <CtaButton active={true} linkTo={"/signup"}>
-                  Learn More
-                </CtaButton>
-              </div>
-              <div className="flex items-end justify-end ">
-                <div className=" w-full xl:w-1/2 bg-richblack-700 xl:h-[300px] flex flex-col p-10 gap-10">
-                  <h1 className="text-xl font-semibold">Cirtification</h1>
-                  <p className="text-richblack-300">
-                    You will get a certificate that can be used as a
-                    certification during job hunting.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap w-full sm:w-11/12 md:w-11/12">
-              <div className="xl:w-1/2 w-full bg-richblack-700 flex flex-col p-10 gap-10 lx:h-[300px]">
-                <h1 className="text-xl font-semibold">
-                  Curriculum Based on Industry Needs
-                </h1>
-                <p className=" text-richblack-300">
-                  Save time and money! The Belajar curriculum is made to be
-                  easier to understand and in line with industry needs.
-                </p>
-              </div>
-              <div className="xl:w-1/2 w-full bg-richblack-700  xl:bg-richblack-800 flex flex-col p-10 gap-10 lx:h-[300px]">
-                <h1 className="text-xl font-semibold">Our Learning Methods</h1>
-                <p className=" text-richblack-300">
-                  The learning process uses the namely online and offline.
-                </p>
-              </div>
-              <div className="xl:w-1/2 w-full bg-richblack-700  xl:bg-richblack-800 flex flex-col p-10 gap-10 lx:h-[300px]">
-                <h1 className="text-xl font-semibold">Rating "Auto-grading"</h1>
-                <p className=" text-richblack-300">
-                  You will immediately get feedback during the learning process
-                  without having to wait for an answer or response from the
-                  mentor.
-                </p>
-              </div>
-              <div className="xl:w-1/2 w-full bg-richblack-700 flex flex-col p-10 gap-10 lx:h-[300px]">
-                <h1 className="text-xl font-semibold">Ready to Work</h1>
-                <p className=" text-richblack-300">
-                  Connected with over 150+ hiring partners, you will have the
-                  opportunity to find a job after graduating from our program.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       {/* section 5 🔥 */}
       <section className="bg-richblack-900">
         <div className=" max-w-maxContent mx-auto py-10 xl:py-28">
@@ -243,7 +164,7 @@ const About = () => {
 
       {/* section 6  */}
       <section className="bg-richblack-900">
-        <div className=" max-w-maxContent mx-auto pb-24">
+        <div className=" max-w-maxContent mx-auto pb-12">
           <ContactFormSection />
         </div>
       </section>
@@ -252,7 +173,7 @@ const About = () => {
             <section className="bg-richblack-900">
         <div className="max-w-maxContent mx-auto px-def">
           <div>
-            <h2 className="text-center text-white py-10 text-3xl xl:text-4xl  font-bold">
+            <h2 className="text-center text-white py-10 text-3xl xl:text-4xl font-bold">
               Reviews from other learners
             </h2>
           </div>
