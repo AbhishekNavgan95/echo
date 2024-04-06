@@ -5,6 +5,7 @@ import { categories } from '../services/apis';
 import { getCatalogPageData } from "../services/operations/PageAndComponentData"
 import CourseSlider from '../components/cors/CatalogPage/CourseSlider';
 import CourseCard from '../components/cors/CatalogPage/CourseCard';
+import CatalogCourseCardSkeleton from '../components/Skeletons/CatalogCourseCardSkeleton';
 
 const Catalog = () => {
 
@@ -13,6 +14,7 @@ const Catalog = () => {
     const [categoryId, setCategoryId] = useState(null);
     const { category } = useParams();
     const [coursesType, setCoursesType] = useState("most-popular");
+    const [loading, setLoading] = useState(false);
     // console.log("Current category : ", category)
 
     const getCategories = async () => {
@@ -23,12 +25,16 @@ const Catalog = () => {
 
     const getCategoryDetails = async () => {
         try {
+            setLoading(true)
             const res = await getCatalogPageData(categoryId);
-            // console.log("res : ", res);
+            // console.log("res : ", res);        
+            setLoading(false)
             setCatalogPageData(res);
+
         } catch (e) {
-            // console.log("error : ", e);
+            console.log("error : ", e);
         }
+
     }
 
     useEffect(() => {
@@ -59,17 +65,29 @@ const Catalog = () => {
                             <div className={`bg-yellow-100 rounded-lg absolute w-full top-0 bottom-0 transition-all duration-300 ${coursesType === "most-popular" ? "translate-x-[-55%]" : "translate-x-[45%]"}`}></div>
                         </div>
                     </div>
-
-                    <div className='space-y-3'>
+                    <div className='space-y-3 w-full'>
                         <p className='text-2xl border-b pb-5 border-richblack-600 mb-5 text-center md:text-start'>{
                             coursesType === "new" ? "New Courses" : `Top Courses in ${category}`
                         }</p>
-                        <CourseSlider courses={coursesType === "most-popular" ? catalogPageData?.selectedCategory?.courses : catalogPageData?.mostSellingCourses} />
+                        {
+                            // why the skeleton is not showing?
+                            loading
+                                ? <div className='max-w-[100%] sm:max-w-[300px] md:w-[400px]'>
+                                        <CatalogCourseCardSkeleton />
+                                    </div>
+                                : coursesType === "most-popular"
+                                    ? <CourseSlider courses={catalogPageData?.selectedCategory?.courses} />
+                                    : <CourseSlider courses={catalogPageData?.mostSellingCourses} />
+                        }
                     </div>
 
                     <div className='space-y-3'>
                         <p className='text-2xl border-b pb-5 border-richblack-600 mb-5 text-center md:text-start'>Courses to get you started</p>
-                        <CourseSlider courses={catalogPageData?.differentCategory?.courses} />
+                        {
+                            loading
+                                ? <div className='w-[100%] sm:max-w-[300px] md:max-w-[400px]'><CatalogCourseCardSkeleton /> </div>
+                                : <CourseSlider courses={catalogPageData?.differentCategory?.courses} />
+                        }
                     </div>
 
                     <div className='space-y-3'>
@@ -77,10 +95,12 @@ const Catalog = () => {
                         <div className=''>
                             <div className='grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-5'>
                                 {
-                                    catalogPageData?.mostSellingCourses?.slice(0, 4)
-                                        ?.map((course, index) => (
-                                            <CourseCard key={index} course={course} />
-                                        ))
+                                    loading
+                                        ? <div><CatalogCourseCardSkeleton /></div>
+                                        : catalogPageData?.mostSellingCourses?.slice(0, 4)
+                                            ?.map((course, index) => (
+                                                <CourseCard key={index} course={course} />
+                                            ))
                                 }
                             </div>
                         </div>

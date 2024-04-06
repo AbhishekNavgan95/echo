@@ -3,7 +3,7 @@ import { apiConnector } from "../apiconnector";
 import { catalogData } from "../apis";
 
 export const getCatalogPageData = async (categoryId) => {
-  const toastId = toast.loading("Loading...");
+  // const toastId = toast.loading("Loading...");
   let result = [];
 
   try {
@@ -31,6 +31,6 @@ export const getCatalogPageData = async (categoryId) => {
     
   }
 
-  toast.dismiss(toastId);
+  // toast.dismiss(toastId);
   return result;
 };

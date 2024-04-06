@@ -7,11 +7,11 @@ import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
 
 const CourseSlider = ({ courses }) => {
-  // console.log("courses : ", courses);
+  
   return (
     <div>
       {
-        courses?.length
+        courses?.length > 0
           ? (
             <Swiper
               // slidesPerView={3}
@@ -20,6 +20,7 @@ const CourseSlider = ({ courses }) => {
                 delay: 2500,
                 disableOnInteraction: false,
               }}
+              freeMode={true}
               breakpoints={{
                 '@0.00': {
                   // centeredSlides: true,
@@ -46,7 +47,7 @@ const CourseSlider = ({ courses }) => {
               }
             </Swiper>
           )
-          : <div> No courses Found </div>
+          : <div className='md:text-lg text-center my-2'> No courses Found </div>
       }
     </div>
   )
