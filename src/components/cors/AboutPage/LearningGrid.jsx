@@ -62,7 +62,7 @@ const LearningGrid = () => {
             `}
           >
             {grid.order < 0 ? (
-              <div className="flex flex-col items-start p-10 gap-4">
+              <div className="flex flex-col items-start p-5 md:p-10 gap-4">
                 <h2 className="text-3xl xl:text-4xl ">
                   {grid.heading} <HighlightText text={grid.highlightText} />
                 </h2>
@@ -72,7 +72,7 @@ const LearningGrid = () => {
                 </CtaButton>
               </div>
             ) : (
-              <div className="p-10 flex flex-col gap-5">
+              <div className="p-5 md:p-10  flex flex-col gap-5">
                 <h2 className="text-2xl text-semibold">{grid.heading}</h2>
                 <p className="text-xl text-richblack-300">{grid.description}</p>
               </div>

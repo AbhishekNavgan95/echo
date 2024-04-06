@@ -18,8 +18,8 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
 
   return (
     <div className='bg-richblack-800 rounded-lg border border-richblack-600 text-richblack-5 overflow-hidden flex flex-col group p-3'>
-      <div className='overflow-hidden rounded-lg aspect-video h-[150px] md:h-[190px] lg:h-[220px]' >
-        <img loading="lazy" className='w-full group-hover:scale-105 transition-scale duration-300' src={courseData?.thumbnail} alt="" />
+      <div className='overflow-hidden rounded-lg lg:aspect-video h-[170px] md:h-[190px] lg:h-[220px] flex items-center' >
+        <img loading="lazy" className='w-full group-hover:scale-105 transition-scale duration-300 ' src={courseData?.thumbnail} alt="" />
       </div>
       <div className=' flex flex-col my-3 gap-2'>
         <div className='flex items-center justify-between px-4'>
@@ -42,7 +42,7 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
           }
         </div>
         <p className='text-sm mt-2 mb-1 text-center text-richblack-100'>30-Day Money-Back Guarantee</p>
-        <div className='space-y-1'>
+        <div className='flex flex-col gap-1 items-center lg:items-start'>
           <p> This course Includes : </p>
           <p className='flex gap-1 text-sm items-center text-caribbeangreen-200'>< MdOutlineSwitchVideo /> 8 hours on-demand video</p>
           <p className='flex gap-1 text-sm items-center text-caribbeangreen-200'>< MdAccessAlarm /> Full Lifetime access</p>

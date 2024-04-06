@@ -22,7 +22,7 @@ const Home = () => {
       <header className="bg-richblack-900">
         <div className="max-w-maxContent mx-auto w-11/12">
           {/* Hero section */}
-          <div className="relative mx-auto pt-16 flex flex-col items-center text-richblack-5 justify-between text-center">
+          <div id="Home" className="relative mx-auto pt-16 flex flex-col items-center text-richblack-5 justify-between text-center">
             {!(token === null) ? (
               <div className="text-3xl xl:text-4xl border-b pb-6">
                 Welcome Back <HighlightText text={user.firstName} />

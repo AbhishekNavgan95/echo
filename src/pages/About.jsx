@@ -11,9 +11,9 @@ import ContactFormSection from "../components/cors/AboutPage/ContactFormSection"
 // h2
 const About = () => {
   return (
-    <div className="min-h-screen bg-richblack-900 text-richblack-5">
+    <div className="min-h-screen bg-richblack-900 text-richblack-5 ">
       {/* section 1 */}
-      <div className="bg-richblack-800 relative ">
+      <div className="bg-richblack-800 relative px-3">
         <div className=" max-w-maxContent mx-auto">
           <section className="md:py-10 lg:pb-20">
             <div className="flex flex-col items-center">
@@ -41,14 +41,14 @@ const About = () => {
       </div>
 
       {/* section 2 */}
-      <div className="bg-richblack-900 md:pt-24 ">
+      <div className="bg-richblack-900 md:pt-24 px-3">
         <div className="max-w-maxContent mx-auto w-11/12">
           <Quote />
         </div>
       </div>
 
       {/* section 3 ✅ */}
-      <section className="bg-richblack-900 ">
+      <section className="bg-richblack-900 px-3">
         <div className=" max-w-maxContent mx-auto  py-0 xl:py-24">
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className=" w-full sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
@@ -122,7 +122,7 @@ const About = () => {
       </section>
 
       {/* section 4 ✅ */}
-      <section className="bg-richblack-800">
+      <section className="bg-richblack-800 px-3">
         <div className=" max-w-maxContent mx-auto py-10 xl:py-28">
           <div className="flex justify-center items-center flex-col md:flex-row w-full">
             <div className="flex justify-around w-full pb-10 md:py-0">
@@ -156,21 +156,21 @@ const About = () => {
       </section>
 
       {/* section 5 🔥 */}
-      <section className="bg-richblack-900">
+      <section className="bg-richblack-900 px-3">
         <div className=" max-w-maxContent mx-auto py-10 xl:py-28">
           <LearningGrid />
         </div>
       </section>
 
       {/* section 6  */}
-      <section className="bg-richblack-900">
+      <section className="bg-richblack-900 px-3">
         <div className=" max-w-maxContent mx-auto pb-12">
           <ContactFormSection />
         </div>
       </section>
 
             {/* section 3 */}
-            <section className="bg-richblack-900">
+      <section className="bg-richblack-900 px-3">
         <div className="max-w-maxContent mx-auto px-def">
           <div>
             <h2 className="text-center text-richblack-5 py-10 text-3xl xl:text-4xl font-bold">
