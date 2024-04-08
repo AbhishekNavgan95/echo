@@ -31,6 +31,7 @@ import MyCourses from "./components/cors/Dashboard/MyCourses";
 import EditCourse from "./components/cors/Dashboard/editCourse/EditCourse";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
   const user = useSelector((state) => state.profile.user);
@@ -39,7 +40,7 @@ function App() {
 
   return (
     <div className="w-screen min-h-screen bg-richblack-900">
-
+      <ScrollToTop />
       <Navbar />
 
       <Routes>
