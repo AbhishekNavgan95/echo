@@ -94,12 +94,12 @@ const Navbar = () => {
           {/* Login / signup / dashboard */}
           <div className="md:flex items-center gap-3 text-richblack-25 text-xl hidden">
             {token === null && (
-              <CtaButton active={true} linkTo={"/login"}>
+              <CtaButton active="true" linkTo={"/login"}>
                 Log in
               </CtaButton>
             )}
             {token === null && (
-              <CtaButton active={false} linkTo={"/signup"}>
+              <CtaButton active="false" linkTo={"/signup"}>
                 Sign up
               </CtaButton>
             )}
@@ -173,7 +173,7 @@ const Navbar = () => {
             {
               token &&
               <NavLink
-                active
+                active='true'
                 to={"/dashboard/my-profile"}
                 onClick={() => {
                   setNavOpen(!navOpen);
@@ -203,7 +203,7 @@ const Navbar = () => {
                 <button onClick={() => {
                   setNavOpen(!navOpen)
                 }}>
-                  <CtaButton active={true} linkTo={"/login"}>
+                  <CtaButton active="true" linkTo={"/login"}>
                     Log in
                   </CtaButton>
                 </button>

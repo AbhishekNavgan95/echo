@@ -23,15 +23,15 @@ exports.createCourse = async (req, res) => {
     // fetch thumnail
     const thumbnail = req.files?.thumbnail;
 
-    console.log("printing all data");
-    console.log("courese name : ", courseName);
-    console.log("course des : ", courseDescription);
-    console.log("what u will learn : ", whatYouWillLearn);
-    console.log("price : ", price);
-    console.log("category : ", category);
-    console.log("thumbnail : ", thumbnail);
-    console.log("tag : ", tag);
-    console.log("instructions : ", instructions);
+    // console.log("printing all data");
+    // console.log("courese name : ", courseName);
+    // console.log("course des : ", courseDescription);
+    // console.log("what u will learn : ", whatYouWillLearn);
+    // console.log("price : ", price);
+    // console.log("category : ", category);
+    // console.log("thumbnail : ", thumbnail);
+    // console.log("tag : ", tag);
+    // console.log("instructions : ", instructions);
 
     // validation
     if (
@@ -53,7 +53,7 @@ exports.createCourse = async (req, res) => {
     // get instructor details for adding in course collection
     const userId = req.user.id;
     const instructorDetails = await User.findById(userId);
-    console.log("instructor Details ", instructorDetails);
+    // console.log("instructor Details ", instructorDetails);
 
     // if instructor does not exist
     if (!instructorDetails) {
@@ -65,7 +65,7 @@ exports.createCourse = async (req, res) => {
 
     // check given tag is valid or not
     const CategoryDetails = await Category.findById(category);
-    console.log("category : ", CategoryDetails);
+    // console.log("category : ", CategoryDetails);
 
     if (!CategoryDetails) {
       return res.status(404).json({
@@ -377,7 +377,7 @@ exports.getCourseDetails = async (req, res) => {
       })
       .exec();
 
-    console.log("course details : ", courseDetails);
+    // console.log("course details : ", courseDetails);
 
     // validation
     if (!courseDetails) {
@@ -403,7 +403,7 @@ exports.getCourseDetails = async (req, res) => {
 };
 
 // get list of course for a given instructor
-exports.getInstructorCourses = async (req, res) => {
+exports.getInstructorCourses = async (req, res) => {h2
   try {
     // get the instructor id
     const instructorId = req?.user?.id;
@@ -528,7 +528,7 @@ exports.getFullCourseDetails = async (req, res) => {
     const { courseId } = req.body;
     const userId = req.user.id;
 
-    console.log("courseId", courseId);
+    // console.log("courseId", courseId);
 
     if(!courseId || !userId) {
       return res.status(400).json({
@@ -562,7 +562,7 @@ exports.getFullCourseDetails = async (req, res) => {
       userID: userId,
     });
 
-    console.log("courseProgressCount : ", courseProgressCount);
+    // console.log("courseProgressCount : ", courseProgressCount);
 
     if (!courseDetails) {
       return res.status(400).json({

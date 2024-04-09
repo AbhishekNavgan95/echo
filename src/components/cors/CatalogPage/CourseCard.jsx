@@ -12,13 +12,11 @@ const CourseCard = ({ course, height, }) => {
     setAverageReviewCount(count);
   }, [course])
 
-
   return (
     <Link to={`../courses/${course?._id}`} >
       <div className='flex flex-col gap-3 overflow-hidden group py-2'>
         <div className='overflow-hidden rounded-lg relative'>
           <img className={`aspect-video w-full object-cover group-hover:scale-105 transition-all duration-300 ${height}`} src={course?.thumbnail} alt="" />
-          {/* <div className='absolute inset-0 bg-opec group-hover:bg-transparent transition-all duration-300 pointer-events-none'></div> */}
         </div>
         <div className='flex flex-col items-center lg:items-start gap-1'>
           <h4 className='text-xl font-semibold'>{course?.courseTitle}</h4>

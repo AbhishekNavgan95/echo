@@ -4,8 +4,8 @@ const router = express.Router();
 
 const {
   capturePayment,
-  verifySignature,
-//   sendPaymentSuccessEmail,
+  varifyPayment,
+  sendPaymentSuccessEmail,
 } = require("../controllers/Payment");
 const {
   auth,
@@ -15,12 +15,12 @@ const {
 } = require("../middlewares/auth");
 
 router.post("/capturePayment", auth, isStudent, capturePayment);
-router.post("/verifyPayment", auth, isStudent, verifySignature);
+router.post("/verifyPayment", auth, isStudent, varifyPayment);
 router.post(
   "/sendPaymentSuccessEmail",
   auth,
   isStudent,
-//   sendPaymentSuccessEmail
+  sendPaymentSuccessEmail
 );
 
 module.exports = router;

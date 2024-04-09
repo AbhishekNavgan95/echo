@@ -65,7 +65,7 @@ export const updateProfile = async (token, formData) => {
 
 // delete user account
 export const deleteAccount = async (token, dispatch, navigate) => {
-  const toastId = toast.loading();
+  const toastId = toast.loading("Processing...");
 
   try {
     const response = await apiConnector(
@@ -125,7 +125,8 @@ export const updatePassword = async (token, formData) => {
 };
 
 // get user enrolled courses
-export async function getUserCourses(token,dispatch){
+export async function getUserCourses(token, dispatch){
+  const toastId = toast.loading("Loading...");
   let result = []
   try {
     const response = await apiConnector(
@@ -136,16 +137,17 @@ export async function getUserCourses(token,dispatch){
         Authorization: `Bearer ${token}`,
       }
     )
-
+    
     if (!response.data.success) {
       throw new Error(response.data.message)
     }
     result = response.data.data;
-    toast.success("fetched all enrolled courses // remove from profileAPI.getUserCourses")
+    // toast.success("fetched all enrolled courses // remove from profileAPI.getUserCourses")
   } catch (error) {
     console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error)
     toast.error("Could Not Get Enrolled Courses")
   }
   // dispatch(setProgress(100));
+  toast.dismiss(toastId);
   return result
 }

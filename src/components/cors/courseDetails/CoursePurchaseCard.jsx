@@ -17,7 +17,7 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
   const dispatch = useDispatch();
 
   return (
-    <div className='bg-richblack-800 rounded-lg border border-richblack-600 text-richblack-5 overflow-hidden flex flex-col group p-3'>
+    <div className='bg-richblack-800 rounded-lg border border-richblack-600 text-richblack-5 overflow-hidden flex flex-col group p-3 max-w-[400px]'>
       <div className='overflow-hidden rounded-lg lg:aspect-video h-[170px] md:h-[190px] lg:h-[220px] flex items-center' >
         <img loading="lazy" className='w-full group-hover:scale-105 transition-scale duration-300 ' src={courseData?.thumbnail} alt="" />
       </div>

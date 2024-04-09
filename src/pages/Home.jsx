@@ -53,7 +53,7 @@ const Home = () => {
 
           {/* Hero section CTA buttons */}
           <div className="flex gap-7 mt-10 justify-center text-richblack-5">
-            <CtaButton active={true} linkTo={"/signup"}>
+            <CtaButton active="true" linkTo={"/signup"}>
               Learn more
             </CtaButton>
             <CtaButton active={false} linkTo={"/login"}>
@@ -159,7 +159,7 @@ const Home = () => {
         <div className="max-w-maxContent mx-auto my-0 lg:mt-48 w-11/12">
           <div className="lg:py-5 flex flex-col justify-between items-center">
             <div className="flex items-center justify-center gap-5">
-              <CtaButton active={true}>
+              <CtaButton active="true">
                 Explore full catalog
                 <MdArrowRight />
               </CtaButton>
@@ -179,7 +179,7 @@ const Home = () => {
                 The modern Echo is the dictates its our terms, Today, to be a
                 compititive specialist requires more than professional skills.
               </p>
-              <CtaButton active={true}>Learn more</CtaButton>
+              <CtaButton active="true">Learn more</CtaButton>
             </div>
           </div>
 

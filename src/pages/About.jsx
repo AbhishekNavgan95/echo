@@ -8,7 +8,7 @@ import CtaButton from "../components/common/CtaButton";
 import LearningGrid from "../components/cors/AboutPage/LearningGrid";
 import Quote from "../components/cors/AboutPage/Quote";
 import ContactFormSection from "../components/cors/AboutPage/ContactFormSection";
-// h2
+
 const About = () => {
   return (
     <div className="min-h-screen bg-richblack-900 text-richblack-5 ">
@@ -53,9 +53,9 @@ const About = () => {
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className=" w-full sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl font-semibold  text-center md:text-start">
-                <h2 className="bg-gradient-to-br from-[#f551df] to-[#ff6a00] text-transparent bg-clip-text font-bold">
+                <span className="bg-gradient-to-br from-[#f551df] to-[#ff6a00] text-transparent bg-clip-text font-bold">
                   Out Founding Story
-                </h2>
+                </span>
               </h2>
               <p className="text-xl text-richblack-300  text-center md:text-start">
                 Our e-learning platform was born out of a shared vision and
@@ -89,9 +89,9 @@ const About = () => {
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className="sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl font-semibold  text-center md:text-start">
-                <h2 className="bg-gradient-to-br from-[#ff9d2e] to-[#ffe988] text-transparent bg-clip-text font-bold">
+                <span className="bg-gradient-to-br from-[#ff9d2e] to-[#ffe988] text-transparent bg-clip-text font-bold">
                   Our Vision
-                </h2>
+                </span>
               </h2>
               <p className="text-xl text-richblack-300  text-center md:text-start">
                 With this vision in mind, we set out on a journey to create an
@@ -104,9 +104,9 @@ const About = () => {
             </div>
             <div className="sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl  font-semibold text-center md:text-start">
-                <h2 className="bg-gradient-to-br from-[#4221ff] to-[#90edfd] text-transparent bg-clip-text font-bold">
+                <span className="bg-gradient-to-br from-[#4221ff] to-[#90edfd] text-transparent bg-clip-text font-bold">
                   Our Mission
-                </h2>
+                </span>
               </h2>
               <p className="text-xl text-richblack-300 text-center md:text-start">
                 Our mission goes beyond just delivering courses online. We

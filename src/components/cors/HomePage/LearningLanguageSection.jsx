@@ -18,7 +18,7 @@ const LearningLanguageSection = () => {
             <img src={Plan_your_lessons} className='-mt-36 md:mt-0 md:-ml-32 relative hover:lg:z-[4] hover:lg:scale-105 transition-all duration-300 w-[300px] md:w-full' alt="" />
         </div>
         <div className='flex justify-center'>
-            <CtaButton active={true} linkTo={"/signup"}>
+            <CtaButton active="true" linkTo={"/signup"}>
                 <div>Learn more</div>
             </CtaButton>
         </div>

@@ -27,7 +27,7 @@ const MyProfile = () => {
             </div>
           </div>
           <div>
-            <CtaButton linkTo={"../settings"} active={true}>
+            <CtaButton linkTo={"../settings"} active="true">
               <span className="flex gap-3 items-center">
                 <FaEdit />
                 Edit

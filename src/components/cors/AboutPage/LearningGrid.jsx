@@ -67,7 +67,7 @@ const LearningGrid = () => {
                   {grid.heading} <HighlightText text={grid.highlightText} />
                 </h2>
                 <p className="text-xl text-richblack-300">{grid.description}</p>
-                <CtaButton active={true} linkTo={grid.BtnLink}>
+                <CtaButton active="true" linkTo={grid.BtnLink}>
                   {grid.BtnText}
                 </CtaButton>
               </div>

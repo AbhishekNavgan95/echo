@@ -174,9 +174,11 @@ const Settings = () => {
                   name="gender"
                   className="py-2 px-4 md:text-lg  w-full rounded-lg focus:outline-none shadow-sm shadow-richblack-300  text-richblack-100 bg-richblack-700"
                   id="gender"
+
                   value={formData.gender}
                   onChange={updateDetails}
                 >
+                  <option disabled value="" >--Select Gender--</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">other</option>
@@ -212,7 +214,7 @@ const Settings = () => {
             </div>
             <ActionButton
               type="submit"
-              active={true}
+              active="true"
             >
               <span className="flex gap-3 items-center">
                 <FaEdit />
@@ -257,7 +259,7 @@ const Settings = () => {
                     value={password.newPassword}
                     onChange={handlePasswordChange}
                     className="py-2 px-4 w-full rounded-l=lg m focus:outline-none shadow-richblack-300 md:text-lg text-richblack-100 bg-richblack-700"
-                    placeholder="Old Password"
+                    placeholder="New Password"
                     id="newPassword"
                   />
                   <span className="w-[50px] flex items-center justify-center" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>{
@@ -268,7 +270,7 @@ const Settings = () => {
             </div>
             <ActionButton
               type="submit"
-              active={true}
+              active="true"
             >
               <span className="flex gap-3 items-center">
                 <FaEdit />

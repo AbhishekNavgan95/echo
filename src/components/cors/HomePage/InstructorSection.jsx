@@ -21,7 +21,7 @@ const InstructorSection = () => {
           Instructors from around the globe teach millions of students on Echo.
           We provide the tools and skills to teach what you love.
         </p>
-        <CtaButton active={true} linkTo={"/signup"} >Start teaching today <MdArrowRight /></CtaButton>
+        <CtaButton active="true" linkTo={"/signup"} >Start teaching today <MdArrowRight /></CtaButton>
       </div>
     </div>
   );

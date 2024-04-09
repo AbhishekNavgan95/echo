@@ -19,7 +19,7 @@ const Cart = () => {
           totalItems > 0
             ? <div className="flex justify-between py-4 md:text-xl text-richblack-5">
                 <p> {totalItems} items in Wishlist</p> 
-                <ActionButton text="Clear all" onClick={() => dispatch(resetCart())} active={true} >
+                <ActionButton text="Clear all" onClick={() => dispatch(resetCart())} active="true" >
                   <span className="flex items-center gap-3">
                     <MdDelete />
                     Clear all

@@ -117,7 +117,7 @@ exports.categoryPageDetails = async (req, res) => {
       populate: [{ path: "instructor", select: "firstName lastName email image" }, { path: "ratingAndReviews" }],
     });
 
-    console.log("category except selected :  ", categoriesExceptSelected);
+    // console.log("category except selected :  ", categoriesExceptSelected);
 
     let differentCourses = [];
 
@@ -135,7 +135,7 @@ exports.categoryPageDetails = async (req, res) => {
     })
     .exec();
 
-    console.log("different category courses : ", differentCategory);
+    // console.log("different category courses : ", differentCategory);
 
     // Get top-selling courses across all categories
     const allCategories = await Category.find()
