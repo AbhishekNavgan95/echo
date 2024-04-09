@@ -4,11 +4,12 @@ import ReactStars from "react-stars";
 import { MdDelete } from "react-icons/md";
 import { removeFromCart } from "../../../../slices/CartSlice";
 import ActionButton from "../../../common/ActionButton";
+import RatingStars from "../../../common/RatingStars";
 
 const CartCourses = () => {
 
-  const { cartItems, total, totalItems } = useSelector(state => state.cart);
-  console.log("cartItems : ", cartItems);
+  const { cartItems } = useSelector(state => state.cart);
+  // console.log("cartItems : ", cartItems);
   const dispatch = useDispatch();
 
   return (
@@ -25,14 +26,18 @@ const CartCourses = () => {
               <p className="py-1 border text-yellow-100 border-yellow-100 text-sm font-semibold w-max px-3 rounded-lg ">{course?.category?.name}</p>
               <div className="flex items-center gap-3">
                 <div className="text-xl">4.5</div>
-                <ReactStars
+                {/* <ReactStars
                   count={5}
                   size={20}
                   edit={false}
                   color1="#fff"
                   color2="#ffd700"
                   value={course?.rating}
-                />
+                /> */}
+                {
+                  console.log("course : ",course)
+                }
+                <RatingStars reviewCount={course?.ratingAndReviews?.length} />
               </div>
               <p className="text-richblack-300">Total Ratings : {course?.ratingAndReviews?.length}</p>
             </div>

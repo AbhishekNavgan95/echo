@@ -99,7 +99,7 @@ const Navbar = () => {
               </CtaButton>
             )}
             {token === null && (
-              <CtaButton active="false" linkTo={"/signup"}>
+              <CtaButton active={false} linkTo={"/signup"}>
                 Sign up
               </CtaButton>
             )}

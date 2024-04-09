@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { fetchCourseDetails } from "../services/operations/courseDetailsAPI";
 import avgRating from '../utils/avgRating';
 import { useDispatch, useSelector } from 'react-redux';
-import Error from "./Error"
 import Modal from '../components/common/Modal';
 import RatingStars from '../components/common/RatingStars'
 import { formatDate } from "../services/formatDate"
@@ -18,7 +17,7 @@ import { ACCOUNT_TYPE } from '../utils/constants';
 import { addToCart } from "../slices/CartSlice"
 import Accordian from '../components/cors/courseDetails/Accordian';
 import { buyCourse } from '../services/operations/StudentFeaturesAPI'
-import {SyncLoader} from 'react-spinners'
+import { SyncLoader } from 'react-spinners'
 
 const CourseDetails = () => {
 
@@ -28,7 +27,7 @@ const CourseDetails = () => {
     const { token } = useSelector(state => state.auth);
     const { user } = useSelector(state => state.profile)
 
-    const courseId = useParams()?.courseId;
+    const { courseId } = useParams();
     // console.log(courseId);
     const [courseData, setCourseData] = useState(null);
     const [avgReviewCount, setAvgReviewCount] = useState(0)
@@ -119,8 +118,8 @@ const CourseDetails = () => {
             {
                 !courseData
                     ? <div className='text-white flex items-center justify-center min-h-[calc(100vh-6rem)]'>
-                    <SyncLoader color="#E7C009" />
-                </div>
+                        <SyncLoader color="#E7C009" />
+                    </div>
                     : <div>
                         <div className='w-full bg-richblack-800 py-5 xl:py-10'>
                             <section className="py-5 md:py-14 px-3 relative  max-w-maxContent mx-auto">
