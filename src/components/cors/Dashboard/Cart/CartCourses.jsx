@@ -26,14 +26,6 @@ const CartCourses = () => {
               <p className="py-1 border text-yellow-100 border-yellow-100 text-sm font-semibold w-max px-3 rounded-lg ">{course?.category?.name}</p>
               <div className="flex items-center gap-3">
                 <div className="text-xl">4.5</div>
-                {/* <ReactStars
-                  count={5}
-                  size={20}
-                  edit={false}
-                  color1="#fff"
-                  color2="#ffd700"
-                  value={course?.rating}
-                /> */}
                 {
                   console.log("course : ",course)
                 }

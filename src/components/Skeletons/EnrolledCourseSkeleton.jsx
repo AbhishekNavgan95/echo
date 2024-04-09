@@ -6,19 +6,19 @@ const EnrolledCourseSkeleton = ({ count }) => {
 
     // Map over the array to create instances of the skeleton component
     const skeletonInstances = skeletonArray.map((_, index) => (
-        <div key={index} className="flex gap-3 flex-col w-full divide-y divide-richblack-600">
-            <div className="flex justify-between items-center flex-col md:flex-row py-5 gap-x-10 gap-y-3">
-                <div className="flex gap-5 items-center w-full">
-                    <div className="aspect-square bg-richblack-100 w-[150px] rounded-lg animate-pulse duration-100" alt="" />
+        <div key={index} className="flex gap-3 flex-col w-full">
+            <div className="flex justify-between items-center flex-col gap-x-10 gap-y-3 border border-richblack-600 rounded-lg p-3">
+                <div className="flex flex-col gap-5 items-center w-full">
+                    <div className="w-full aspect-video bg-richblack-100 animate-pulse duration-100 rounded-sm" />
                     <div className="flex flex-col justify-center gap-1 w-full">
-                        <h3 className="bg-richblack-100 py-3 max-w-[200px] animate-pulse duration-100"></h3>
+                        <h3 className="bg-richblack-100 py-2 max-w-[200px] animate-pulse duration-100"></h3>
                         <p className="bg-richblack-200 py-2 w-full animate-pulse duration-100"></p>
                     </div>
                 </div>
 
-                <div className="flex md:items-end self-center w-full flex-col gap-3">
+                <div className="flex md:items-start w-full flex-col gap-3">
                     <p className=" bg-richblack-100 py-2 w-[100px] animate-pulse duration-100"></p>
-                    <span className="bg-richblack-100 py-2 w-full animate-pulse duration-100"></span>
+                    <span className="bg-richblack-100 py-1 w-full animate-pulse duration-100"></span>
                 </div>
             </div>
         </div>

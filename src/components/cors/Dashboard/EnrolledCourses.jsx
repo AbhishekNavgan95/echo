@@ -54,7 +54,7 @@ const EnrolledCourses = () => {
   // ];
 
   // This is a mock function that simulates the behavior of getUserCourses
-  
+
   // const getUserCourses = async (token) => {
   //   // Simulate an asynchronous delay to mimic network request
   //   await new Promise((resolve) => setTimeout(resolve, 2500));
@@ -66,7 +66,6 @@ const EnrolledCourses = () => {
   const getEnrolledCourses = async () => {
     try {
       const response = await getUserCourses(token);
-
       setEnrolledCourses(response);
       // console.log(response);
     } catch (e) {
@@ -80,28 +79,29 @@ const EnrolledCourses = () => {
 
   return (
     <div>
-      <section className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10 md:p-1 xl:py-20">
+      <section className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10  xl:py-20">
         <h2 className="text-3xl xl:text-4xl">My Courses</h2>
         <div className="flex w-full flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-800 p-5 lg:p-10 rounded-lg">
           {!enrolledCourses ? (
-            <div className="flex flex-col gap-10 w-full">
-              <EnrolledCourseSkeleton count={4} />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 w-full 50 gap-5 ">
+              <EnrolledCourseSkeleton count={6} />
             </div>
           ) : enrolledCourses?.length <= 0
-            ? <p className="text-xl text-center w-full font-semibold text-richblack-25">Your have not enrolled in any course yet</p>
+            ? <p className="text-xl py-10 oflex items-center text-center w-full text-richblack-25">Your have not enrolled in any course yet</p>
             : (
-              <div className="flex gap-3 flex-col w-full divide-y divide-richblack-600 ">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 w-full justify-between 50 gap-5 ">
                 {enrolledCourses?.map((course, index) => (
-                  <div key={index} className="flex justify-between flex-col md:flex-row items-start py-5 gap-3">
-                    <div className="flex gap-5 items-center w-full ">
-                      <img src={course.thumbnail} className="aspect-square border border-richblack-600 w-[90px] md:w-[100px] rounded-lg" alt="" />
+                  <div key={index} className="flex justify-between flex-col items-start gap-1 p-3 border group border-richblack-600 bg-richblack-900 rounded-lg shadow-xs shadow-richblack-300">
+                    <div className="flex flex-col gap-3 items-start w-full">
+                      <div className="overflow-hidden">
+                        <img src={course.thumbnail} className="w-full aspect-video object-cover rounded-sm group-hover:scale-105 transition-scale duration-300" alt="" />
+                      </div>
                       <div className="flex flex-col justify-center gap-1">
                         <h3 className="text-xl line-clamp-2">{course.courseTitle}</h3>
                         <p className="text-richblack-300 line-clamp-1">{course.courseDescription}</p>
                       </div>
                     </div>
-                    {/* <p className="w-4/12 md:text-xl text-start md:self-center">{course?.totalDuration}</p> */}
-                    <div className="flex md:items-end self-center w-full flex-col gap-3 ">
+                    <div className="flex w-full flex-col gap-3 ">
                       <p className="text-nowrap ">progress : {course.progressPercentage || 0}%</p>
                       <span className="md:block self-stretch">
                         <ProgressBar
