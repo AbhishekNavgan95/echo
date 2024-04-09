@@ -1,7 +1,7 @@
 import { apiConnector } from "../apiconnector";
 import { studentEndpoints } from "../apis";
 import toast from "react-hot-toast";
-import Logo from "../../assets/Logo/Logo.jpg";
+import Logo from "../../assets/Logo/logo.jpg";
 import { resetCart } from "../../slices/CartSlice";
 
 const {

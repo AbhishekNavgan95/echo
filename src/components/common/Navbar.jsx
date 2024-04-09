@@ -30,7 +30,7 @@ const Navbar = () => {
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
       // console.log("result", result?.data?.data);
-      setSubLinks(result?.data?.data);
+      setSubLinks(result?.data?.data);``
     } catch (e) {
       console.log("could not fetch categories : ", e);
     }
@@ -65,7 +65,7 @@ const Navbar = () => {
                   >
                     {
                       subLinks?.length <= 0
-                        ? <div>No categories found</div>
+                        ? <div className="py-2">No categories found</div>
                         : subLinks.map((category, index) => (
                           <NavLink
                             to={`/catalog/${category.name}`}
@@ -142,7 +142,7 @@ const Navbar = () => {
                 >
                   {
                     subLinks?.length <= 0 ?
-                      <div>No categories found</div>
+                      <div className="py-1">No categories found</div>
                       :
                       subLinks?.map((category, index) => (
                         <NavLink
