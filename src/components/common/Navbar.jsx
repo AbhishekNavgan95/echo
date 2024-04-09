@@ -61,7 +61,7 @@ const Navbar = () => {
                   <p>{link.title}</p>
                   <MdOutlineKeyboardArrowDown />
                   <div 
-                    className="bg-richblack-5 text-richblack-900 absolute min-w-[250px] rounded-xl top-[120%] left-[100%] z-[5] translate-x-[-70%] translate-y-[0] scale-y-0 origin-top group-hover:scale-y-100 group-focus:scale-y-100 transition-all duration-100 group-hover:opacity-100 flex flex-col items-center"
+                    className="bg-richblack-5 text-richblack-900 absolute min-w-[250px] rounded-lg p-1 top-[120%] left-[100%] z-[5] translate-x-[-70%] translate-y-[0] scale-y-0 origin-top group-hover:scale-y-100 group-focus:scale-y-100 transition-all duration-300 group-hover:opacity-100 flex flex-col items-center"
                   >
                     {
                       subLinks?.length <= 0
@@ -69,7 +69,7 @@ const Navbar = () => {
                         : subLinks.map((category, index) => (
                           <NavLink
                             to={`/catalog/${category.name}`}
-                            className="relative z-[5] rounded-xl transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center"
+                            className="relative z-[5] rounded-lg transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center"
                             key={index}
                           >
                             <p className="text-nowrap">{category.name}</p>

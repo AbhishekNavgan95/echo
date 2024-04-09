@@ -8,7 +8,7 @@ const ContactUsTab = ({tab}) => {
 
     return (
         <div>
-            <div className="py-4 flex gap-3 items-start">
+            <div className="py-5 flex gap-3 items-start">
                 <div className="text-xl mt-2">
                     <Icon />
                 </div>

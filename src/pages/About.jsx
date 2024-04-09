@@ -53,7 +53,7 @@ const About = () => {
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className=" w-full sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl font-semibold  text-center md:text-start">
-                <span className="bg-gradient-to-br from-[#f551df] to-[#ff6a00] text-transparent bg-clip-text font-bold">
+                <span className="bg-gradient-to-br from-[#f55151] to-[#ed91bc] text-transparent bg-clip-text font-bold">
                   Out Founding Story
                 </span>
               </h2>
@@ -89,7 +89,7 @@ const About = () => {
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className="sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl font-semibold  text-center md:text-start">
-                <span className="bg-gradient-to-br from-[#ff9d2e] to-[#ffe988] text-transparent bg-clip-text font-bold">
+                <span className="bg-gradient-to-br from-[#e9633e] to-[#ffe988] text-transparent bg-clip-text font-bold">
                   Our Vision
                 </span>
               </h2>
@@ -104,7 +104,7 @@ const About = () => {
             </div>
             <div className="sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl  font-semibold text-center md:text-start">
-                <span className="bg-gradient-to-br from-[#4221ff] to-[#90edfd] text-transparent bg-clip-text font-bold">
+                <span className="bg-gradient-to-br from-[#1d1a81] to-[#e3e9fd] text-transparent bg-clip-text font-bold">
                   Our Mission
                 </span>
               </h2>

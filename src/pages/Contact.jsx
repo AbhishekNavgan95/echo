@@ -2,6 +2,7 @@ import React from "react";
 import ContactUsForm from "../components/common/ContactUsForm";
 import { contactTabs } from "../data/contactUs-links"
 import ContactUsTab from "../components/cors/ContactUsPage/ContactUsTab";
+import contactUs from "../assets/Images/contactUs.png";
 
 const Contact = () => {
 
@@ -9,14 +10,17 @@ const Contact = () => {
     <>
       <div className="py-5">
         <section className="bg-richblack-900 py-5 md:py-14 text-richblack-5 max-w-maxContent mx-auto">
-          <div className="flex relative items-start flex-col-reverse xl:flex-row gap-10">
-            <div className="sticky bottom-0 border border-richblack-600 max-w-maxContent mx-auto w-11/12 md:w-10/12 lg:w-10/12 xl:w-4/12 p-5 lg:p-10  bg-richblack-800">
-              {
-                contactTabs.map((tab, index) => {
-                  return <ContactUsTab key={index} tab={tab} />
+          <div className="flex relative items-start flex-col xl:flex-row gap-10">
+            <div className="flex flex-col-reverse items-center gap-10 w-full md:w-10/12 lg:w-10/12 xl:w-6/12 px-5">
+              <div className="sticky bottom-0 border divide-y divide-richblack-600 border-richblack-600 max-w-maxContent mx-auto w-full px-10 bg-richblack-800">
+                {
+                  contactTabs.map((tab, index) => {
+                    return <ContactUsTab key={index} tab={tab} />
+                  }
+                  )
                 }
-                )
-              }
+              </div>
+              <img className="w-full border-2 aspect-video object-cover object-bottom border-richblack-600" src={contactUs} alt="" />
             </div>
             <div className="max-w-maxContent mx-auto w-11/12 md:w-10/12 lg:w-10/12 xl:w-6/12 p-5 lg:p-10 border border-richblack-600">
               <div className="flex flex-col gap-3">

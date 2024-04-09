@@ -156,7 +156,7 @@ const Home = () => {
 
       {/* section 2 */}
       <section className="bg-white py-10">
-        <div className="max-w-maxContent mx-auto my-0 lg:mt-48 w-11/12">
+        <div className="max-w-maxContent mx-auto my-0 lg:mt-32 w-11/12">
           <div className="lg:py-5 flex flex-col justify-between items-center">
             <div className="flex items-center justify-center gap-5">
               <CtaButton active="true">
