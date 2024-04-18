@@ -1,6 +1,5 @@
 import { toast } from "react-hot-toast";
 // import { setProgress } from "../../services/loadingBarSlice";
-import { updateCompletedLectures } from "../../slices/viewCourseSlice";
 // import { setLoading } from "../../slices/profileSlice";
 import { apiConnector } from "../apiconnector";
 import { courseEndpoints } from "../../services/apis";
@@ -375,18 +374,18 @@ export const markLectureAsComplete = async (data, token) => {
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", LECTURE_COMPLETION_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log(
       "MARK_LECTURE_AS_COMPLETE_API API RESPONSE............",
       response
     );
 
-    if (!response.data.message) {
+    if (!response.data.success) {
       throw new Error(response.data.error);
     }
     toast.success("Lecture Completed");
-    result = true;
+    result = response.data.data;
   } catch (error) {
     console.log("MARK_LECTURE_AS_COMPLETE_API API ERROR............", error);
     toast.error(error.message);

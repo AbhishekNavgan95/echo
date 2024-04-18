@@ -2,21 +2,16 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { markLectureAsComplete } from '../../../services/operations/courseDetailsAPI';
-import { updateCompletedLectures } from '../../../slices/viewCourseSlice';
-import { Player } from 'video-react';
-import "../../../../node_modules/video-react/dist/video-react.css";
+import { setCompletedLectures } from '../../../slices/viewCourseSlice';
+import ReactPlayer from 'react-player'
 import ActionButton from '../../common/ActionButton';
 
 const VideoDetails = () => {
 
   const { courseId, sectionId, subSectionId } = useParams();
-  console.log("course id: ", courseId);
-  console.log("section id : ", sectionId);
-  console.log("subSectionId : ", subSectionId);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const playerRef = useRef();
   const { token } = useSelector(state => state.auth);
   const {
     courseSectionData,
@@ -24,35 +19,32 @@ const VideoDetails = () => {
     completedLectures
   } = useSelector(state => state.viewCourse);
   const [videoData, setVideoData] = useState([]);
-  const [videoEnded, setVideoEnded] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const setVideoSpecificDetails = async () => {
+    if (!courseSectionData)
+      return;
 
-    const setVideoSpecificDetails = async () => {
-      if (!courseSectionData)
-        return;
+    if (!courseId && !sectionId && !subSectionId) {
+      navigate("/dashboard/enrolled-courses");
+    } else {
 
-      if (!courseId && !sectionId && !subSectionId) {
-        navigate("/dashboard/enrolled-courses");
-      } else {
+      const filteredData = courseSectionData.filter((section) => section._id === sectionId);
+      const filteredSubsection = filteredData[0]?.subSection?.filter(
+        (subSection) => subSection._id === subSectionId
+      )
 
-        const filteredData = courseSectionData.filter((section) => section._id === sectionId);
-        const filteredVideoData = filteredData[0]?.subSection?.filter(
-          (data) => data._id === subSectionId
-        )
-
-        console.log("filteredData : ", filteredData)
-        console.log("filteredVideoData : ", filteredVideoData)
-
-        setVideoData(filteredVideoData[0]);
-        // setVideoData(false);
-
+      console.log("filter video data : ", filteredSubsection);
+      if (filteredSubsection) {
+        setVideoData(filteredSubsection[0]);
       }
-
+      setVideoEnded(false)
     }
-    setVideoSpecificDetails();
+  }
 
+  useEffect(() => {
+    setVideoSpecificDetails();
   }, [courseSectionData, courseEntireData, location.pathname])
 
   const isFirstVideo = () => {
@@ -123,13 +115,14 @@ const VideoDetails = () => {
 
     const noOfSubSections = courseSectionData[currentSectionIndex]?.subSection?.length
 
-    const currentSubSectionIndex = courseSectionData[currentSectionIndex]?.subSectionId?.findIndex(
+    const currentSubSectionIndex = courseSectionData[currentSectionIndex]?.subSection?.findIndex(
       data => data._id === subSectionId
     )
 
-    if (currentSubSectionIndex != 0) {
-
-      const prevSubSectionId = courseSectionData[currentSectionIndex]?.subSection[currentSectionIndex - 1]
+    if (currentSubSectionIndex !== 0) {
+      console.log("hi")
+      const prevSubSectionId = courseSectionData[currentSectionIndex]?.subSection[currentSubSectionIndex - 1]?._id
+      console.log("prevSubSectionId : ", prevSubSectionId);
       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${prevSubSectionId}`);
 
     } else {
@@ -147,10 +140,11 @@ const VideoDetails = () => {
     // to do dummy code
     setLoading(true);
 
-    // const res = await markLectureAsComplete({courseId, subSectionId}, token)
+    const res = await markLectureAsComplete({ courseId, subSectionId }, token)
     // update state
     if (res) {
-      dispatch(updateCompletedLectures(subSectionId))
+      console.log(res)
+      dispatch(setCompletedLectures(res?.completedVideos))
     }
 
     setLoading(false);
@@ -161,66 +155,57 @@ const VideoDetails = () => {
     <div className='w-full'>
       {
         !videoData
-          ? <div>No data found</div>
-          : <div className='w-full h-full border rounded-lg overflow-hidden border-richblack-600'>
-            <Player
-              ref={playerRef}
-              aspectRatio="16:9"
-              playsInline
-              onEnded={() => setVideoEnded(true)}
-              src={videoData?.videoUrl}
-            >
-
+          ? <div className='text-center text-xl'>No data found</div>
+          : <div className='w-full h-full flex flex-col gap-3'>
+            <div className='flex gap-3 justify-end'>
               {
-                videoEnded && <div>
-                  {
-                    !completedLectures.includes(subSectionId) &&
-                    <ActionButton
-                    disabled={loading}
-                      onClick={() => handleLectureCompletion()}
-                    >{
-                        !loading ? "Mark as completed" : "Loading"
-                      }</ActionButton>
-                  }
+                !completedLectures?.includes(subSectionId) &&
 
-                  <ActionButton
-                    disabled={loading}
-                    onClick={() => {
-                      if (playerRef?.current) {
-                        playerRef.current?.seek[0]
-                      }
-                      videoEnded(false);
-                    }}
-                  >
-                    {
-                      !loading ? "Rewatch" : "Loading"
-                    }
-                  </ActionButton>
-                  <div>
-                    {
-                      !isFirstVideo() && 
-                      <ActionButton
-                        active={false}
-                        disabled={loading}
-                        onClick={goToPrevVideo}
-                      >
-                        Prev
-                      </ActionButton>
-                    }
-                    {
-                      !isLastVideo &&
-                      <ActionButton
-                        active={true}
-                        disabled={loading}
-                        onClick={goToNextVideo}
-                      >
-                        Next
-                      </ActionButton>
-                    }
-                  </div>
-                </div>
+                <ActionButton
+                  disabled={loading}
+                  active
+                  onClick={() => handleLectureCompletion()}
+                >{
+                    !loading ? "Mark as completed" : "Loading"
+                  }</ActionButton>
               }
-            </Player>
+            </div>
+            <div className=' border rounded-lg overflow-hidden border-richblack-600'>
+              <ReactPlayer
+                controls
+                onEnded={() => setVideoEnded(true)}
+                width="100%"
+                height="100%"
+                url={videoData?.videoUrl}
+              />
+            </div>
+
+            {
+              videoEnded &&
+              <div className='flex justify-start gap-3'>
+                {
+                  !isFirstVideo() &&
+                  <ActionButton
+                    active={false}
+                    disabled={loading}
+                    onClick={goToPrevVideo}
+                  >
+                    Previous
+                  </ActionButton>
+                }
+                {
+                  !isLastVideo() &&
+                  <ActionButton
+                    active={true}
+                    disabled={loading}
+                    onClick={goToNextVideo}
+                  >
+                    Next
+                  </ActionButton>
+
+                }
+              </div>
+            }
           </div>
       }
       <div className='mt-4'>

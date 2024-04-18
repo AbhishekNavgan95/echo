@@ -8,6 +8,7 @@ const {
 const { default: mongoose } = require("mongoose");
 const crypto = require("crypto");
 const { paymentSuccess } = require("../mail/tamplates/paymentSuccessEmail");
+const CourseProgress = require("../models/CourseProgress")
 
 const enrollStudent = async (courses, userId, res) => {
   if (!courses || !userId) {
@@ -37,12 +38,19 @@ const enrollStudent = async (courses, userId, res) => {
         });
       }
 
+      const courseProgress = await CourseProgress.create({
+        courseId: courseId,
+        userId: userId,
+        completedVideos: []
+      })
+
       // add course in the user model
       const enrolledStudent = await User.findByIdAndUpdate(
         userId,
         {
           $push: {
             courses: courseId,
+            courseProgress: courseProgress._id
           },
         },
         { new: true }
@@ -99,8 +107,6 @@ exports.capturePayment = async (req, res) => {
       try {
         course = await Course.findById(course_Id);
 
-        console.log("ok till  here")
-
         if (!course) {
           return res.status(404).json({
             success: false,
@@ -110,8 +116,6 @@ exports.capturePayment = async (req, res) => {
 
         // check if user is already enrolled in the same course
         const uid = new mongoose.Types.ObjectId(userId);
-
-        console.log("uid", uid)
 
         if (course?.studentsEnrolled?.includes(uid)) {
           return res.status(400).json({
@@ -130,8 +134,6 @@ exports.capturePayment = async (req, res) => {
       }
     }
 
-    console.log('total price : ', totalAmount)
-
     // creating option for order
     const options = {
       amount: totalAmount * 100,
@@ -142,8 +144,6 @@ exports.capturePayment = async (req, res) => {
     // creating the order
     try {
       const paymentRes = await instance?.orders?.create(options);
-
-      console.log("order created")
 
       return res.status(200).json({
         success: true,

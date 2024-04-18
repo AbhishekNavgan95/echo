@@ -23,9 +23,6 @@ const viewCourseSlice = createSlice({
     setCompletedLectures: (state, action) => {
       state.completedLectures = action.payload
     },
-    updateCompletedLectures: (state, action) => {
-      state.completedLectures = [...state.completedLectures, action.payload]
-    },
   },
 })
 
@@ -34,7 +31,6 @@ export const {
   setEntireCourseData,
   setTotalNoOfLectures,
   setCompletedLectures,
-  updateCompletedLectures,
 } = viewCourseSlice.actions
 
 export default viewCourseSlice.reducer

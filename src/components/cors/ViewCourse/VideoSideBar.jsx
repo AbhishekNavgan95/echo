@@ -4,12 +4,14 @@ import { useSelector } from "react-redux"
 import ActionButton from "../../common/ActionButton"
 import { MdArrowBack } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { IoCheckmarkDone } from "react-icons/io5";
+
 
 const VideoSideBar = ({ reviewModal, setReviewModal }) => {
 
   const [activeStatus, setActiveStatus] = useState("");
   const [videoBarActive, setVideoBarActive] = useState("");
-  const {sectionId, subSectionId} = useParams();
+  const { sectionId, subSectionId } = useParams();
   const navigate = useNavigate()
   const location = useLocation();
   const {
@@ -20,7 +22,7 @@ const VideoSideBar = ({ reviewModal, setReviewModal }) => {
   } = useSelector(state => state?.viewCourse)
 
   // console.log("total lectures : ", totalNoOfLectures);
-  // console.log("completed lectures : ", completedLectures);
+  console.log("completed lectures : ", completedLectures);
 
   useEffect(() => {
     ; (() => {
@@ -58,20 +60,20 @@ const VideoSideBar = ({ reviewModal, setReviewModal }) => {
 
         <div className='flex flex-col gap-1 my-3'>
           <p className='text-2xl'>{courseEntireData?.courseTitle}</p>
-          <p className='text-richblack-300'>{completedLectures.length} of {totalNoOfLectures} completed</p>
+          <p className='text-richblack-300'>{completedLectures?.length} of {totalNoOfLectures} completed</p>
         </div>
       </div>
 
       <div className='py-3 flex flex-col gap-1'>
         {
-          courseSectionData.map((section, index) => (
+          courseSectionData?.map((section, index) => (
             <div
               className='bg-richblack-800 cursor-pointer'
               onClick={() => setActiveStatus(section._id)}
               key={index}
             >
               <div>
-                <div className={` flex gap-3 items-center justify-between text-lg p-3` }>
+                <div className={` flex gap-3 items-center justify-between text-lg p-3`}>
                   <p className='line-clamp-1'>{section?.sectionName}</p>
                   <p className={`transition-all duration-300 ${activeStatus === section._id ? "rotate-180" : "rotate-0"}`}><IoMdArrowDropdown /></p>
                 </div>
@@ -85,17 +87,21 @@ const VideoSideBar = ({ reviewModal, setReviewModal }) => {
                           section?.subSection?.map((subSection, index) => (
                             <div
                               key={index}
-                              className={`px-3 py-2 transition-all duration-300 border border-transparent text-lg hover:border hover:border-richblack-5 ${videoBarActive === subSection._id ? "text-richblack-900 bg-yellow-100 " : "bg-richblack-600 text-richblack-5"}`}
+                              className={`px-3 py-2 transition-all duration-300 flex gap-3 items-center justify-between border border-transparent text-lg hover:border hover:border-richblack-5 ${videoBarActive === subSection._id ? "text-richblack-900 bg-yellow-100 " : "bg-richblack-600 text-richblack-5"}`}
                               onClick={() => {
                                 navigate(`/view-course/${courseEntireData?._id}/section/${section._id}/sub-section/${subSection._id}`)
                                 setVideoBarActive(subSection?._id)
                               }}
                             >
-                              <span className={`line-clamp-1 ${completedLectures?.includes(subSection?._id) ? "bg-caribbeangreen-300" : ""}`}>
+                              <span className={`line-clamp-1 `}>
                                 {
                                   subSection?.title
                                 }
                               </span>
+                              {
+                                completedLectures?.includes(subSection?._id) &&
+                                <span className='bg-caribbeangreen-300 text-richblack-900 rounded-full p-1'><IoCheckmarkDone /></span>
+                              }
                             </div>
                           ))
                         }
