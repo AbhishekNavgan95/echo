@@ -10,13 +10,15 @@ exports.createRating = async (req, res) => {
     const userId = req.user.id;
 
     // fetch data
-    const { reating, review, courseId } = req.body;
+    const { rating, review, courseId } = req.body;
 
     // check if user is enrolled
-    const courseDetails = await Course.findOne({
-      _id: courseId,
-      studentsEnrolled: { $elemMatch: { $eq: userId } },
-    });
+    const courseDetails = await Course.findOne(
+      {
+        _id : courseId,
+        studentsEnrolled: { $elemMatch: { $eq: userId } },
+      }
+    );
 
     if (!courseDetails) {
       return res.status(404).json({
@@ -59,11 +61,6 @@ exports.createRating = async (req, res) => {
       }
     );
 
-    console.log(
-      "updated course after creating rating and review",
-      updatedCourseDetails
-    );
-
     // res
     return res.status(200).json({
       success: true,
@@ -74,7 +71,6 @@ exports.createRating = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "something went wrong while creating rating and review",
-      ratingReview,
     });
   }
 };
@@ -146,13 +142,12 @@ exports.getAllRating = async (req, res) => {
       success: true,
       message: "All reviews fetched successfully",
       allReviews,
-    })
-
+    });
   } catch (e) {
     return res.status(500).json({
       success: true,
       message: "something went wrong while fetching all reviews",
       allReviews,
-    })
+    });
   }
 };

@@ -589,7 +589,7 @@ exports.getFullCourseDetails = async (req, res) => {
         totalDurationInSeconds, // remove this and add above line
         completedVideos: courseProgressCount?.completedVideos
           ? courseProgressCount?.completedVideos
-          : ["none"],
+          : [],
       },
     });
   } catch (error) {

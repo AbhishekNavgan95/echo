@@ -38,9 +38,9 @@ const {
   getAllRating,
 } = require("../controllers/RatingAndReview")
 
-// const {
-//   // updateCourseProgress
-// } = require("../controllers/courseProgress");
+const {
+  updateCourseProgress
+} = require("../controllers/courseProgress");
 
 // Importing Middlewares
 const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth")
@@ -80,7 +80,7 @@ router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 // Delete a Course
 router.delete("/deleteCourse", auth, isInstructor, deleteCourse)
 
-// router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
+router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 
 router.post("/createCategory", auth, isAdmin, createCategory)
 router.get("/showAllCategories", showAllCategories)

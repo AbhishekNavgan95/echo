@@ -32,6 +32,9 @@ import EditCourse from "./components/cors/Dashboard/editCourse/EditCourse";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
 import ScrollToTop from "./components/common/ScrollToTop";
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./components/cors/ViewCourse/VideoDetails";
+import { ACCOUNT_TYPE } from "./utils/constants";
 
 function App() {
   const user = useSelector((state) => state.profile.user);
@@ -113,14 +116,29 @@ function App() {
           ) : null}
           <Route path="settings" element={<Settings />} />
         </Route>
-        <Route path="*" element={<Error />} />
+        <Route path="view-course" element={
+          <PrivateRoute >
+            <ViewCourse />
+          </PrivateRoute>
+        }>
+          <>
+            {
+              user?.accountType === ACCOUNT_TYPE.STUDENT 
+                && <Route 
+                  path=":courseId/section/:sectionId/sub-section/:subSectionId" 
+                  element={<VideoDetails />} 
+                />
+            }
+          </>
+        </Route>
+          <Route path="*" element={<Error />} />
       </Routes>
-      
+
       {
-        location.pathname.includes("dashboard")? 
-        null  : <Footer />
+        location.pathname.includes("dashboard") ?
+          null : <Footer />
       }
-      
+
     </div>
   );
 }

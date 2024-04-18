@@ -2,6 +2,7 @@ import React, { useDebugValue, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // import { getUserCourses } from "../services/operations/profileAPI";
 import { SyncLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom"
 import ProgressBar from "@ramonak/react-progress-bar";
 import EnrolledCourseSkeleton from "../../Skeletons/EnrolledCourseSkeleton";
 import { getUserCourses } from "../../../services/operations/profileAPI";
@@ -9,7 +10,7 @@ import { getUserCourses } from "../../../services/operations/profileAPI";
 const EnrolledCourses = () => {
   const token = useSelector((state) => state.auth.token);
   const [enrolledCourses, setEnrolledCourses] = useState();
-
+  const navigate = useNavigate();
   // const mockEnrolledCourses = [
   //   {
   //     id: 1,
@@ -91,7 +92,9 @@ const EnrolledCourses = () => {
             : (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 w-full justify-between 50 gap-5 ">
                 {enrolledCourses?.map((course, index) => (
-                  <div key={index} className="flex justify-between flex-col items-start gap-1 p-3 border group border-richblack-600 bg-richblack-900 rounded-lg shadow-xs shadow-richblack-300">
+                  <div key={index}
+                    onClick={() => navigate(`/view-course/${course?._id}/section/${course?.courseContent?.[0]?._id}/sub-section/${course?.courseContent?.[0]?.subSection?.[0]?._id}`)}
+                    className="flex justify-between flex-col items-start gap-1 p-3 border group border-richblack-600 bg-richblack-900 rounded-lg shadow-xs shadow-richblack-300">
                     <div className="flex flex-col gap-3 items-start w-full">
                       <div className="overflow-hidden">
                         <img src={course.thumbnail} className="w-full aspect-video object-cover rounded-sm group-hover:scale-105 transition-scale duration-300" alt="" />

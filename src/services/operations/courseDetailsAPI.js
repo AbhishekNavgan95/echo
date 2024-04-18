@@ -402,7 +402,7 @@ export const createRating = async (data, token) => {
   let success = false;
   try {
     const response = await apiConnector("POST", CREATE_RATING_API, data, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("CREATE RATING API RESPONSE............", response);
     if (!response?.data?.success) {
@@ -413,7 +413,7 @@ export const createRating = async (data, token) => {
   } catch (error) {
     success = false;
     console.log("CREATE RATING API ERROR............", error);
-    toast.error(error.response.data.message);
+    // toast.error(error?.response?.data?.message);
   }
   toast.dismiss(toastId);
   return success;
