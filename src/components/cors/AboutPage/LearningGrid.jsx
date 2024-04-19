@@ -45,13 +45,13 @@ const LearningGrid = () => {
   ];
 
   return (
-    <div className="grid mx-auto md:w-11/12 xl:w-full sn:grid-cols-1 xl:grid-cols-4 mb-10">
+    <div className="grid mx-auto md:w-11/12 xl:w-full sn:grid-cols-1 xl:grid-cols-4 my-10 lg:my-0">
       {LearningGridArray.map((grid, index) => {
         return (
           <div
             key={index}
             className={`
-                ${grid.order < 0 && "lg:col-span-2 bg-richblack-900"}
+                ${grid.order < 0 && "lg:col-span-1 xl:col-span-2 bg-richblack-900"}
                 ${
                   grid.order % 2 === 1 && grid.order > 0
                     ? "bg-richblack-700"
@@ -72,9 +72,9 @@ const LearningGrid = () => {
                 </CtaButton>
               </div>
             ) : (
-              <div className="p-5 md:p-10  flex flex-col gap-5">
+              <div className="p-5 md:p-10 flex flex-col gap-5 border h-full border-richblack-600">
                 <h2 className="text-2xl text-semibold">{grid.heading}</h2>
-                <p className="text-xl text-richblack-300">{grid.description}</p>
+                <p className="text-xl line-clamp-3 lg:line-clamp-4 text-richblack-300">{grid.description}</p>
               </div>
             )}
           </div>

@@ -50,7 +50,7 @@ const About = () => {
 
       {/* section 3 ✅ */}
       <section className="bg-richblack-900 px-3">
-        <div className=" max-w-maxContent mx-auto  py-0 xl:py-24">
+        <div className=" max-w-maxContent mx-auto  py-10 xl:py-24">
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className=" w-full sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl font-semibold  text-center md:text-start">
@@ -86,7 +86,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="max-w-maxContent mx-auto py-10 xl:py-28">
+        <div className="max-w-maxContent mx-auto pb-10 xl:pb-28">
           <div className="flex items-center flex-col lg:flex-row justify-between gap-10">
             <div className="sm:w-10/12 nd:w-1/2 xl:w-[45%] flex flex-col gap-10">
               <h2 className="text-3xl xl:text-4xl font-semibold  text-center md:text-start">
@@ -158,7 +158,7 @@ const About = () => {
 
       {/* section 5 🔥 */}
       <section className="bg-richblack-900 px-3">
-        <div className=" max-w-maxContent mx-auto py-10 xl:py-28">
+        <div className=" max-w-maxContent mx-auto py-5 xl:py-28">
           <LearningGrid />
         </div>
       </section>
@@ -173,7 +173,7 @@ const About = () => {
       {/* section 3 */}
       <section className="bg-richblack-900 px-3">
         <div className="max-w-maxContent mx-auto px-def">
-          <div className="py-10 flex flex-col gap-10">
+          <div className="pb-10 flex flex-col gap-10">
             <h2 className="text-center text-richblack-5 text-3xl xl:text-4xl  font-bold">
               Reviews from other learners
             </h2>
