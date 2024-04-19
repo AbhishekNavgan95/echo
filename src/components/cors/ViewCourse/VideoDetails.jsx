@@ -176,35 +176,32 @@ const VideoDetails = () => {
               />
             </div>
 
-            {
-              videoEnded &&
-              <div className='flex justify-start gap-3'>
-                {
-                  !isFirstVideo() &&
-                  <ActionButton
-                    active={false}
-                    disabled={loading}
-                    onClick={goToPrevVideo}
-                  >
-                    Previous
-                  </ActionButton>
-                }
-                {
-                  !isLastVideo() &&
-                  <ActionButton
-                    active={true}
-                    disabled={loading}
-                    onClick={goToNextVideo}
-                  >
-                    Next
-                  </ActionButton>
+            <div className='flex justify-start gap-3'>
+              {
+                !isFirstVideo() &&
+                <ActionButton
+                  active={false}
+                  disabled={loading}
+                  onClick={goToPrevVideo}
+                >
+                  Previous
+                </ActionButton>
+              }
+              {
+                !isLastVideo() &&
+                <ActionButton
+                  active={true}
+                  disabled={loading}
+                  onClick={goToNextVideo}
+                >
+                  Next
+                </ActionButton>
 
-                }
-              </div>
-            }
+              }
+            </div>
           </div>
       }
-      <div className='mt-4'>
+      <div className='mt-4 flex flex-col gap-3'>
         <h4 className='text-2xl font-semibold'>{videoData.title}</h4>
         <p className='text-richblack-300'>{videoData.description}</p>
       </div>

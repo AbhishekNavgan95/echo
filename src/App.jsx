@@ -134,7 +134,7 @@ function App() {
       </Routes>
 
       {
-        location.pathname.includes("dashboard") ?
+        location.pathname.includes("dashboard") ||  location.pathname.includes("view-course") ?
           null : <Footer />
       }
 

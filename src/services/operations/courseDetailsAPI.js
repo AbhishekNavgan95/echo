@@ -363,7 +363,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
     result = error?.response?.data;
   }
   toast.dismiss(toastId);
-  //   dispatch(setLoading(false));
+  //   dispatch(setLoading(false));  
   return result;
 };
 

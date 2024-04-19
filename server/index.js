@@ -24,7 +24,7 @@ app.use(cors({
     origin: process.env.CORS_ORIGIN || "https://echo-an.netlify.app/",
     credentials: true,
     maxAge: 14400,
-}));
+}));                            
 app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: "/temp",

@@ -44,10 +44,10 @@ const VideoSideBar = ({ reviewModal, setReviewModal }) => {
 
 
   return (
-    <div className='bg-richblack-900 py-5 px-3 h-max w-[500px] max-w-[500px]'>
+    <div className='bg-richblack-900 py-5 px-5 w-[320px] xl:w-[500px] max-w-[500px] h-full z-[3] shadow-richblack-300 transition-all duration-300 absolute translate-x-[-95%] hover:translate-x-0 active:translate-x-0 border-r border-richblack-600 xl:border-none xl:static xl:translate-x-0'>
       <div className='flex flex-col gap-3'>
         <div className='flex justify-between gap-3 items-center '>
-          <span className='text-xl border p-2 rounded-full hover:bg-richblack-5 hover:text-richblack-900 transition-all duration-300 cursor-pointer' onClick={() => navigate("/dashboard/enrolled-courses")}>
+          <span className='text-xl border-2 p-2 rounded-full hover:bg-richblack-5 hover:text-richblack-900 transition-all duration-300 cursor-pointer' onClick={() => navigate("/dashboard/enrolled-courses")}>
             <MdArrowBack />
           </span>
           <div>

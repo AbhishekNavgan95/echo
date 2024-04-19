@@ -18,8 +18,6 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log("course recieved in cart slice : ", action.payload);
-      console.log("cart infor : ", state.cartItems, state.total, state.totalItems);
       let index = -1;
       const course = action.payload
       index = state?.cartItems?.findIndex((item) => item._id === course._id)
