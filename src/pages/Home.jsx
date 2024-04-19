@@ -10,6 +10,7 @@ import { MdArrowRight } from "react-icons/md";
 import React from "react";
 import TimeLineSection from "../components/cors/HomePage/TimeLineSection";
 import { useSelector } from "react-redux";
+import ReviewSlider from "../components/common/ReviewSlider";
 
 const Home = () => {
   const { token } = useSelector((state) => state.auth);
@@ -62,17 +63,17 @@ const Home = () => {
           </div>
 
           {/* Hero section video  */}
-          <div className="shadow-blue-200 flex justify-center mt-20">
+          <div className="shadow-blue-200 flex justify-center mt-20 min-w-full">
             <div className="relative border border-yellow-100 flex justify-center">
               <div className="w-full h-full absolute top-[0px] left-[50%] translate-x-[-50%] blur-3xl z-[5] bg-richblack-500"></div>
               <video
                 muted
                 loop
                 autoPlay
-                className="relative z-[5] border-2 border-white"
+                className="relative z-[5] border-2 border-white min-w-full"
                 src={banner}
               ></video>
-              <div className="absolute h-full w-full right-[-1%] bottom-[-2%] z-[4] border-2 bg-white"></div>
+              <div className="absolute h-full min-w-full right-[-1%] bottom-[-2%] z-[4] border-2 bg-white"></div>
             </div>
           </div>
 
@@ -197,10 +198,13 @@ const Home = () => {
             <div className="flex justify-between items-center py-10 lg:py-16">
               <InstructorSection />
             </div>
-            <div>
-              <h2 className="text-center text-richblack-5 py-10 text-3xl xl:text-4xl  font-bold">
+            <div className="py-10 flex flex-col gap-10">
+              <h2 className="text-center text-richblack-5 text-3xl xl:text-4xl  font-bold">
                 Reviews from other learners
               </h2>
+              <div>
+                <ReviewSlider />
+              </div>
             </div>
           </div>
         </div>

@@ -8,6 +8,7 @@ import CtaButton from "../components/common/CtaButton";
 import LearningGrid from "../components/cors/AboutPage/LearningGrid";
 import Quote from "../components/cors/AboutPage/Quote";
 import ContactFormSection from "../components/cors/AboutPage/ContactFormSection";
+import ReviewSlider from "../components/common/ReviewSlider";
 
 const About = () => {
   return (
@@ -169,13 +170,16 @@ const About = () => {
         </div>
       </section>
 
-            {/* section 3 */}
+      {/* section 3 */}
       <section className="bg-richblack-900 px-3">
         <div className="max-w-maxContent mx-auto px-def">
-          <div>
-            <h2 className="text-center text-richblack-5 py-10 text-3xl xl:text-4xl font-bold">
+          <div className="py-10 flex flex-col gap-10">
+            <h2 className="text-center text-richblack-5 text-3xl xl:text-4xl  font-bold">
               Reviews from other learners
             </h2>
+            <div>
+              <ReviewSlider />
+            </div>
           </div>
         </div>
       </section>
