@@ -21,9 +21,6 @@ const VideoSideBar = ({ reviewModal, setReviewModal }) => {
     completedLectures
   } = useSelector(state => state?.viewCourse)
 
-  // console.log("total lectures : ", totalNoOfLectures);
-  console.log("completed lectures : ", completedLectures);
-
   useEffect(() => {
     ; (() => {
       if (!courseSectionData.length) {

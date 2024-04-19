@@ -15,7 +15,6 @@ const TotalCartAmount = () => {
   const { total, cartItems } = useSelector(state => state.cart)
   const handleBuyCourse = () => {
     const courses = cartItems.map(course => course._id);
-    console.log("Bought these courses : ", courses);
 
     if (token) {
       buyCourse(token, [courses], user, navigate, dispatch)

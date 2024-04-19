@@ -25,7 +25,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
 
   const handleDeleteSection = async (sectionId) => {
 
-    console.log("Section to be deleted : ", sectionId);
+    // console.log("Section to be deleted : ", sectionId);
 
     const result = await deleteSection(
       {

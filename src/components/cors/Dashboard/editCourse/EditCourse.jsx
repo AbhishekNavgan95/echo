@@ -19,7 +19,6 @@ const EditCourse = () => {
         if(result) {
             dispatch(setEditCourse(true))
             dispatch(setCourse(result?.courseDetails))
-            console.log("course : ", result);
         }
         setLoading(false);
     }

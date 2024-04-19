@@ -31,7 +31,7 @@ const SubSectionModal = ({
   const { course } = useSelector((state) => state.course);
 
   useEffect(() => {
-    console.log("modal data: ", modalData);
+    // console.log("modal data: ", modalData);
     if (view || edit) {
       setValue("lectureTitle", modalData.title);
       setValue("lectureDescription", modalData.description);

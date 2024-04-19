@@ -38,7 +38,6 @@ import { ACCOUNT_TYPE } from "./utils/constants";
 
 function App() {
   const user = useSelector((state) => state.profile.user);
-  console.log("User : ", user, "REMOVE FROM App.jsx / 24 ");
   const location = useLocation();
 
   return (

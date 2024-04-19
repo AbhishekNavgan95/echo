@@ -27,17 +27,14 @@ const ContactUsForm = () => {
   }, [isSubmitSuccessfull, reset]);
 
   const submitContactForm = async (data) => {
-    console.log("submitted data : ", data);
     try {
       setLoading(true);
       // const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
       const response = {
         status: 200,
       };
-      console.log("logging response : ", response);
       setLoading(false);
     } catch (e) {
-      console.log("Error occurred while calling api", e);
       setLoading(false);
     }
   };

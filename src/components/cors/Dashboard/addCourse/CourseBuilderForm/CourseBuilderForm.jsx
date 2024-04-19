@@ -25,7 +25,6 @@ const CourseBuilderForm = () => {
   } = useForm();
   const [editSectionName, setEditSectionName] = useState(null);
   const { course } = useSelector((state) => state.course);
-  console.log("Course : ", course);
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -93,7 +92,6 @@ const CourseBuilderForm = () => {
   };
 
   const handleChangeEditSectionName = (sectionId, sectionName) => {
-    console.log("Section details : ", sectionId , " " , sectionName);
     if(editSectionName === sectionId) {
       cancelEdit();
       return;

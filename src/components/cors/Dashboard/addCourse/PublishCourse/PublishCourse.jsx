@@ -29,7 +29,6 @@ const PublishCourse = () => {
 
     const goToCourses = () => {
         dispatch(resetCourseState());
-        console.log("navigating to my courses");
         navigate("../my-courses");
     }
 
@@ -54,7 +53,6 @@ const PublishCourse = () => {
 
         setLoading(true);
         const result = await editCourseStatus(formData, token);
-        console.log("result : ", result);
 
         if (result) {
             goToCourses();

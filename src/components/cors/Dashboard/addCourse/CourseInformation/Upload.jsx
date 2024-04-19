@@ -21,8 +21,6 @@ const Upload = ({ name, label, register, errors, setValue, video }) => {
       };
 
       reader.readAsDataURL(file);
-    } else {
-      console.log("no file");
     }
   };
 

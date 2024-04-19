@@ -403,7 +403,7 @@ exports.getCourseDetails = async (req, res) => {
 };
 
 // get list of course for a given instructor
-exports.getInstructorCourses = async (req, res) => {h2
+exports.getInstructorCourses = async (req, res) => {
   try {
     // get the instructor id
     const instructorId = req?.user?.id;

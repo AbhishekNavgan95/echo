@@ -44,7 +44,7 @@ const CourseDetails = () => {
             // console.log('full course details : ', res);
         } catch (e) {
             navigate("/error")
-            console.log("COULD NOT FETCH COURSE DETAILS!");
+            console.log("COULD NOT FETCH COURSE DETAILS!", e);
         }
         setLoading(false);
     }
@@ -90,7 +90,6 @@ const CourseDetails = () => {
     }
 
     const handleAddToCart = (courseData) => {
-        console.log("course id in add to cart : ", courseId);
 
         if (user && user.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
             toast.error("An Instructor cannot buy a course");
@@ -108,7 +107,6 @@ const CourseDetails = () => {
     }
 
     const handleShare = () => {
-        console.log("course id in share : ", courseId);
         copy(window.location.href)
         toast.success("URL copied to clipboard")
     }

@@ -26,9 +26,6 @@ const CartCourses = () => {
               <p className="py-1 border text-yellow-100 border-yellow-100 text-sm font-semibold w-max px-3 rounded-lg ">{course?.category?.name}</p>
               <div className="flex items-center gap-3">
                 <div className="text-xl">4.5</div>
-                {
-                  console.log("course : ",course)
-                }
                 <RatingStars reviewCount={course?.ratingAndReviews?.length} />
               </div>
               <p className="text-richblack-300">Total Ratings : {course?.ratingAndReviews?.length}</p>

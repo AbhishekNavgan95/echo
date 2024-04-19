@@ -29,7 +29,7 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
         <div className='flex flex-col gap-3 mt-2'>
           <button
             onClick={() =>
-              user && courseData?.studentsEnrolled.includes(user?._id) ? () => navigate("/dashboard/enrolled-courses") : handleBuyCourse(courseData?._id)
+              user && courseData?.studentsEnrolled.includes(user?._id) ? navigate("/dashboard/enrolled-courses") : handleBuyCourse(courseData?._id)
             }
             className="text-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:bg-yellow-200 text-black active:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3" >
             {

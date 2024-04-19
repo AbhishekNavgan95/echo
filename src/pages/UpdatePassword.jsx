@@ -27,8 +27,6 @@ const UpdatePassword = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const token = location.pathname.split("/").at(-1);
-    console.log("token : ", token)
-    console.log(token);
     dispatch(resetPassword(formData.password, formData.confirmPassword, token));
   };
 

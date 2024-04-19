@@ -61,7 +61,7 @@ const CourseInformationForm = () => {
 
   const isFormUpdated = () => {
     const currentValues = getValues();
-    console.log("current values : ", currentValues);
+    // console.log("current values : ", currentValues);
 
     if (
       currentValues.courseName !== course.courseTitle ||
@@ -72,16 +72,16 @@ const CourseInformationForm = () => {
       currentValues.category !== course.category ||
       currentValues.courseImage !== course.thumbnail
     ) {
-      console.log("no changes has been done to the course");
+      // console.log("no changes has been done to the course");
       return true;
     } else {
-      console.log("changes has been done to the course");
+      // console.log("changes has been done to the course");
       return false;
     }
   };
 
   const submitHandler = async (data) => {
-    console.log("data: ", data);
+    // console.log("data: ", data);
     if (editCourse) {
       if (isFormUpdated()) {
         const currentValues = getValues();
@@ -151,7 +151,7 @@ const CourseInformationForm = () => {
 
         setLoading(true);
         const result = await editCourseDetails(formData, token);
-        console.log("edit course detail result : ", result);
+        // console.log("edit course detail result : ", result);
         if (result) {
           dispatch(setStep(2));
           setEditCourse(false);
@@ -163,10 +163,9 @@ const CourseInformationForm = () => {
       setLoading(false);
       return;
     }
-    console.log("data : ", data);
+    // console.log("data : ", data);
 
     // create a new course
-    console.log("creating a new course");
     const formData = new FormData();
     formData.append("courseName", data.courseName);
     formData.append("courseDescription", data.courseDescription);
@@ -184,10 +183,10 @@ const CourseInformationForm = () => {
 
     if (result) {
       dispatch(setStep(2));
-      console.log("created course details : ", result);
+      // console.log("created course details : ", result);
 
       dispatch(setCourse(result));
-      console.log("course : ", course);
+      // console.log("course : ", course);
     }
     setLoading(false);
   };

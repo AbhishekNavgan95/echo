@@ -134,7 +134,9 @@ exports.getEnrolledCourses = async (req, res) => {
           path: "subSection",
         }
       }
-    }).exec();
+    }).populate("courseProgress").exec();
+
+    console.log("user details : ", userDetails);
 
     if (!userDetails) {
       return res.status(400).json({
@@ -146,7 +148,7 @@ exports.getEnrolledCourses = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "User details fetched successfully",
-      data: userDetails?.courses,
+      data: userDetails,
     });
   } catch (e) {
     return res.status(500).json({

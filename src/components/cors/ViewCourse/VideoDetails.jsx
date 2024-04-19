@@ -35,7 +35,6 @@ const VideoDetails = () => {
         (subSection) => subSection._id === subSectionId
       )
 
-      console.log("filter video data : ", filteredSubsection);
       if (filteredSubsection) {
         setVideoData(filteredSubsection[0]);
       }
@@ -120,9 +119,7 @@ const VideoDetails = () => {
     )
 
     if (currentSubSectionIndex !== 0) {
-      console.log("hi")
       const prevSubSectionId = courseSectionData[currentSectionIndex]?.subSection[currentSubSectionIndex - 1]?._id
-      console.log("prevSubSectionId : ", prevSubSectionId);
       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${prevSubSectionId}`);
 
     } else {
@@ -143,7 +140,6 @@ const VideoDetails = () => {
     const res = await markLectureAsComplete({ courseId, subSectionId }, token)
     // update state
     if (res) {
-      console.log(res)
       dispatch(setCompletedLectures(res?.completedVideos))
     }
 
