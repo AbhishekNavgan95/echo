@@ -5,7 +5,7 @@ import "swiper/css/free-mode"
 import "swiper/css/pagination"
 import { Autoplay, FreeMode, Navigation } from 'swiper/modules'
 import ReactStars from 'react-stars'
-import { apiConnector } from "../../services/apiConnector"
+import { apiConnector } from "../../services/apiconnector";
 import { ratingsEndpoints } from '../../services/apis'
 
 const ReviewSlider = () => {
