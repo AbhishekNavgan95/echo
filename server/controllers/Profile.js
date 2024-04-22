@@ -1,5 +1,6 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
+const Course = require("../models/Course")
 require("dotenv").config();
 const { uploadImageTocloudinary } = require("../utils/imageUploader");
 
@@ -126,15 +127,18 @@ exports.getEnrolledCourses = async (req, res) => {
   try {
     const id = req.user.id;
 
-    const userDetails = await User.findById(id).populate({
-      path: "courses",
-      populate: {
-        path: "courseContent",
+    const userDetails = await User.findById(id)
+      .populate({
+        path: "courses",
         populate: {
-          path: "subSection",
-        }
-      }
-    }).populate("courseProgress").exec();
+          path: "courseContent",
+          populate: {
+            path: "subSection",
+          },
+        },
+      })
+      .populate("courseProgress")
+      .exec();
 
     console.log("user details : ", userDetails);
 
@@ -214,6 +218,52 @@ exports.updateDisplayPicture = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "something went wrong while uploading the image",
+    });
+  }
+};
+
+exports.instructorDashboard = async (req, res) => {
+
+  try {
+    const { id } = req.user;
+
+    const courseDetails = await Course.find({ instructor: id });
+
+    if(!courseDetails) {
+      return res.status(404).json({
+        success: false,
+        message: "No courses fouund for this user"
+      })
+    }
+
+    const courseData = courseDetails.map((course) => {
+      
+      const totalStudentsEnrolled = course?.studentsEnrolled?.length;
+      const totalAmountGenerated = totalStudentsEnrolled * course?.price;
+
+      // create a new object with the additional fields
+      const courseDataWithStats = {
+        _id: course?._id,
+        courseTitle: course?.courseTitle,
+        courseDescription : course?.courseDescription,
+        totalStudentsEnrolled,
+        totalAmountGenerated
+      }
+
+      return courseDataWithStats
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Fetched Course Data Successfully",
+      data: courseData
+    })
+
+  } catch (e) {
+    console.log("error : ", e);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
     });
   }
 };

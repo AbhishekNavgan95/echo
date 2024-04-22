@@ -12,7 +12,7 @@ export const updatePfp = async (token, file) => {
     // console.log("formData: ", formData);
     formData.append("thumbnail", file);
 
-      const response = await apiConnector(
+    const response = await apiConnector(
       "PUT",
       settingsEndpoints.UPDATE_DISPLAY_PICTURE_API,
       formData,
@@ -125,9 +125,9 @@ export const updatePassword = async (token, formData) => {
 };
 
 // get user enrolled courses
-export async function getUserCourses(token, dispatch){
+export async function getUserCourses(token, dispatch) {
   const toastId = toast.loading("Loading...");
-  let result = []
+  let result = [];
   try {
     const response = await apiConnector(
       "GET",
@@ -136,18 +136,47 @@ export async function getUserCourses(token, dispatch){
       {
         Authorization: `Bearer ${token}`,
       }
-    )
-    
+    );
+
     if (!response.data.success) {
-      throw new Error(response.data.message)
+      throw new Error(response.data.message);
     }
     result = response.data.data;
     // toast.success("fetched all enrolled courses // remove from profileAPI.getUserCourses")
   } catch (error) {
-    console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error)
-    toast.error("Could Not Get Enrolled Courses")
+    console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error);
+    toast.error("Could Not Get Enrolled Courses");
   }
   // dispatch(setProgress(100));
   toast.dismiss(toastId);
-  return result
+  return result;
+}
+
+export async function getInstructorData(token) {
+  const toastId = toast.loading("Loading");
+  let result = [];
+  try {
+    let response = await apiConnector(
+      "GET",
+      profileEndpoints.GET_ALL_INSTRUCTOR_DASHBOARD_DETAILS_API,
+      null,
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
+
+    console.log("GET_INSTRUCTOR_DATA_API_RESPONSE : ", response);
+    if (!response?.data?.success) {
+      console.log("response : ", response)
+      throw new Error(response?.data?.message);
+    }
+
+    result = response?.data?.data;
+  } catch (e) {
+    console.log("GET_INSTRUCTOR_DATA_ERROR : ", e);
+    toast.error("Something went wrong...");
+  }
+
+  toast.dismiss(toastId);
+  return result;
 }

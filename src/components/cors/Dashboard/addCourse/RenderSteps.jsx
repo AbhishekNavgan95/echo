@@ -25,7 +25,7 @@ const RenderSteps = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-5 justify-between items-start w-full border border-richblack-600 px-10 py-10 rounded-lg">
+      <section className="flex flex-col gap-5 justify-between items-start w-full border border-richblack-600 px-5 lg:px-10 py-5 lg:py-10 rounded-lg">
         <div className="flex flex-col lg:flex-row gap-5 w-full xl:flex-row items-center justify-between bg-richblack-900 px-4 py-3 rounded-full">
           <div className="flex gap-5">
             {steps.map((item, index) => (

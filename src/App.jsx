@@ -34,6 +34,7 @@ import CourseDetails from "./pages/CourseDetails";
 import ScrollToTop from "./components/common/ScrollToTop";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/cors/ViewCourse/VideoDetails";
+import InstructorDashboard from "./components/cors/Dashboard/InstructorDashboard";
 import { ACCOUNT_TYPE } from "./utils/constants";
 
 function App() {
@@ -110,6 +111,7 @@ function App() {
             <>
               <Route path="add-course" element={<AddCourse />} />
               <Route path="my-courses" element={<MyCourses />} />
+              <Route path="instructor" element={<InstructorDashboard />} />
               <Route path="edit-course/:id" element={<EditCourse />} />
             </>
           ) : null}

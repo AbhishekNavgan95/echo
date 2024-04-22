@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import CtaButton from "../../common/CtaButton";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { ACCOUNT_TYPE } from "../../../utils/constants";
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const MyProfile = () => {
               </p>
             </div>
             <div className="w-full py-1 flex flex-col gap-1">
-              <h4 className="md:text-lg text-richblack-300">Courses Entrolled</h4>
+              <h4 className="md:text-lg text-richblack-300">{user.accountType === ACCOUNT_TYPE.INSTRUCTOR ? "My Courses" : "Courses Enrolled"}</h4>
               <p className="text-semibold md:text-xl">{user.courses.length}</p>
             </div>
             <div className="w-full py-1 flex flex-col gap-1">

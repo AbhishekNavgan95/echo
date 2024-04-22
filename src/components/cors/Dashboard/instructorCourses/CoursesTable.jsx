@@ -39,9 +39,6 @@ export default function CoursesTable({ courses, setCourses }) {
             <th className='py-4 text-start font-thin px-2'>
               Courses
             </th>
-            <th className='py-4 text-center font-thin px-2 hidden xl:block'>
-              Duration
-            </th>
             <th className='py-4  text-center font-thin px-2'>
               Price
             </th>
@@ -52,7 +49,7 @@ export default function CoursesTable({ courses, setCourses }) {
             </th>
           </tr>
         </thead>
-        <tbody >
+        <tbody className='divide-y divide-richblack-600'>
           {
             courses.length === 0 ? (
               <tr>
@@ -67,8 +64,8 @@ export default function CoursesTable({ courses, setCourses }) {
                     <div className='flex flex-col lg:flex-row gap-x-3 justify-start'>
                       <img src={course?.thumbnail} alt="thumbnail" className='h-[140px] w-[200px] self-center my-2 rounded-lg object-cover hidden lg:block '/>
                       <div className='flex flex-col justify-center my-3'>
-                        <p className='text-xl text-richblack-5'>{course?.courseTitle}</p>
-                        <p className=''>{course.courseDescription}</p>
+                        <p className='text-xl text-richblack-5 line-clamp-2'>{course?.courseTitle}</p>
+                        <p className='line-clamp-1'>{course.courseDescription}</p>
                         <p className=''>Created: {formattedDate(course?.createdAt)}</p>
                         {
                           course?.status === COURSE_STATUS.DRAFT ? (
@@ -80,7 +77,6 @@ export default function CoursesTable({ courses, setCourses }) {
                       </div>
                     </div>
                   </td>
-                  <td className='text-center text-xl hidden xl:table-cell'>2 hr 30 mnt</td>
                   <td className='text-center text-xl'> 
                   <div className='flex items-center justify-center gap-x-1 px-3'>
                     <LiaRupeeSignSolid />{course.price}

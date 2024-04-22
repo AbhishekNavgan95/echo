@@ -49,7 +49,7 @@ const ResetPassword = () => {
             {!emailSent ? (
               <div className="flex flex-col ">
                 <label className="text-richblack-5 my-3">Email Address</label>
-                <div className="flex shadow-sm items-center shadow-richblack-300 rounded-xl overflow-hidden">
+                <div className="flex shadow-sm items-center shadow-richblack-300 rounded-lg overflow-hidden">
                   <input
                     className="hover:outline-none w-full text-richblack-5 focus:outline-none py-3 px-4 md:text-xl bg-richblack-800"
                     type="email"
