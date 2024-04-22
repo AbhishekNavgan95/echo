@@ -3,9 +3,11 @@ import { FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { IoIosAdd } from "react-icons/io";
 
 const TagInput = ({ name, label, register, errors, setValue, placeholder }) => {
-  const [tags, setTags] = useState([]);
+  const [tagList, setTagList] = useState([]);
+  const [tag, setTag] = useState("");
   const { editCourse, course } = useSelector((state) => state.course);
 
   useEffect(() => {
@@ -14,10 +16,10 @@ const TagInput = ({ name, label, register, errors, setValue, placeholder }) => {
       // validate: (value) => value.length > 0
     });
     if (editCourse) {
-      setTags(course?.tag?.split(","));
+      setTagList(course?.tag?.split(","));
       setValue(name, course?.tag);
     }
-  }, []);
+  }, [tagList]);
 
   return (
     <div>
@@ -26,43 +28,49 @@ const TagInput = ({ name, label, register, errors, setValue, placeholder }) => {
         <sup>*</sup>
       </label>
       <div className="flex flex-wrap gap-2 my-2">
-        {tags.map((tag, index) => (
+        {tagList.map((tag, index) => (
           <div
             key={index}
-            className="my-1 px-4 flex items-center rounded-full bg-yellow-400 py-1 text-lg text-richblack-25"
+            className="my-1 px-4 flex items-center rounded-full bg-richblack-5 py-1 text-lg text-richblack-900"
           >
-            <span className="text-richblack-5">{tag}</span>
+            <span className="text-richblack-900">{tag}</span>
             <button
               type="button"
               onClick={() => {
-                const updatedTags = [...tags];
+                const updatedTags = [...tagList];
                 updatedTags.splice(index, 1);
-                setTags(updatedTags);
+                setTagList(updatedTags);
                 setValue(name, updatedTags);
               }}
-              className="ml-2 text-richblack-5"
+              className="ml-2 text-richblack-900"
             >
               <FaTimes />
             </button>
           </div>
         ))}
       </div>
-      <input
-        type="text"
-        id={name}
-        placeholder={placeholder}
-        className="text-xl bg-richblack-800 w-full py-3 px-4 rounded-lg focus:outline-none shadow-sm shadow-richblack-300"
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === ",") {
-            e.preventDefault();
-            if (e.target.value) {
-              setTags([...tags, e.target.value]);
-              setValue(name, [...tags, e.target.value]);
-              e.target.value = "";
+      <div className="text-xl overflow-hidden bg-richblack-800 w-full flex items-center rounded-lg focus:outline-none shadow-sm shadow-richblack-300">
+        <input
+          type="text"
+          id={name}
+          value={tag}
+          className="py-3 px-4 bg-richblack-800 w-full outline-none"
+          placeholder={placeholder}
+          onChange={(e) => {
+            setTag(e.target.value)
+          }}
+        />
+        <div
+          className="px-3 text-2xl bg-richblack-800 cursor-pointer"
+          onClick={() => {
+            if (tag) {
+              setTagList([...tagList, tag]);
+              setValue(name, [...tagList]);
+              setTag("");
             }
-          }
-        }}
-      />
+          }}
+        ><IoIosAdd /></div>
+      </div>
       {errors[name] && (
         <span className="text-xs text-pink-200">Tags are required</span>
       )}
