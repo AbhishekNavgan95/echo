@@ -12,11 +12,7 @@ exports.createSubSection = async (req, res) => {
     const video = req.files.video;
 
     console.log(
-      "printing data: ",
-      sectionId,
-      title,
-      timeDuration,
-      description,
+      "printing video: ",
       video
     );
 

@@ -139,7 +139,7 @@ const SubSectionModal = ({
   };
 
   return (
-    <div className="fixed z-[3] top-0 left-0 right-0 bottom-0 text-richblack-5 flex flex-col justify-center items-center bg-[#0000008b] w-full">
+    <div className="fixed z-[12] top-0 left-0 right-0 bottom-0 text-richblack-5 flex flex-col justify-center items-center bg-[#0000008b] w-full">
       <div className="bg-richblack-900 overflow-auto my-5 border border-richblack-600 px-5 pb-5 rounded-lg w-10/12 xl:w-6/12 flex flex-col gap-5 ">
 
         {/* form Heading */}
