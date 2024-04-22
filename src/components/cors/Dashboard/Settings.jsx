@@ -96,7 +96,7 @@ const Settings = () => {
 
         {/* Update Profile Picture */}
         <form onSubmit={imageUpload}>
-          <section className="flex justify-between items-center bg-richblack-800 p-5 lg:p-10  rounded-lg">
+          <section className="flex justify-between items-center bg-richblack-800 p-5 lg:p-10 border border-richblack-600 rounded-lg">
             <div className="flex flex-col lg:flex-row gap-5 items-center justify-between w-full">
               <div className="flex flex-col lg:flex-row items-center gap-5">
                 <img
@@ -149,7 +149,7 @@ const Settings = () => {
 
         {/* Update Profile Account Details*/}
         <form onSubmit={detailsSubmitHandler}>
-          <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 rounded-lg gap-y-5">
+          <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 border border-richblack-600 rounded-lg gap-y-5">
             <div className="flex items-center justify-between w-full">
               <h4 className="text-xl md:text-2xl font-semibold">Personal Details</h4>
             </div>
@@ -226,7 +226,7 @@ const Settings = () => {
 
         {/* Change Password */}
         <form onSubmit={changePassword}>
-          <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 gap-5 rounded-lg">
+          <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 gap-5 rounded-lg border border-richblack-600">
             <div className="flex items-center justify-between w-full">
               <h4 className="text-xl md:text-2xl font-semibold">Change Password</h4>
             </div>
@@ -281,7 +281,7 @@ const Settings = () => {
         </form>
 
         {/* Delete Acount */}
-        <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10  rounded-lg">
+        <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 border border-richblack-600 rounded-lg">
           <div className="flex w-full items-start py-2 gap-5">
             <div className="flex flex-col  items-start gap-3">
               <h3 className="text-xl md:text-2xl font-semibold">Delete Account</h3>

@@ -57,7 +57,7 @@ const ReviewSlider = () => {
                             <div className='flex items-center gap-5 pb-3'>
                                 <img src={review?.user?.image} className='max-w-[70px] border border-richblack-600 object-cover rounded-full aspect-square' alt="" />
                                 <div className='space-y-1'>
-                                    <p className=''>{review.user.firstName + " " + review.user.lastName}</p>
+                                    <p className=''>{review?.user?.firstName + " " + review?.user?.lastName}</p>
                                     <p className='line-clamp-1 text-richblack-300'>{review?.course?.courseTitle}</p>
                                     <ReactStars className='pointer-events-none' edit={false} value={review?.rating} />
                                 </div>

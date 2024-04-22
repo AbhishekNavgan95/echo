@@ -13,8 +13,8 @@ const MyProfile = () => {
     <div className="w-full">
       <div className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10 xl:py-20">
         <h2 className="text-3xl xl:text-4xl font bold">My Profile</h2>
-        <section className="flex flex-col md:flex-row gap-5 justify-between items-center bg-richblack-800 p-5 lg:p-10 rounded-lg">
-          <div className="flex flex-col md:flex-row gap-5 items-center">
+        <section className="flex flex-col md:flex-row gap-5 justify-between items-center bg-richblack-800 border border-richblack-600 p-5 lg:p-10 rounded-lg">
+          <div className="flex flex-col md:flex-row gap-5 items-center"> 
             <img
               src={user.image}
               alt=""
@@ -37,14 +37,14 @@ const MyProfile = () => {
           </div>
         </section>
 
-        <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10  rounded-lg gap-3">
+        <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10 border border-richblack-600 rounded-lg gap-3">
           <h3 className="text-2xl font-semibold">About</h3>
           <div>
             <p className="md:text-xl">{user.additionalDetails.about ?? "You haven't added your Bio yet!"}</p>
           </div>
         </section>
 
-        <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10  rounded-lg">
+        <section className="flex flex-col justify-between items-start bg-richblack-800 p-5 lg:p-10  rounded-lg border border-richblack-600">
           <div className="flex items-center justify-between w-full mb-5">
             <h4 className="text-2xl font-semibold">Personal Details</h4>
           </div>

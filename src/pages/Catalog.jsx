@@ -62,14 +62,14 @@ const Catalog = () => {
                             <div className='space-y-10'>
                                 <div className='flex flex-col gap-y-5 md:flex-row items-center justify-between'>
                                     <h4 className='text-2xl text-center md:text-start'>Home / Catalog / <span className='text-yellow-100'>{`  ${category}`}</span></h4>
-                                    <div className='relative rounded-lg w-max overflow-hidden flex justify-between bg-richblack-300'>
-                                        <div className="py-2 cursor-pointer text-richblack-900 px-3" onClick={() => setCoursesType("most-popular")}>
+                                    <div className='relative px-2 rounded-full border border-richblack-600 w-max overflow-hidden flex justify-between gap-3 bg-richblack-800'>
+                                        <button className={`py-2 transition-all duration-300 cursor-pointer text-richblack-5 px-3 ${coursesType === "most-popular"? "text-richblack-900" : null }`} onClick={() => setCoursesType("most-popular")}>
                                             <p className='relative z-[2]'>Most Popular</p>
-                                        </div>
-                                        <div className="py-2 cursor-pointer text-richblack-900 px-3" onClick={() => setCoursesType("new")}>
+                                        </button>
+                                        <button className={`py-2 transition-all duration-300 cursor-pointer text-richblack-5 px-3 ${coursesType === "new"? "text-richblack-900" : null }`} onClick={() => setCoursesType("new")}>
                                             <p className='relative z-[2]'>Newly Launched</p>
-                                        </div>
-                                        <div className={`bg-yellow-100 rounded-lg absolute w-full top-0 bottom-0 transition-all duration-300 ${coursesType === "most-popular" ? "translate-x-[-55%]" : "translate-x-[45%]"}`}></div>
+                                        </button>
+                                        <div className={`bg-yellow-100 rounded-full absolute w-full top-0 bottom-0 transition-all duration-300 ${coursesType === "most-popular" ? "translate-x-[-56%]" : "translate-x-[44%]"}`}></div>
                                     </div>
                                 </div>
                                 <div className='space-y-3 w-full'>

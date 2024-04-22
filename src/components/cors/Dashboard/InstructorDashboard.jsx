@@ -46,10 +46,10 @@ const InstructorDashboard = () => {
         <div className="w-full">
             <div className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10 xl:py-20">
                 <h2 className="text-3xl xl:text-4xl font bold">Dashboard</h2>
-                <div className='grid grid-cols-[100%, min-content] items-stretch gap-5 w-full'>
-                    <section className="border border-richblack-600 shadow-xs shadow-richblack-100 flex flex-col md:flex-row gap-5 justify-between items-center bg-richblack-900 p-5 lg:p-10 rounded-lg w-full">
+                <div className='grid grid-cols-1 gap-5 w-full'>
+                    <section className="border border-richblack-600 shadow-xs shadow-richblack-100 flex flex-col md:flex-row gap-5 justify-center items-center bg-richblack-900 p-5 lg:p-10 rounded-lg w-full">
                         {loading
-                            ? <div>Loading</div>
+                            ? <div className='text-xl flex items-center justify-center'>Loading...</div>
                             : courses.length > 0
                                 ? <InstructorChart courses={instructorData} />
                                 : <div>No courses Fount</div>
@@ -63,21 +63,21 @@ const InstructorDashboard = () => {
                         </div>
                         <div className='text-lg flex flex-col gap-3'>
                             <p>Total Students</p>
-                            <p className='text-3xl'>{totalStudents}</p>
+                            <p className='text-3xl'>{totalStudents || 0}</p>
                         </div>
                         <div className='text-lg flex flex-col gap-3'>
                             <p>Total Income</p>
-                            <p className='text-3xl flex gap-1 items-center'><MdOutlineCurrencyRupee />{totalAmountGenerated}</p>
+                            <p className='text-3xl flex gap-1 items-center'><MdOutlineCurrencyRupee />{totalAmountGenerated || 0}</p>
                         </div>
                     </section>
-                    <section className="border border-richblack-600 shadow-xs shadow-richblack-100 col-span-2 flex flex-col gap-5 justify-between items-center bg-richblack-900 p-5 lg:p-10 rounded-lg w-full">
+                    <section className="border border-richblack-600 shadow-xs shadow-richblack-100 lg:col-span-2 flex flex-col gap-5 justify-between items-center bg-richblack-900 p-5 lg:p-10 rounded-lg w-full">
                         <div className='flex justify-between w-full'>
                             <p className='text-2xl'>
                                 My Courses
                             </p>
                             <p className='cursor-pointer text-yellow-100 hover:text-yellow-300 transition-all duration-300' onClick={() => navigate("../my-courses")}>View All</p>
                         </div>
-                        <div className='flex gap-5'>
+                        <div className='flex flex-col md:flex-row gap-5'>
                             {
                                 courses.length > 0 ? courses.sort((a, b) => b?.studentsEnrolled?.length - a.studentsEnrolled?.length).slice(0, 3).map(course =>
                                     <div key={course._id} className='w-full flex flex-col group gap-1 text-lg border border-richblack-600 p-3 rounded-lg bg-richblack-900 shadow-sm shadow-richblack-600'>

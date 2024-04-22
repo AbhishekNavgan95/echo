@@ -14,7 +14,7 @@ const CourseUploadTips = () => {
   ];
   
   return (
-    <section className="flex flex-col xl:flex-row gap-5 justify-between items-start bg-richblack-800 px-5 lg:px-10 py-5 lg:py-10 rounded-lg">
+    <section className="flex flex-col xl:flex-row gap-5 justify-between items-start bg-richblack-800 border border-richblack-600 px-5 lg:px-10 py-5 lg:py-10 rounded-lg">
       <div className="flex flex-col gap-3">
         <h2 className="text-3xl xl:text-4xl font bold">Course Upload Tips</h2>
         <ul className="flex flex-col gap-1 text-lg">
