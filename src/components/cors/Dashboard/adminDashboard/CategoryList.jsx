@@ -17,7 +17,7 @@ const CategoryList = ({ categoryData }) => {
   const changeHandler = (e) => {
     setCurrentCategory(categoryData.filter((category) => e.target.value === category._id)[0])
   }
-  
+
   return (
     <div className='flex justify-between items-stretch flex-col gap-5 text-richblack-5 w-full'>
       <section className='min-w-6/12 w-full  self-start text-nowrap flex flex-col rounded-lg shadow-sm shadow-richblack-300'>
@@ -25,7 +25,7 @@ const CategoryList = ({ categoryData }) => {
           name="category"
           id="category"
           onChange={changeHandler}
-          className='w-full bg-richblack-800 py-2 px-4 text-xl outline-none focus:outline-1'
+          className='w-full bg-richblack-800 overflow-hidden py-2 px-4 text-xl outline-none rounded-lg focus:outline-1'
         >
           {
             categoryData?.length > 0 && categoryData?.map(

@@ -4,7 +4,7 @@ const CourseCard = ({ course, currentCard, setCurrentCard }) => {
   return (
     <button className="relative w-full text-start">
       <div
-        className={`top-0 bottom-0 left-0 right-0 h-full z-[0] absolute bg-richblack-700 translate-x-2 translate-y-2 ${
+        className={`top-0 bottom-0 left-0 right-0 h-full z-[0] absolute border-8 border-yellow-100 translate-x-1 translate-y-1 ${
           currentCard === course.heading ? "block" : "hidden"
         }`}
       ></div>

@@ -85,8 +85,6 @@ exports.signUp = async (req, res) => {
       otp,
     } = req.body;
 
-    // console.log("account type recieved on server : ", accountType);
-    
     // validate data
     if (
       !firstName ||

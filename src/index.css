@@ -20,3 +20,8 @@ body {
     transform: rotate(360deg) translate(5px) rotate(-360deg);
   }
 }
+
+select {
+  background:transparent;
+  -webkit-appearance: none;
+}

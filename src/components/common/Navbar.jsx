@@ -55,7 +55,7 @@ const Navbar = () => {
             {NavbarLinks.map((link, index) => {
               return link.title === "Catalog" ? (
                 <button
-                  className="text-richblack-25 group hover:cursor-pointer relative flex items-center gap-2"
+                  className={`text-richblack-25 group hover:cursor-pointer relative flex items-center gap-2 ${location?.pathname?.includes("catalog")? "text-yellow-100" : "text-richblack-5"}`}
                   key={index}
                 >
                   <p>{link.title}</p>
@@ -80,7 +80,7 @@ const Navbar = () => {
               ) : (
                 <NavLink
                   className={({ isActive }) =>
-                    isActive ? "text-yellow-25" : "text-richblack-25"
+                    isActive ? "text-yellow-100" : "text-richblack-25"
                   }
                   key={index}
                   to={link?.path}
@@ -128,7 +128,7 @@ const Navbar = () => {
           {NavbarLinks.map((link, index) => {
             return link.title === "Catalog" ? (
               <button
-                className="text-richblack-5 w-full relative group hover:cursor-pointer flex flex-col items-center gap-2"
+                className={`text-richblack-5 w-full relative group hover:cursor-pointer flex flex-col items-center gap-2 ${location?.pathname?.includes("catalog")? "text-yellow-100" : "text-richblack-5"}`}
                 key={index}
                 onClick={() => setSubNav(!subNav)}
               >
@@ -159,7 +159,7 @@ const Navbar = () => {
             ) : (
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? "text-yellow-25" : "text-richblack-25"
+                  isActive ? "text-yellow-100" : "text-richblack-25"
                 }
                 key={index}
                 to={link?.path}
@@ -179,7 +179,7 @@ const Navbar = () => {
                   setNavOpen(!navOpen);
                 }}
                 className={({ isActive }) =>
-                  isActive ? "text-yellow-25" : "text-richblack-25"
+                  isActive ? "text-yellow-100" : "text-richblack-25"
                 }
               >
                 Dashboard

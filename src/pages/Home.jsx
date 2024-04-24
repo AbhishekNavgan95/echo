@@ -25,8 +25,8 @@ const Home = () => {
           {/* Hero section */}
           <div id="Home" className="relative mx-auto pt-16 flex flex-col items-center text-richblack-5 justify-between text-center">
             {!(token === null) ? (
-              <div className="text-3xl xl:text-4xl border-b pb-6">
-                Welcome Back <HighlightText text={user.firstName} />
+              <div className="text-3xl xl:text-4xl border-b pb-6 flex flex-col md:flex-row gap-3">
+                <p>Welcome Back</p> <HighlightText text={user.firstName + " " + user.lastName} />
               </div>
             ) : (
               <Link to={"/signup"} className="rounded-full">
