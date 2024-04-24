@@ -52,7 +52,7 @@ const ReviewSlider = () => {
                 className="mySwiper cursor-grab	active:cursor-grabbing"
             >
                 {
-                    reviews.length && reviews.map(review => <SwiperSlide key={review?._id} className=''>
+                    reviews.length > 0 && reviews.map(review => <SwiperSlide key={review?._id} className=''>
                         <div className='p-5 border select-none border-richblack-600 bg-richblack-800 divide-y divide-richblack-600 rounded-lg flex flex-col gap-3 h-full'>
                             <div className='flex items-center gap-5 pb-3'>
                                 <img src={review?.user?.image} className='max-w-[70px] border border-richblack-600 object-cover rounded-full aspect-square' alt="" />
