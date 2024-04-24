@@ -10,7 +10,7 @@ const Contact = () => {
     <>
       <div className="py-5">
         <section className="bg-richblack-900 py-5 md:py-14 text-richblack-5 max-w-maxContent mx-auto">
-          <div className="flex relative items-start flex-col xl:flex-row gap-10">
+          <div className="flex relative items-center flex-col-reverse xl:flex-row gap-10">
             <div className="flex flex-col-reverse items-center gap-10 w-full md:w-10/12 lg:w-10/12 xl:w-6/12 px-5">
               <div className="sticky bottom-0 border divide-y divide-richblack-600 border-richblack-600 max-w-maxContent mx-auto w-full px-10 bg-richblack-800">
                 {

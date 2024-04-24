@@ -4,6 +4,7 @@ import { apiConnector } from "../../services/apiconnector";
 import { contactusEndpoint } from "../../services/apis";
 import cuntryCodes from "../../data/countrycode.json";
 import ActionButton from "./ActionButton";
+import toast from "react-hot-toast";
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false);
@@ -27,16 +28,17 @@ const ContactUsForm = () => {
   }, [isSubmitSuccessfull, reset]);
 
   const submitContactForm = async (data) => {
+    const toastId = toast.loading("Loading...")
     try {
       setLoading(true);
-      // const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
-      const response = {
-        status: 200,
-      };
+      const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
       setLoading(false);
+      toast.success("Query Submitted Successfully")
     } catch (e) {
       setLoading(false);
+      toast.success("Something went wrong")
     }
+    toast.dismiss(toastId);
   };
 
   return (
@@ -92,6 +94,7 @@ const ContactUsForm = () => {
             <select
               id="countryCode"
               name="countryCode"
+              defaultValue={"+91"}
               className="bg-richblack-800 text-richblack-300 shadow-sm shadow-richblack-300 w-[90px] py-3 rounded-lg px-4 focus:outline-none"
               {...register("countryCode", { required: true })}
             >
@@ -139,10 +142,13 @@ const ContactUsForm = () => {
         </div>
 
         <ActionButton
+        disabled={loading}
           active
           type="submit"
         >
-          Send message
+          {
+            loading? "Loading..." : "Send message"
+          }
         </ActionButton>
       </div>
     </form>

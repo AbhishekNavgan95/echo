@@ -91,7 +91,7 @@ exports.deleteAccount = async (req, res) => {
     });
 
     // deleting all reviews of user
-    await RatingAndReview.findOneAndDelete({user : userDetails._id})
+    await RatingAndReview.findOneAndDelete({ user: userDetails._id });
 
     // delete user
     await User.findByIdAndDelete(id);
