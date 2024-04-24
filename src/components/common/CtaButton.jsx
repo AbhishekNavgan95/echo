@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const CtaButton = ({ children, active, linkTo }) => {
   const navigate = useNavigate();
   return (
-    <button onClick={() => navigate(linkTo)}>
+    <div onClick={() => navigate(linkTo)}>
       <div
         className={
           `text-center w-max flex items-center px-4 py-2 md:px-4 md:py-2 rounded-md text-sm md:text-lg active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300
@@ -15,7 +15,7 @@ const CtaButton = ({ children, active, linkTo }) => {
       >
         {children}
       </div>
-    </button>
+    </div>
   );
 };
 
