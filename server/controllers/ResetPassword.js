@@ -2,6 +2,7 @@ const User = require("../models/User");
 const mailSender = require("../utils/mailsender");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto")
+const {resetPasswordEmail} = require("../mail/tamplates/resetPasswordEmail");
 
 // resetPassword token
 exports.resetPasswordToken = async (req, res) => {
@@ -30,13 +31,14 @@ exports.resetPasswordToken = async (req, res) => {
     );
 
     // create Url
-    const url = `http://localhost:5173/update-password/${token}`;
+    const url = `${process.env.CORS_ORIGIN}/update-password/${token}`;
 
+    const emailBody = resetPasswordEmail(url)
     // send mail containing url
     await mailSender(
       email,
       "Password reset link",
-      `Password reset Url : ${url}`
+      emailBody
     );
 
     // res

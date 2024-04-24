@@ -48,7 +48,7 @@ const InstructorChart = ({ courses }) => {
 
     return (
         <div className='w-full  flex flex-col items-center gap-3 '>
-            <div className='flex justify-between w-full'>
+            <div className='flex flex-col lg:flex-row items-center gap-3 justify-between w-full'>
                 <p className='text-2xl'>Visualise</p>
                 <div className='flex gap-3 p-1 rounded-full bg-richblack-800 relative overflow-hidden border-richblack-600 border'>
                     <button className={`py-1 px-3  rounded-lg relative z-[2] transition-all duration-300  ${chartType === "students" ? "text-richblack-900" : null}`} onClick={() => setChartType("students")}>Student</button>

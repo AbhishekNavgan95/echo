@@ -24,7 +24,7 @@ const About = () => {
                   <HighlightText text="Brighter Future" />
                 </h2>
                 <p className="text-center text-md md:text-xl text-richblack-300 lg:w-[80%]">
-                  Studynotion is at the forefront of driving innovation in
+                  ECHO is at the forefront of driving innovation in
                   online education. We're passionate about creating a brighter
                   future by offering cutting-edge courses, leveraging emerging
                   technologies, and nurturing a vibrant learning community.

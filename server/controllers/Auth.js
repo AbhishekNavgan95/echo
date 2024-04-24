@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const mailSender = require("../utils/mailsender");
 const updatePasswordEmailBody = require("../mail/tamplates/passwordUpdate");
+const passwordUpdated = require("../mail/tamplates/passwordUpdate")
 
 // sendOTP
 exports.sendOTP = async (req, res) => {
@@ -293,7 +294,7 @@ exports.changePassword = async (req, res) => {
     // Send notification email
     try {
 
-      const mailBody = updatePasswordEmailBody.passwordUpdated(
+      const mailBody = passwordUpdated(
         updatedUserDetails.email,
         `${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
       )
@@ -303,6 +304,8 @@ exports.changePassword = async (req, res) => {
         "Password for your account has been updated",
         mailBody
       );
+
+      console.log("email res : ", emailResponse);
 
     } catch (error) {
 

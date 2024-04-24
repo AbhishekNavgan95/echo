@@ -13,7 +13,7 @@ const ReviewSlider = () => {
     const [reviews, setReviews] = useState([]);
     const allReviews = async () => {
         const res = await apiConnector("GET", ratingsEndpoints.REVIEWS_DETAILS_API)
-        console.log("response : ", res);
+        // console.log("response : ", res);
         if (res?.data?.success) {
             setReviews(res?.data?.data)
         }
@@ -21,7 +21,7 @@ const ReviewSlider = () => {
 
     useEffect(() => {
         allReviews();
-        console.log("allReviews : ", reviews);
+        // console.log("allReviews : ", reviews);
     }, [])
 
     return (
@@ -29,7 +29,7 @@ const ReviewSlider = () => {
             <Swiper
                 slidesPerView={3}
                 spaceBetween={30}
-                loop={true}
+                // loop={true}
                 pagination={{
                     clickable: true,
                 }}

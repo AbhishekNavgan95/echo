@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
 import { resetPassword } from "../services/operations/authAPI";
@@ -9,9 +9,11 @@ import { resetPassword } from "../services/operations/authAPI";
 const UpdatePassword = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loading = useSelector((state) => state.auth.loading);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [resetComplete, setResetComplete] = useState(false);
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
@@ -27,8 +29,14 @@ const UpdatePassword = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const token = location.pathname.split("/").at(-1);
-    dispatch(resetPassword(formData.password, formData.confirmPassword, token));
+    dispatch(resetPassword(formData.password, formData.confirmPassword, token, navigate));
   };
+
+  // useEffect(() => {
+  //   if(resetComplete) {
+  //     Navigate("../login")
+  //   }
+  // }, [])
 
   return (
     <div className="flex justify-center min-h-[calc(100vh-5rem)] items-center">
@@ -45,18 +53,18 @@ const UpdatePassword = () => {
               <label htmlFor="" className="text-richblack-5">
                 New password<sup>*</sup>
               </label>
-              <div className="flex mt-3 shadow-sm items-center shadow-richblack-100 rounded-xl overflow-hidden">
+              <div className="flex mt-3 shadow-sm items-center shadow-richblack-300 rounded-lg overflow-hidden">
                 <input
                   name="password"
                   value={formData.password}
                   type={!showPass ? "password" : "text"}
                   onChange={handleOnChange}
                   required
-                  className="bg-richblack-700 w-full py-3 px-4 text-xl hover:outline-none focus:outline-none"
+                  className="bg-richblack-800 w-full py-3 px-4 text-xl hover:outline-none focus:outline-none"
                   placeholder="Password"
                 />
                 <span
-                  className="px-4 py-4 text-xl bg-richblack-700 text-richblack-5 hover:cursor-pointer rounded-e-xl"
+                  className="px-4 py-4 text-xl bg-richblack-800 text-richblack-5 hover:cursor-pointer rounded-e-xl"
                   onClick={() => {
                     setShowPass((prev) => !prev);
                   }}
@@ -69,18 +77,18 @@ const UpdatePassword = () => {
               <label htmlFor="">
                 confirm password<sup>*</sup>
               </label>
-              <div className="flex mt-3 shadow-sm items-center shadow-richblack-100 rounded-xl overflow-hidden">
+              <div className="flex mt-3 shadow-sm items-center shadow-richblack-100 rounded-lg overflow-hidden">
                 <input
                   type={!showConfirmPass ? "password" : "text"}
                   value={formData.confirmPassword}
                   name="confirmPassword"
                   onChange={handleOnChange}
                   required
-                  className="bg-richblack-700 w-full py-3 px-4 text-xl hover:outline-none focus:outline-none"
+                  className=" bg-richblack-800 w-full py-3 px-4 text-xl hover:outline-none focus:outline-none"
                   placeholder="Confirm Password"
                 />
                 <span
-                  className="px-4 py-4 text-xl bg-richblack-700 text-richblack-5 hover:cursor-pointer rounded-e-xl"
+                  className="px-4 py-4 text-xl  bg-richblack-800 text-richblack-5 hover:cursor-pointer rounded-e-xl"
                   onClick={() => {
                     setShowConfirmPass((prev) => !prev);
                   }}
@@ -94,7 +102,7 @@ const UpdatePassword = () => {
               </div>
             </div>
             <button
-              className="w-full bg-yellow-50 mt-4 hover:bg-yellow-100 transition-all duration-100 focus:bg-yellow-100 rounded-xl py-3 text-richblack-900 font-semibold"
+              className="w-full bg-yellow-100 mt-4 hover:bg-yellow-300 transition-all duration-300 focus:bg-yellow-300 rounded-lg py-3 text-richblack-900 font-semibold"
               type="submit"
             >
               Reset password

@@ -8,7 +8,7 @@ const LearningGrid = () => {
       order: -1,
       heading: "World-Class Learning for",
       highlightText: "Anyone, Anywhere",
-      description: "Studynotion partners with more than 275+ leading universities and companies to bring flexible, affordable, ob-relevant online learning to individuals and organizations worldwide.",
+      description: "ECHO partners with more than 275+ leading universities and companies to bring flexible, affordable, ob-relevant online learning to individuals and organizations worldwide.",
       BtnText: "Learn More",
       BtnLink: "/",
     },
@@ -34,13 +34,13 @@ const LearningGrid = () => {
       order: 4,
       heading: `Rating "Auto-grading"`,
       description:
-        "Studynotion partners with more than 275+ leading universities and companies to bring",
+        "ECHO partners with more than 275+ leading universities and companies to bring",
     },
     {
       order: 5,
       heading: "Ready to Work",
       description:
-      "Studynotion partners with more than 275+ leading universities and companies to bring",
+      "ECHO partners with more than 275+ leading universities and companies to bring",
     },
   ];
 

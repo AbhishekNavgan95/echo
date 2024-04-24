@@ -40,8 +40,8 @@ const EnrolledCourses = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 w-full 50 gap-5 ">
               <EnrolledCourseSkeleton count={6} />
             </div>
-          ) : enrolledCourses?.length <= 0
-            ? <p className="text-xl py-10 oflex items-center text-center w-full text-richblack-25">Your have not enrolled in any course yet</p>
+          ) : enrolledCourses?.courses?.length <= 0
+            ? <p className="text-2xl py-5 oflex items-center text-center w-full text-richblack-25">Your have not enrolled in any course yet</p>
             : (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 w-full justify-between 50 gap-5 ">
                 {enrolledCourses?.courses?.map((course, index) => (

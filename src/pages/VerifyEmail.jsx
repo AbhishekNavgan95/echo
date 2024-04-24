@@ -19,7 +19,7 @@ const VerifyEmail = () => {
 
   useEffect(() => {
     if (!signUpData) {
-      // navigate("/signup")
+      navigate("/signup")
     }
   }, []);
 
@@ -68,9 +68,9 @@ const VerifyEmail = () => {
                 value={otp}
                 onChange={setOtp}
                 numInputs={6}
-                containerStyle="flex justify-between gap-4"
-                renderInput={(props) => <input {...props} 
-                className="px-7 rounded-lg py-5 bg-richblack-800 hover:outline outline-richblack-100"
+                containerStyle="flex justify-between gap-4 "
+                renderInput={(props) => <input {...props}
+                  className="px-7 rounded-lg py-5 border outline-yellow-100 bg-richblack-800 border-richblack-600 hover:outline text-richblack-900 "
                 />}
               />
               <button className="mt-6 w-full rounded-lg bg-yellow-100 hover:bg-yellow-200 focus:bg-yellow-200 focus:outline-none transition-all duration-200 active:scale-95 py-2 font-medium text-richblack-900">
