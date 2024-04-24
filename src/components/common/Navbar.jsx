@@ -13,6 +13,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import Modal from "./Modal";
 import { logout } from "../../services/operations/authAPI";
 import { IoClose } from "react-icons/io5";
+import { ACCOUNT_TYPE } from "../../utils/constants";
 
 const Navbar = () => {
   const token = useSelector((state) => state.auth.token);
@@ -103,7 +104,7 @@ const Navbar = () => {
               </CtaButton>
             )}
             {token !== null && <ProfileDropdown />}
-            {user && user?.accountType !== "Instructor" && (
+            {user && user?.accountType === ACCOUNT_TYPE.STUDENT && (
               <Link to="/dashboard/cart" className="relative">
                 <FiShoppingBag />
                 {totalItems > 0 && <span className="absolute top-[50%] right-[-50%] text-xs font-bold bg-yellow-100 rounded-full px-2 text-richblack-900">{totalItems}</span>}
