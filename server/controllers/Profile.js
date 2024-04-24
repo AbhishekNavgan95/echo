@@ -1,8 +1,9 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
-const Course = require("../models/Course")
+const Course = require("../models/Course");
 require("dotenv").config();
 const { uploadImageTocloudinary } = require("../utils/imageUploader");
+const RatingAndReview = require("../models/RatingAndReview");
 
 exports.updateProfile = async (req, res) => {
   try {
@@ -68,10 +69,29 @@ exports.deleteAccount = async (req, res) => {
       });
     }
 
+    console.log("userDetails : ", userDetails);
     // delete user profile
     await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
 
-    // #TODO delete user from all enrolled courses
+    // deleting user from all enrolled courses
+    const userCourses = userDetails.courses;
+
+    userCourses.forEach(async (course) => {
+      const res = await Course.findByIdAndUpdate(
+        course,
+        {
+          $pull: {
+            studentsEnrolled: userDetails._id,
+          },
+        },
+        {
+          new: true,
+        }
+      ).populate("studentsEnrolled");
+    });
+
+    // deleting all reviews of user
+    await RatingAndReview.findOneAndDelete({user : userDetails._id})
 
     // delete user
     await User.findByIdAndDelete(id);
@@ -223,21 +243,19 @@ exports.updateDisplayPicture = async (req, res) => {
 };
 
 exports.instructorDashboard = async (req, res) => {
-
   try {
     const { id } = req.user;
 
     const courseDetails = await Course.find({ instructor: id });
 
-    if(!courseDetails) {
+    if (!courseDetails) {
       return res.status(404).json({
         success: false,
-        message: "No courses fouund for this user"
-      })
+        message: "No courses fouund for this user",
+      });
     }
 
     const courseData = courseDetails.map((course) => {
-      
       const totalStudentsEnrolled = course?.studentsEnrolled?.length;
       const totalAmountGenerated = totalStudentsEnrolled * course?.price;
 
@@ -245,20 +263,19 @@ exports.instructorDashboard = async (req, res) => {
       const courseDataWithStats = {
         _id: course?._id,
         courseTitle: course?.courseTitle,
-        courseDescription : course?.courseDescription,
+        courseDescription: course?.courseDescription,
         totalStudentsEnrolled,
-        totalAmountGenerated
-      }
+        totalAmountGenerated,
+      };
 
-      return courseDataWithStats
+      return courseDataWithStats;
     });
 
     res.status(200).json({
       success: true,
       message: "Fetched Course Data Successfully",
-      data: courseData
-    })
-
+      data: courseData,
+    });
   } catch (e) {
     console.log("error : ", e);
     res.status(500).json({

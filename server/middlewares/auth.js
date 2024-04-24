@@ -12,8 +12,6 @@ exports.auth = async (req, res, next) => {
       req.body.token ||
       req.header("Authorization").replace("Bearer ", "");
 
-      console.log("Token : ", token)
-
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -24,9 +22,7 @@ exports.auth = async (req, res, next) => {
     // verify the token
     try {
       const decode = jwt.verify(token, process.env.JWT_SECRET);
-      // console.log("decodede jwt token ", decode);
-
-      console.log("decoded user : ", decode);
+      // console.log("decoded user : ", decode);
 
       req.user = decode;
     } catch (e) {
