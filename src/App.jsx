@@ -36,6 +36,8 @@ import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/cors/ViewCourse/VideoDetails";
 import InstructorDashboard from "./components/cors/Dashboard/InstructorDashboard";
 import { ACCOUNT_TYPE } from "./utils/constants";
+import AdminDashboard from "./components/cors/Dashboard/AdminDashboard";
+import AddCategory from "./components/cors/Dashboard/AddCategory";
 
 function App() {
   const user = useSelector((state) => state.profile.user);
@@ -105,6 +107,12 @@ function App() {
             <>
               <Route path="cart" element={<Cart />} />
               <Route path="enrolled-courses" element={<EnrolledCourses />} />
+            </>
+          ) : null}
+          {user?.accountType === "Admin" ? (
+            <>
+              <Route path="add-category" element={<AddCategory />} />
+              <Route path="admin-dashboard" element={<AdminDashboard />} />
             </>
           ) : null}
           {user?.accountType === "Instructor" ? (

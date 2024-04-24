@@ -6,6 +6,7 @@ import { TiDocumentText } from "react-icons/ti";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaShare } from "react-icons/fa";
+import { MdOutlineCurrencyRupee } from "react-icons/md";
 
 
 
@@ -23,7 +24,7 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
       </div>
       <div className=' flex flex-col my-3 gap-2'>
         <div className='flex items-center justify-between px-4'>
-        <h4 className='text-2xl font-bold'>Rs. {courseData?.price}</h4>
+        <h4 className='text-2xl font-bold flex items-center'><MdOutlineCurrencyRupee /> {courseData?.price}</h4>
         <button className='mt-2 w-max text-yellow-50 hover:text-yellow-100 active:scale-95 transition-all duration-300 text-start flex items-center gap-3' onClick={handleShare}> Share <FaShare /></button>
         </div>
         <div className='flex flex-col gap-3 mt-2'>

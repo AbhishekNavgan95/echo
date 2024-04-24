@@ -1,12 +1,13 @@
 const Category = require("../models/Category");
 
 function getRandomInt(max) {
-  const randomNum = Math.floor(Math.random() * (max));
+  const randomNum = Math.floor(Math.random() * max);
   return randomNum;
 }
 
 // create Tag handler function
 exports.createCategory = async (req, res) => {
+  console.log("req recieved")
   try {
     // read data from req body
     const { name, description } = req.body;
@@ -45,7 +46,8 @@ exports.createCategory = async (req, res) => {
     // failure
     return res.status(500).json({
       success: false,
-      message: `Error occurred while creating Tag category  ${e?.message}`,
+      message: `Error occurred while creating category `,
+      error: e?.message
     });
   }
 };
@@ -84,10 +86,12 @@ exports.categoryPageDetails = async (req, res) => {
       .populate({
         path: "courses",
         match: { status: "Published" },
-        populate: [{ path: "instructor", select: "firstName lastName email image" }, { path: "ratingAndReviews" }],
+        populate: [
+          { path: "instructor", select: "firstName lastName email image" },
+          { path: "ratingAndReviews" },
+        ],
       })
       .exec();
-
 
     // if category not found
     if (!selectedCategory) {
@@ -114,7 +118,10 @@ exports.categoryPageDetails = async (req, res) => {
     }).populate({
       path: "courses",
       match: { status: "Published" },
-      populate: [{ path: "instructor", select: "firstName lastName email image" }, { path: "ratingAndReviews" }],
+      populate: [
+        { path: "instructor", select: "firstName lastName email image" },
+        { path: "ratingAndReviews" },
+      ],
     });
 
     // console.log("category except selected :  ", categoriesExceptSelected);
@@ -128,12 +135,16 @@ exports.categoryPageDetails = async (req, res) => {
     let differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id
-    ).populate({
-      path: "courses",
-      match: { status: "Published" },
-      populate: [{ path: "instructor", select: "firstName lastName email image" }, { path: "ratingAndReviews" }],
-    })
-    .exec();
+    )
+      .populate({
+        path: "courses",
+        match: { status: "Published" },
+        populate: [
+          { path: "instructor", select: "firstName lastName email image" },
+          { path: "ratingAndReviews" },
+        ],
+      })
+      .exec();
 
     // console.log("different category courses : ", differentCategory);
 
@@ -142,7 +153,10 @@ exports.categoryPageDetails = async (req, res) => {
       .populate({
         path: "courses",
         match: { status: "Published" },
-        populate: [{ path: "instructor", select: "firstName lastName email image" }, { path: "ratingAndReviews" }],
+        populate: [
+          { path: "instructor", select: "firstName lastName email image" },
+          { path: "ratingAndReviews" },
+        ],
       })
       .exec();
     const allCourses = allCategories.flatMap((category) => category.courses);
@@ -163,6 +177,42 @@ exports.categoryPageDetails = async (req, res) => {
       success: false,
       message: "Internal server error",
       error: error.message,
+    });
+  }
+};
+
+exports.getAllCategoryAndCourses = async (req, res) => {
+  try {
+    const categories = await Category.find()
+      .populate()
+      .select("name description courses")
+      .populate({
+        path: "courses",
+        select: "courseTitle courseDescription instructor price thumbnail",
+        populate: {
+          path: "instructor",
+          select: "firstName lastName email image",
+        },
+      })
+      .exec();
+
+    if (!categories) {
+      return res.status(404).json({
+        success: false,
+        message: "No categories found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Fetched all categories Successfully",
+      data: categories,
+    });
+  } catch (e) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong while fetching all categories and courses",
+      error: e?.message,
     });
   }
 };

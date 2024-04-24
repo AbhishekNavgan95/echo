@@ -25,6 +25,7 @@ const {
   ADD_COURSE_TO_CATEGORY_API,
   SEARCH_COURSES_API,
   EDIT_COURSE_STATUS,
+  GET_CATEGORY_AND_COURSE_DETAILS,
 } = courseEndpoints;
 
 export const getAllCourses = async () => {
@@ -46,7 +47,7 @@ export const getAllCourses = async () => {
 
 export const fetchCourseDetails = async (courseId, dispatch) => {
   // const toastId = toast.loading("Loading...")
-//   dispatch(setProgress(50));
+  //   dispatch(setProgress(50));
   let result = null;
   try {
     const response = await apiConnector("POST", COURSE_DETAILS_API, {
@@ -65,7 +66,7 @@ export const fetchCourseDetails = async (courseId, dispatch) => {
     // toast.error(error.response.data.message);
   }
   // toast.dismiss(toastId)
-//   dispatch(setProgress(100));
+  //   dispatch(setProgress(100));
   //   dispatch(setLoading(false));
   return result;
 };
@@ -133,7 +134,7 @@ export const editCourseDetails = async (data, token) => {
   return result;
 };
 
-// edit course status 
+// edit course status
 export const editCourseStatus = async (data, token) => {
   let result = null;
   const toastId = toast.loading("Loading...");
@@ -153,7 +154,7 @@ export const editCourseStatus = async (data, token) => {
   }
   toast.dismiss(toastId);
   return result;
-}
+};
 
 // create a section
 export const createSection = async (data, token) => {
@@ -363,7 +364,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
     result = error?.response?.data;
   }
   toast.dismiss(toastId);
-  //   dispatch(setLoading(false));  
+  //   dispatch(setLoading(false));
   return result;
 };
 
@@ -449,7 +450,7 @@ export const addCourseToCategory = async (data, token) => {
 //search courses
 export const searchCourses = async (searchQuery, dispatch) => {
   // const toastId = toast.loading("Loading...")
-//   dispatch(setProgress(50));
+  //   dispatch(setProgress(50));
   let result = null;
   try {
     const response = await apiConnector("POST", SEARCH_COURSES_API, {
@@ -465,7 +466,7 @@ export const searchCourses = async (searchQuery, dispatch) => {
     toast.error(error.message);
   }
   // toast.dismiss(toastId)
-//   dispatch(setProgress(100));
+  //   dispatch(setProgress(100));
   return result;
 };
 
@@ -473,21 +474,60 @@ export const searchCourses = async (searchQuery, dispatch) => {
 export const createCategory = async (data, token) => {
   const toastId = toast.loading("Loading...");
   let success = false;
+  let response = null;
+
   try {
-    const response = await apiConnector("POST", CREATE_CATEGORY_API, data, {
-      Authorisation: `Bearer ${token}`,
+    response = await apiConnector("POST", CREATE_CATEGORY_API, data, {
+      Authorization: `Bearer ${token}`,
     });
+
     console.log("CREATE CATEGORY API RESPONSE............", response);
+
     if (!response?.data?.success) {
+      console.log(response?.data?.error);
       throw new Error("Could Not Create Category");
     }
+
     toast.success("Category Created");
     success = true;
   } catch (error) {
-    success = false;
+    toast.error(error?.response?.data?.message);
     console.log("CREATE CATEGORY API ERROR............", error);
-    toast.error(error.message);
+    success = false;
   }
+
   toast.dismiss(toastId);
   return success;
+};
+
+export const getCategoryAndCourseDetails = async (token) => {
+  const toastId = toast.loading("Loading...");
+  let data = [];
+
+  try {
+    const response = await apiConnector(
+      "GET",
+      GET_CATEGORY_AND_COURSE_DETAILS,
+      {},
+      {
+        Authorization: `Bearer ${token}`,
+      }
+    );
+
+    console.log(
+      "GET ALL CATEGORIES AND COURSES API RESPONSE............",
+      response
+    );
+    if (!response?.data?.success) {
+      throw new Error("Could Not Fetch Category and courses");
+    }
+
+    data = response?.data?.data;
+  } catch (e) {
+    console.log("GET ALL CATEGORIES AND COURSES API ERROR............", e);
+    toast.error("No data found");
+  }
+
+  toast.dismiss(toastId);
+  return data;
 };

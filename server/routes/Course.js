@@ -18,6 +18,7 @@ const {
   showAllCategories,
   createCategory,
   categoryPageDetails,
+  getAllCategoryAndCourses
 } = require("../controllers/Category")
 
 const {
@@ -85,6 +86,7 @@ router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 router.post("/createCategory", auth, isAdmin, createCategory)
 router.get("/showAllCategories", showAllCategories)
 router.post("/getCategoryPageDetails", categoryPageDetails)
+router.get("/getAllCategoryAndCourses",auth, isAdmin, getAllCategoryAndCourses)
 
 // ********************************************************************************************************
 //                                      Rating and Review
