@@ -5,7 +5,7 @@ import ExploreMore from "../components/cors/HomePage/ExploreMore";
 import HighlightText from "../components/common/HighlightText";
 import InstructorSection from "../components/cors/HomePage/InstructorSection";
 import LearningLanguageSection from "../components/cors/HomePage/LearningLanguageSection";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdArrowRight } from "react-icons/md";
 import React from "react";
 import TimeLineSection from "../components/cors/HomePage/TimeLineSection";
@@ -15,6 +15,7 @@ import ReviewSlider from "../components/common/ReviewSlider";
 const Home = () => {
   const { token } = useSelector((state) => state.auth);
   const user = useSelector((state) => state.profile.user);
+  const navigate = useNavigate()
   // console.log(user)
 
   return (
@@ -25,8 +26,16 @@ const Home = () => {
           {/* Hero section */}
           <div id="Home" className="relative mx-auto pt-16 flex flex-col items-center text-richblack-5 justify-between text-center">
             {!(token === null) ? (
-              <div className="text-3xl xl:text-4xl border-b pb-6 flex flex-col md:flex-row gap-3">
-                <p>Welcome Back</p> <HighlightText text={user.firstName + " " + user.lastName} />
+              <div className="flex flex-col items-center gap-y-5">
+                <div className="text-3xl xl:text-4xl border-b border-richblack-600 pb-6 flex flex-col md:flex-row gap-3">
+                  <p>Welcome Back</p> <HighlightText text={user.firstName + " " + user.lastName} />
+                </div>
+                <div onClick={() => navigate("/dashboard/my-profile")} className="mx-auto group cursor-pointer rounded-full bg-richblack-700 font-bold text-richblack-200 transition-all duration-200 active:scale-95 shadow-sm shadow-richblack-300 border border-richblack-600">
+                  <div className="flex items-center gap-3 rounded-full py-1 transition-all duration-200 text-lg group-hover:bg-richblack-800 px-5">
+                    <p>Go to Dashboard</p>
+                    <MdArrowRight className="group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
               </div>
             ) : (
               <Link to={"/signup"} className="rounded-full">
@@ -56,6 +65,7 @@ const Home = () => {
           <div className="flex gap-7 mt-10 justify-center text-richblack-5">
             <CtaButton active="true" linkTo={"/signup"}>
               Learn more
+              <MdArrowRight />
             </CtaButton>
             <CtaButton active={false} linkTo={"/login"}>
               Book a Demo
@@ -180,7 +190,7 @@ const Home = () => {
                 The modern Echo is the dictates its our terms, Today, to be a
                 compititive specialist requires more than professional skills.
               </p>
-              <CtaButton active="true">Learn more</CtaButton>
+              <CtaButton active="true">Learn more <MdArrowRight /></CtaButton>
             </div>
           </div>
 

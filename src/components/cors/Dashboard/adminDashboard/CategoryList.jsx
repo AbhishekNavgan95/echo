@@ -1,7 +1,8 @@
-import { current } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react'
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { Link, json } from 'react-router-dom';
+import CtaButton from "../../../common/CtaButton"
+import { MdArrowRight } from "react-icons/md"
 
 const CategoryList = ({ categoryData }) => {
   const [currentCategory, setCurrentCategory] = useState([]);
@@ -20,6 +21,9 @@ const CategoryList = ({ categoryData }) => {
 
   return (
     <div className='flex justify-between items-stretch flex-col gap-5 text-richblack-5 w-full'>
+      <span className='self-end '>
+      <CtaButton linkTo={"../add-category"} active >Create New Category <MdArrowRight /></CtaButton>
+      </span>
       <section className='min-w-6/12 w-full  self-start text-nowrap flex flex-col rounded-lg shadow-sm shadow-richblack-300'>
         <select
           name="category"
