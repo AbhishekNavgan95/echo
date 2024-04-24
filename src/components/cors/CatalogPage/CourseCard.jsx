@@ -19,7 +19,7 @@ const CourseCard = ({ course, height, }) => {
           <img className={`aspect-video w-full h-full object-cover group-hover:scale-105 transition-all duration-300 ${height}`} src={course?.thumbnail} alt="" />
         </div>
         <div className='flex flex-col items-center lg:items-start gap-1'>
-          <h4 className='text-xl font-semibold'>{course?.courseTitle}</h4>
+          <h4 className='text-xl line-clamp-1 font-semibold'>{course?.courseTitle}</h4>
           <h4 className='text-lg text-yellow-100'>By {` ${course?.instructor?.firstName}  ${course?.instructor?.lastName} `}</h4>
           <div className='flex items-center gap-3'>
             <span className='flex gap-2 items-center'>

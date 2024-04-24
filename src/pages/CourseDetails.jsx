@@ -195,16 +195,18 @@ const CourseDetails = () => {
                         <div className='w-full py-5 bg-richblack-900 text-richblack-5'>
                             <section className=" py-5 px-3 relative text-richblack-5 max-w-maxContent mx-auto flex flex-col gap-5">
                                 <h4 className='text-3xl xl:text-4xl'>Instructor</h4>
-                                <div className='w-full mx-auto border p-5 md:p-10  border-richblack-600'>
-                                    <div className='my-5 flex flex-col gap-5'>
-                                        <span className='flex items-center flex-col  md:flex-row gap-5'>
-                                            <img className='w-[100px] h-[100px] rounded-full object-cover border border-richblack-600' src={courseData?.instructor?.image} alt="" />
-                                            <div className='flex items-center md:items-start flex-col '>
-                                                <p className='text-xl'>{`${courseData?.instructor.firstName} ${courseData?.instructor.lastName}`}</p>
-                                                <p className='text-richblack-300'>{courseData?.instructor?.email}</p>
-                                            </div>
-                                        </span>
-                                        <p className='text-xl line-clamp-5 text-center md:text-start text-richblack-300'>{courseData?.instructor?.additionalDetails.about}</p>
+                                <div className='w-full mt-3 mx-auto p-5 md:p-10 border border-richblack-600 rounded-lg bg-richblack-800'>
+                                    <div className='md:w-8/12 mx-auto'>
+                                        <div className='my-5 flex flex-col items-center gap-5'>
+                                            <span className='flex items-center flex-col gap-5'>
+                                                <img className='w-[200px] aspect-square rounded-full object-cover border border-richblack-600' src={courseData?.instructor?.image} alt="" />
+                                                <div className='flex items-center md:items-center flex-col '>
+                                                    <p className='text-xl'>{`${courseData?.instructor.firstName} ${courseData?.instructor.lastName}`}</p>
+                                                    <p className='text-richblack-300'>{courseData?.instructor?.email}</p>
+                                                </div>
+                                            </span>
+                                            <p className='text-xl line-clamp-5 text-center text-richblack-300'>{courseData?.instructor?.additionalDetails.about}</p>
+                                        </div>
                                     </div>
                                 </div>
 
