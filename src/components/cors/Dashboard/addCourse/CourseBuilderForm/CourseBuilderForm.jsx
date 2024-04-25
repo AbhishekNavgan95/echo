@@ -4,6 +4,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import NestedView from "./NestedView";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import ActionButton from "../../../../common/ActionButton";
 import {
   setCourse,
   setEditCourse,
@@ -120,40 +121,39 @@ const CourseBuilderForm = () => {
             {errors.sectionName && <span>Section Name`` is required</span>}
           </div>
           <div className="flex gap-3">
-            <button
+            <ActionButton
               type="submit"
-              className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
+              active
             >
               {editSectionName ? "Edit Section Name" : "Create Section"}
               <CiCirclePlus />
-            </button>
+            </ActionButton>
             {editSectionName && (
-              <button
+              <ActionButton
                 onClick={cancelEdit}
                 className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-richblack-600 hover:bg-richblack-700 focus:hover:bg-richblack-700 text-richblack-5 active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
               >
                 Cancel
-              </button>
+              </ActionButton>
             )}
           </div>
         </div>
       </form>
       {course?.courseContent.length > 0 && <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />}
       <div className="flex justify-end gap-3">
-        <button
-          className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-richblack-600 hover:bg-richblack-700 focus:hover:bg-richblack-700 text-richblack-5 active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-2"
+        <ActionButton
           onClick={goBack}
         >
           <MdNavigateBefore />
           Back
-        </button>
-        <button
-          className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-2"
+        </ActionButton>
+        <ActionButton
+        active
           onClick={goNext}
         >
           Next
           <MdNavigateNext />
-        </button>
+        </ActionButton>
       </div>
     </div>
   );

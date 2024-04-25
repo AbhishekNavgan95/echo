@@ -1,4 +1,5 @@
 import React from "react";
+import ActionButton from "./ActionButton";
 
 const Modal = ({ modalData }) => {
   return (
@@ -12,18 +13,17 @@ const Modal = ({ modalData }) => {
             </p>
           </div>
           <div className="flex gap-10">
-            <button
+            <ActionButton
+              active
               onClick={modalData.btn1Handler}
-              className="text-center text-[13px] text-nowrap flex items-center px-4 py-2 rounded-md text-lg active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black"
             >
               {modalData.btn1Text}
-            </button>
-            <button
-              className="text-center text-[13px] text-nowrap flex items-center px-4 py-2 rounded-md text-lg active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 bg-richblack-700 hover:bg-richblack-800 focus:bg-richblack-800 text-richblack-5"
+            </ActionButton>
+            <ActionButton
               onClick={modalData?.btn2Handler}
             >
               {modalData?.btn2Text}
-            </button>
+            </ActionButton>
           </div>
         </div>
       </div>

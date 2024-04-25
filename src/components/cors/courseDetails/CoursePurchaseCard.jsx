@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { FaShare } from "react-icons/fa";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
+import ActionButton from '../../common/ActionButton';
 
 
 
@@ -28,18 +29,19 @@ const CoursePurchaseCard = ({ handleAddToCart, setConfirmationModal, handleBuyCo
         <button className='mt-2 w-max text-yellow-50 hover:text-yellow-100 active:scale-95 transition-all duration-300 text-start flex items-center gap-3' onClick={handleShare}> Share <FaShare /></button>
         </div>
         <div className='flex flex-col gap-3 mt-2'>
-          <button
-            onClick={() =>
+          <ActionButton
+          active
+          onClick={() =>
               user && courseData?.studentsEnrolled.includes(user?._id) ? navigate("/dashboard/enrolled-courses") : handleBuyCourse(courseData?._id)
             }
-            className="text-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:bg-yellow-200 text-black active:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3" >
+>
             {
               user && courseData?.studentsEnrolled.includes(user?._id) ? "Go to course" : "Buy now"
             }
-          </button>
+          </ActionButton>
           {
             (!courseData?.studentsEnrolled?.includes(user?._id)) &&
-            <button onClick={() => handleAddToCart(courseData)} className="text-center  px-4 py-2 rounded-md text-lg bg-richblack-600 hover:bg-richblack-700 focus:bg-richblack-700 text-richblack-25 active:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3" >Add to Cart</button>
+            <ActionButton onClick={() => handleAddToCart(courseData)}>Add to Cart</ActionButton>
           }
         </div>
         <p className='text-sm mt-2 mb-1 text-center text-richblack-100'>30-Day Money-Back Guarantee</p>

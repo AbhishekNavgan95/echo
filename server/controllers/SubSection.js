@@ -11,10 +11,10 @@ exports.createSubSection = async (req, res) => {
 
     const video = req.files.video;
 
-    console.log(
-      "printing video: ",
-      video
-    );
+    // console.log(
+    //   "printing video: ",
+    //   video
+    // );
 
     // validate data
     if (!sectionId || !title || !timeDuration || !description) {
@@ -37,6 +37,13 @@ exports.createSubSection = async (req, res) => {
       video,
       process.env.FOLDER_NAME
     );
+
+    if(!uploadDetils) {
+      return res.status(500).json({
+        success: false,
+        message: "Something went wrong while uploading the file"
+      })
+    }
 
     // create subsection and enter in db along with url recieved from cloud
     const subSectionDetails = await SubSection.create({
@@ -109,6 +116,13 @@ exports.updateSubSection = async (req, res) => {
       video,
       process.env.FOLDER_NAME
     );
+
+    if(!uploadDetils) {
+      return res.status(500).json({
+        success : false,
+        message: "Something went wrong while uploading the file"
+      })
+    }
 
     // create subsection and enter in db along with url recieved from cloud
     const subSectionDetails = await SubSection.findByIdAndUpdate(

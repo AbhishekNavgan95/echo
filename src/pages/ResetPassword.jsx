@@ -17,7 +17,7 @@ const ResetPassword = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(getPasswordResetToken(email, setEmailSent));
+    getPasswordResetToken(email, setEmailSent, dispatch)
     setMailSent(true);
   };
 

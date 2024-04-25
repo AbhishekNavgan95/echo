@@ -43,7 +43,7 @@ const Settings = () => {
   const imageUpload = async (e) => {
     e.preventDefault();
     const file = e.target[0].files[0];
-    const result = await updatePfp(token, file);
+    const result = await updatePfp(token, file, dispatch);
     dispatch(setUser({ ...user, image: result }));
   };
 
@@ -63,7 +63,7 @@ const Settings = () => {
 
   const detailsSubmitHandler = (e) => {
     e.preventDefault();
-    updateProfile(token, formData);
+    updateProfile(token, formData, dispatch);
     setFormData({
       dateOfBirth: "",
       about: "",
@@ -82,7 +82,7 @@ const Settings = () => {
   const changePassword = (e) => {
     e.preventDefault();
     // console.log(password);
-    updatePassword(token, password);
+    updatePassword(token, password, dispatch);
     setPassword({
       oldPassword: "",
       newPassword: "",
@@ -237,6 +237,7 @@ const Settings = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     required
+                    autoComplete=""
                     name="oldPassword"
                     value={password.oldPassword}
                     onChange={handlePasswordChange}
@@ -254,7 +255,8 @@ const Settings = () => {
                 <div className="flex rounded-lg shadow-sm focus:outline-none shadow-richblack-300 md:text-lg text-richblack-100 bg-richblack-700">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
-                    required
+                    required                    
+                    autoComplete=""
                     name="newPassword"
                     value={password.newPassword}
                     onChange={handlePasswordChange}

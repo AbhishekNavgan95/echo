@@ -2,10 +2,12 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../apiconnector";
 import { settingsEndpoints, profileEndpoints } from "../../services/apis";
 import { setToken } from "../../slices/authSlice";
+import { setProgress } from "../../slices/loadingBarSlice";
 import { setUser } from "../../slices/profileSlice";
 
 // update Profile Picture of user
-export const updatePfp = async (token, file) => {
+export const updatePfp = async (token, file, dispatch) => {
+  dispatch(setProgress(40))
   const toastId = toast.loading("Uploading...");
   try {
     const formData = new FormData();
@@ -25,18 +27,21 @@ export const updatePfp = async (token, file) => {
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
-
+    dispatch(setProgress(60))
     toast.dismiss(toastId);
     toast.success("Profile picture updated successfully!");
+    dispatch(setProgress(100))
     return response?.data?.data?.image;
   } catch (e) {
     console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", e);
     toast.dismiss(toastId);
+    dispatch(setProgress(100))
   }
 };
 
 // update additional details of user
-export const updateProfile = async (token, formData) => {
+export const updateProfile = async (token, formData, dispatch) => {
+  dispatch(setProgress(40))
   const toastId = toast.loading("Loading...");
   try {
     const reponse = await apiConnector(
@@ -53,7 +58,7 @@ export const updateProfile = async (token, formData) => {
     if (!reponse.data.success) {
       throw new Error(response.data.message);
     }
-
+    dispatch(setProgress(60))
     toast.success("your details updated successfully");
     toast.dismiss(toastId);
   } catch (e) {
@@ -61,11 +66,13 @@ export const updateProfile = async (token, formData) => {
     setLoading(false);
     toast.dismiss(toastId);
   }
+  dispatch(setProgress(100))
 };
 
 // delete user account
 export const deleteAccount = async (token, dispatch, navigate) => {
   const toastId = toast.loading("Processing...");
+  console.log("delete account")
 
   try {
     const response = await apiConnector(
@@ -96,8 +103,9 @@ export const deleteAccount = async (token, dispatch, navigate) => {
 };
 
 // update password
-export const updatePassword = async (token, formData) => {
+export const updatePassword = async (token, formData, dispatch) => {
   const toastid = toast.loading("Loading...");
+  dispatch(setProgress(40))
   try {
     const reponse = await apiConnector(
       "POST",
@@ -111,9 +119,10 @@ export const updatePassword = async (token, formData) => {
     );
 
     if (!reponse.data.success) {
-      throw new Error(response?.data?.message);
+      throw new Error(reponse?.data?.message);
     }
 
+    dispatch(setProgress(60))
     console.log("Password update API response: ", reponse?.data?.message);
     toast.dismiss(toastid);
     toast.success("your Password has been is updated successfully");
@@ -122,6 +131,7 @@ export const updatePassword = async (token, formData) => {
     toast.error(e?.response?.data?.message);
     toast.dismiss(toastid);
   }
+  dispatch(setProgress(100))
 };
 
 // get user enrolled courses
@@ -147,13 +157,14 @@ export async function getUserCourses(token, dispatch) {
     console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error);
     toast.error("Could Not Get Enrolled Courses");
   }
-  // dispatch(setProgress(100));
+  dispatch(setProgress(100));
   toast.dismiss(toastId);
   return result;
 }
 
-export async function getInstructorData(token) {
+export async function getInstructorData(token, dispatch) {
   const toastId = toast.loading("Loading");
+  dispatch(setProgress(40));
   let result = [];
   try {
     let response = await apiConnector(
@@ -170,13 +181,13 @@ export async function getInstructorData(token) {
       console.log("response : ", response)
       throw new Error(response?.data?.message);
     }
-
+    dispatch(setProgress(60));
     result = response?.data?.data;
   } catch (e) {
     console.log("GET_INSTRUCTOR_DATA_ERROR : ", e);
     toast.error("Something went wrong...");
   }
-
+  dispatch(setProgress(100));
   toast.dismiss(toastId);
   return result;
 }

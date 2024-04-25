@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { MdArrowBackIos } from "react-icons/md";
 import { resetPassword } from "../services/operations/authAPI";
+import ActionButton from "../components/common/ActionButton";
 
 const UpdatePassword = () => {
   const location = useLocation();
@@ -29,7 +30,7 @@ const UpdatePassword = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const token = location.pathname.split("/").at(-1);
-    dispatch(resetPassword(formData.password, formData.confirmPassword, token, navigate));
+    resetPassword(formData.password, formData.confirmPassword, token, navigate, dispatch);
   };
 
   // useEffect(() => {
@@ -39,13 +40,13 @@ const UpdatePassword = () => {
   // }, [])
 
   return (
-    <div className="flex justify-center min-h-[calc(100vh-5rem)] items-center">
+    <div className="flex justify-center min-h-[calc(100vh-5rem)] items-center w-10/12 md:w-8/12 lg:w-6/12 xl:w-3/12 flex-col gap-5 mx-auto">
       {loading ? (
         <div className="text-4xl text-center text-pink-300">Loading...</div>
       ) : (
         <form onSubmit={handleOnSubmit} className="">
-          <div className="text-richblack-5">
-            <h1 className="text-4xl font-bold">Choose new passowrd</h1>
+          <div className="text-richblack-5 flex flex-col">
+            <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold">Choose new passowrd</h1>
             <p className="text-xl py-3 font-semibold text-richblack-300">
               Almost done, Enter your new password and you are all set.
             </p>
@@ -101,12 +102,12 @@ const UpdatePassword = () => {
                 </span>
               </div>
             </div>
-            <button
-              className="w-full bg-yellow-100 mt-4 hover:bg-yellow-300 transition-all duration-300 focus:bg-yellow-300 rounded-lg py-3 text-richblack-900 font-semibold"
+            <ActionButton
+              active
               type="submit"
             >
               Reset password
-            </button>
+            </ActionButton>
             <div className="pt-3 text-richblack-300 hover:text-richblack-5 transition-all duration-200">
               <Link to="/login" className="flex gap-2 items-center">
                 {" "}

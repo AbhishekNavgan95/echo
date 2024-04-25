@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import ActionButton from "../../../../common/ActionButton"
 import {
   addCourseDetails,
   editCourseDetails,
@@ -336,19 +337,18 @@ const CourseInformationForm = () => {
           </div>
 
           <div className="flex gap-3">
-            <button
+            <ActionButton
               type="submit"
-              className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
-            >
+              active
+           >
               {!editCourse ? "Next" : "Save Changes"}
-            </button>
+            </ActionButton>
             {editCourse && (
-              <button
-                className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-richblack-600 hover:bg-richblack-700 focus:hover:bg-richblack-700 text-richblack-5 active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
+              <ActionButton
                 onClick={() => dispatch(setStep(2))}
               >
-                Continue Without Saving
-              </button>
+                Next
+              </ActionButton>
             )}
           </div>
         </div>

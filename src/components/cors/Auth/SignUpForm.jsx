@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-// import CtaButton from "../HomePage/CtaButton";
+import { setProgress } from "../../../slices/loadingBarSlice";
 import { useDispatch } from "react-redux";
 import { setSignupData } from "../../../slices/authSlice";
 import { sendOtp } from "../../../services/operations/authAPI";
@@ -59,7 +59,7 @@ const SignupForm = ({
     // To be used after otp verification
     dispatch(setSignupData(signupData));
     // Send OTP to user for verification
-    dispatch(sendOtp(formData.email, navigate));
+    dispatch(sendOtp(formData.email, navigate, dispatch));
 
     // Reset
     setFormData({
@@ -222,7 +222,7 @@ const SignupForm = ({
           <ActionButton
             type="submit"
             active
-          // onClick={()=>{dispatch(setProgress(60))}}
+          onClick={()=>{dispatch(setProgress(60))}}
           >
             Create Account
           </ActionButton>

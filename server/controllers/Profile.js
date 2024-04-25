@@ -69,7 +69,6 @@ exports.deleteAccount = async (req, res) => {
       });
     }
 
-    console.log("userDetails : ", userDetails);
     // delete user profile
     await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
 
@@ -191,7 +190,7 @@ exports.updateDisplayPicture = async (req, res) => {
     // find user with that id
     const user = await User.findById(id);
     const image = req.files?.thumbnail;
-    console.log("file recieved : ", image);
+    // console.log("file recieved : ", image);
 
     // validate user
     if (!user) {
@@ -215,14 +214,21 @@ exports.updateDisplayPicture = async (req, res) => {
       process.env.FOLDER_NAME
     );
 
-    console.log("image uplaod details : ", uploadDetails);
+    if(!uploadDetails) {
+      return res.status(500).json({
+        success : false,
+        message: "Something went wrong while uploading the file"
+      })
+    }
+
+    // console.log("image uplaod details : ", uploadDetails);
 
     const userDetails = await User.findByIdAndUpdate(
       {
         _id: id,
       },
       {
-        image: uploadDetails.secure_url,
+        image: uploadDetails?.secure_url,
       },
       {
         new: true,

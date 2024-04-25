@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import CtaButton from '../../common/CtaButton'
 import { VscAdd } from "react-icons/vsc";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchInstructorCourses } from "../../../services/operations/courseDetailsAPI"
 import CoursesTable from './instructorCourses/CoursesTable';
 import { useNavigate } from 'react-router-dom';
@@ -11,11 +11,12 @@ const MyCourses = () => {
 
     const { token } = useSelector(state => state.auth);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const fetchCourses = async () => {
-        const result = await fetchInstructorCourses(token)
+        const result = await fetchInstructorCourses(token, dispatch)
         if (result) {
             setCourses(result);
         }

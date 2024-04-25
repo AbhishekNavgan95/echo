@@ -20,4 +20,5 @@ exports.uploadImageTocloudinary = async (file, folder, height, quality) => {
         console.log("something went wrong while uplaoding the file to cloud", e?.message)
         fs.unlink(file);
     }
+    
 }

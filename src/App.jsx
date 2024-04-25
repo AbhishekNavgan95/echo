@@ -1,5 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingBar from "react-top-loading-bar";
 
 // pages
 import Home from "./pages/Home";
@@ -38,15 +39,24 @@ import InstructorDashboard from "./components/cors/Dashboard/InstructorDashboard
 import { ACCOUNT_TYPE } from "./utils/constants";
 import AdminDashboard from "./components/cors/Dashboard/AdminDashboard";
 import AddCategory from "./components/cors/Dashboard/AddCategory";
+import { setProgress } from "./slices/loadingBarSlice";
 
 function App() {
   const user = useSelector((state) => state.profile.user);
   const location = useLocation();
+  const {progress} = useSelector(state => state.loadingBar);
+  const dispatch = useDispatch();
 
   return (
     <div className="w-screen min-h-screen bg-richblack-900">
-      <ScrollToTop />
+      <LoadingBar
+        color="#FFD60A"
+        height={2}
+        progress={progress}
+        onLoaderFinished={() => dispatch(setProgress(0))}
+      />
       <Navbar />
+      <ScrollToTop />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -132,19 +142,19 @@ function App() {
         }>
           <>
             {
-              user?.accountType === ACCOUNT_TYPE.STUDENT 
-                && <Route 
-                  path=":courseId/section/:sectionId/sub-section/:subSectionId" 
-                  element={<VideoDetails />} 
-                />
+              user?.accountType === ACCOUNT_TYPE.STUDENT
+              && <Route
+                path=":courseId/section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
+              />
             }
           </>
         </Route>
-          <Route path="*" element={<Error />} />
+        <Route path="*" element={<Error />} />
       </Routes>
 
       {
-        location.pathname.includes("dashboard") ||  location.pathname.includes("view-course") ?
+        location.pathname.includes("dashboard") || location.pathname.includes("view-course") ?
           null : <Footer />
       }
 

@@ -7,6 +7,7 @@ import CourseSlider from '../components/cors/CatalogPage/CourseSlider';
 import CourseCard from '../components/cors/CatalogPage/CourseCard';
 import CatalogCourseCardSkeleton from '../components/Skeletons/CatalogCourseCardSkeleton';
 import { SyncLoader } from "react-spinners"
+import { useDispatch } from 'react-redux';
 
 const Catalog = () => {
 
@@ -16,6 +17,7 @@ const Catalog = () => {
     const { category } = useParams();
     const [coursesType, setCoursesType] = useState("most-popular");
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
     // console.log("Current category : ", category)
 
     const getCategories = async () => {
@@ -27,7 +29,7 @@ const Catalog = () => {
     const getCategoryDetails = async () => {
         try {
             setLoading(true)
-            const res = await getCatalogPageData(categoryId);
+            const res = await getCatalogPageData(categoryId, dispatch);
             // console.log("res : ", res);        
             setLoading(false)
             setCatalogPageData(res);

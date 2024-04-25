@@ -1,9 +1,11 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiconnector";
 import { catalogData } from "../apis";
+import { setProgress } from "../../slices/loadingBarSlice";
 
-export const getCatalogPageData = async (categoryId) => {
+export const getCatalogPageData = async (categoryId, dispatch) => {
   // const toastId = toast.loading("Loading...");
+  dispatch(setProgress(40))
   let result = [];
 
   try {
@@ -20,7 +22,7 @@ export const getCatalogPageData = async (categoryId) => {
     if (!response?.data?.success) {
       throw new Error("Could not fetch category page");
     }
-
+    dispatch(setProgress(60))
     console.log("CATALOG PAGE API RESPONSE : ", response);
     result = response?.data?.data;
 
@@ -30,7 +32,7 @@ export const getCatalogPageData = async (categoryId) => {
     result = e?.response?.data;
     
   }
-
+  dispatch(setProgress(100))
   // toast.dismiss(toastId);
   return result;
 };

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ActionButton from "../../common/ActionButton"
 import { login } from "../../../services/operations/authAPI";
+import { setProgress } from "../../../slices/loadingBarSlice";
 
 const LoginForm = ({ title, description1, description2 }) => {
   const navigate = useNavigate();
@@ -97,7 +98,7 @@ const LoginForm = ({ title, description1, description2 }) => {
         {/* <div > */}
           <ActionButton
             onClick={() => {
-              // dispatch(setProgress(60));
+              dispatch(setProgress(60));
             }}
             type="submit"
             active

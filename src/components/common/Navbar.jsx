@@ -30,7 +30,7 @@ const Navbar = () => {
   const fetchSublinks = async () => {
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
-      setSubLinks(result?.data?.data);``
+      setSubLinks(result?.data?.data); ``
     } catch (e) {
       console.log("could not fetch categories : ", e);
     }
@@ -55,12 +55,12 @@ const Navbar = () => {
             {NavbarLinks.map((link, index) => {
               return link.title === "Catalog" ? (
                 <button
-                  className={`text-richblack-25 group hover:cursor-pointer relative flex items-center gap-2 ${location?.pathname?.includes("catalog")? "text-yellow-100" : "text-richblack-5"}`}
+                  className={`text-richblack-25 group hover:cursor-pointer relative flex items-center gap-2 ${location?.pathname?.includes("catalog") ? "text-yellow-100" : "text-richblack-5"}`}
                   key={index}
                 >
                   <p>{link.title}</p>
                   <MdOutlineKeyboardArrowDown />
-                  <div 
+                  <div
                     className="bg-richblack-5 text-richblack-900 absolute min-w-[250px] rounded-lg p-1 top-[120%] left-[100%] z-[5] translate-x-[-70%] translate-y-[0] scale-y-0 origin-top group-hover:scale-y-100 group-focus:scale-y-100 transition-all duration-300 group-hover:opacity-100 flex flex-col items-center"
                   >
                     {
@@ -128,7 +128,7 @@ const Navbar = () => {
           {NavbarLinks.map((link, index) => {
             return link.title === "Catalog" ? (
               <button
-                className={`text-richblack-5 w-full relative group hover:cursor-pointer flex flex-col items-center gap-2 ${location?.pathname?.includes("catalog")? "text-yellow-100" : "text-richblack-5"}`}
+                className={`text-richblack-5 w-full relative group hover:cursor-pointer flex flex-col items-center gap-2 ${location?.pathname?.includes("catalog") ? "text-yellow-100" : "text-richblack-5"}`}
                 key={index}
                 onClick={() => setSubNav(!subNav)}
               >
@@ -137,7 +137,7 @@ const Navbar = () => {
                   <MdOutlineKeyboardArrowDown className={`${subNav ? "rotate-[180deg] transition-rotate duration-300" : "rotate-[0deg] transition-rotate duration-300"}`} />
                 </div>
                 <div className={
-                  `absolute top-[100%] ${subNav ? "scale-y-100 visible" : "invisible scale-y-0"} transition-scale duration-100 origin-top w-10/12 px-3 flex flex-col bg-richblack-800 rounded-lg py-2 border border-richblack-600`
+                  `absolute top-[100%] ${subNav ? "scale-y-100 visible" : "invisible scale-y-0"} transition-scale duration-100 origin-top w-10/12 px-3 flex flex-col bg-richblack-800 rounded-lg py-2 border border-richblack-600 translate-y-3`
                 }
                 >
                   {
@@ -147,7 +147,7 @@ const Navbar = () => {
                       subLinks?.map((category, index) => (
                         <NavLink
                           to={`/catalog/${category.name}`}
-                          className="py-2 rounded-lg hover:bg-richblack-100 hover:text-richblack-900"
+                          className={`py-2 text-richblack-5 rounded-lg hover:bg-richblack-100 hover:text-richblack-900 ${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-300" : ""}`}
                           key={index}
                           onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}
                         >

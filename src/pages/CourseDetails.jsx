@@ -39,7 +39,7 @@ const CourseDetails = () => {
     const getFullCourseDetails = async () => {
         setLoading(true);
         try {
-            const res = await fetchCourseDetails(courseId);
+            const res = await fetchCourseDetails(courseId, dispatch);
             setCourseData(res);
             // console.log('full course details : ', res);
         } catch (e) {

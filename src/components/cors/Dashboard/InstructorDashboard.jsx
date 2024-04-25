@@ -6,7 +6,7 @@ import InstructorChart from './InstructorDashboard/InstructorChart';
 import { useNavigate } from 'react-router-dom';
 import CtaButton from "../../common/CtaButton"
 import { MdOutlineCurrencyRupee } from "react-icons/md";
-
+import { useDispatch } from 'react-redux';
 
 const InstructorDashboard = () => {
     const [instructorData, setInstructorData] = useState(null);
@@ -15,12 +15,12 @@ const InstructorDashboard = () => {
     const { token } = useSelector(state => state.auth);
     const { user } = useSelector(state => state.profile);
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const getCourseDataWithStats = async () => {
         setLoading(true);
-
-        const instructorApiData = await getInstructorData(token);
-        const result = await fetchInstructorCourses(token);
+        const instructorApiData = await getInstructorData(token, dispatch);
+        const result = await fetchInstructorCourses(token, dispatch);
 
         console.log("Instructor data : ", instructorApiData);
         console.log("instructor courses : ", result);

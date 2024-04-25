@@ -1,8 +1,8 @@
 import { toast } from "react-hot-toast";
-// import { setProgress } from "../../services/loadingBarSlice";
-// import { setLoading } from "../../slices/profileSlice";
 import { apiConnector } from "../apiconnector";
+import { setProgress } from "../../slices/loadingBarSlice";
 import { courseEndpoints } from "../../services/apis";
+import { useDispatch } from "react-redux";
 
 const {
   COURSE_DETAILS_API,
@@ -47,26 +47,26 @@ export const getAllCourses = async () => {
 
 export const fetchCourseDetails = async (courseId, dispatch) => {
   // const toastId = toast.loading("Loading...")
-  //   dispatch(setProgress(50));
+  dispatch(setProgress(40));
   let result = null;
   try {
     const response = await apiConnector("POST", COURSE_DETAILS_API, {
       courseId,
     });
-    console.log("COURSE_DETAILS_API API RESPONSE............", response.data);
-
+    console.log("COURSE_DETAILS_API RESPONSE............", response.data);
+    dispatch(setProgress(60));
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
     // console.log("result : ", response);
     result = response.data.data;
   } catch (error) {
-    console.log("COURSE_DETAILS_API API ERROR............", error);
+    console.log("COURSE_DETAILS_API ERROR............", error);
     result = error.response.data;
     // toast.error(error.response.data.message);
   }
   // toast.dismiss(toastId)
-  //   dispatch(setProgress(100));
+  dispatch(setProgress(100));
   //   dispatch(setLoading(false));
   return result;
 };
@@ -293,8 +293,10 @@ export const deleteSubSection = async (data, token) => {
 };
 
 // fetching all courses under a specific instructor
-export const fetchInstructorCourses = async (token) => {
+export const fetchInstructorCourses = async (token, dispatch) => {
   let result = [];
+  console.log("dispatch : ", dispatch);
+  dispatch(setProgress(40));
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector(
@@ -305,16 +307,19 @@ export const fetchInstructorCourses = async (token) => {
         Authorization: `Bearer ${token}`,
       }
     );
+
     console.log("INSTRUCTOR COURSES API RESPONSE............", response);
     if (!response?.data?.success) {
       throw new Error("Could Not Fetch Instructor Courses");
     }
+    dispatch(setProgress(60));
     result = response?.data?.data;
   } catch (error) {
     console.log("INSTRUCTOR COURSES API ERROR............", error);
     toast.error(error.message);
   }
   toast.dismiss(toastId);
+  dispatch(setProgress(100));
   return result;
 };
 
@@ -338,9 +343,10 @@ export const deleteCourse = async (data, token) => {
 };
 
 // get full details of a course
-export const getFullDetailsOfCourse = async (courseId, token) => {
+export const getFullDetailsOfCourse = async (courseId, token, dispatch) => {
   const toastId = toast.loading("Loading...");
   //   dispatch(setLoading(true));
+  dispatch(setProgress(40));
   let result = null;
   try {
     const response = await apiConnector(
@@ -354,7 +360,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
       }
     );
     console.log("COURSE_FULL_DETAILS_API API RESPONSE............", response);
-
+    dispatch(setProgress(60));
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
@@ -365,6 +371,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
   }
   toast.dismiss(toastId);
   //   dispatch(setLoading(false));
+  dispatch(setProgress(100));
   return result;
 };
 
@@ -450,7 +457,7 @@ export const addCourseToCategory = async (data, token) => {
 //search courses
 export const searchCourses = async (searchQuery, dispatch) => {
   // const toastId = toast.loading("Loading...")
-  //   dispatch(setProgress(50));
+  dispatch(setProgress(50));
   let result = null;
   try {
     const response = await apiConnector("POST", SEARCH_COURSES_API, {
@@ -466,7 +473,7 @@ export const searchCourses = async (searchQuery, dispatch) => {
     toast.error(error.message);
   }
   // toast.dismiss(toastId)
-  //   dispatch(setProgress(100));
+  dispatch(setProgress(100));
   return result;
 };
 

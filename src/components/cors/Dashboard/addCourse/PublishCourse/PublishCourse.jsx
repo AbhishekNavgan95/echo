@@ -5,6 +5,7 @@ import { setStep, resetCourseState } from "../../../../../slices/CourseSlice"
 import { editCourseStatus } from '../../../../../services/operations/courseDetailsAPI';
 import { COURSE_STATUS } from '../../../../../utils/constants';
 import toast from 'react-hot-toast';
+import ActionButton from '../../../../common/ActionButton';
 import { useNavigate } from 'react-router-dom';
 
 const PublishCourse = () => {
@@ -82,21 +83,20 @@ const PublishCourse = () => {
                         htmlFor="public">Make this course as Public?
                     </label>
                 </div>
-                <div className='self-end flex gap-3'>
-                    <button 
+                <div className='self-end flex gap-3 mt-3'>
+                    <ActionButton
                         disabled={loading}
                         type="button"
                         onClick={goBack}
-                        className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-richblack-600 hover:bg-richblack-700 focus:hover:bg-richblack-700 text-richblack-5 active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-2"
                     >
                         Back
-                    </button>
-                    <button
+                    </ActionButton>
+                    <ActionButton
                         disabled={loading}
-                        className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3"
+                        active
                     >
                         Save Changes
-                    </button>
+                    </ActionButton>
                 </div>
             </form>
         </div>

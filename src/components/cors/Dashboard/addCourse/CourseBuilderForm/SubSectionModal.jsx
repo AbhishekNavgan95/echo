@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import ActionButton from "../../../../common/ActionButton";
 import {
   createSubSection,
   updateSubSection,
@@ -209,11 +210,11 @@ const SubSectionModal = ({
               )}
 
             </div>
-              {!view && (
-                <div>
-                  <button className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-yellow-100 hover:bg-yellow-200 focus:hover:bg-yellow-200 text-black active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300 gap-3">{edit ? "Save Changes" : "Save"}</button>
-                </div>
-              )}
+            {!view && (
+              <div>
+                <ActionButton active >{edit ? "Save Changes" : "Save"}</ActionButton>
+              </div>
+            )}
           </form>
         </div>
       </div>
