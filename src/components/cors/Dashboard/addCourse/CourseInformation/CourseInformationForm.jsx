@@ -127,7 +127,7 @@ const CourseInformationForm = () => {
 
         // course tags
         if (currentValues.tag.toString() !== course.tag.toString()) {
-          // data.tag.forEach((tag) => formData.append("tag", tag));
+          console.log("data.tag : ", tag);
           formData.append("tag", data?.tag);
         } else {
           formData.append("tag", course?.tag);
@@ -151,7 +151,7 @@ const CourseInformationForm = () => {
 
         setLoading(true);
         const result = await editCourseDetails(formData, token);
-        // console.log("edit course detail result : ", result);
+        console.log("edit course detail result : ", result);
         if (result) {
           dispatch(setStep(2));
           setEditCourse(false);
@@ -284,7 +284,7 @@ const CourseInformationForm = () => {
             <TagInput
               label="Tags"
               name="tag"
-              placeholder="Input tag and press ,"
+              placeholder="Tags related to this course"
               register={register}
               errors={errors}
               setValue={setValue}

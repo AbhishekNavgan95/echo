@@ -16,10 +16,23 @@ const TagInput = ({ name, label, register, errors, setValue, placeholder }) => {
       // validate: (value) => value.length > 0
     });
     if (editCourse) {
+      console.log("already existing tags : ", course?.tag);
       setTagList(course?.tag?.split(","));
       setValue(name, course?.tag);
     }
-  }, [tagList]);
+  }, []);
+
+  const handleUpdateTag = () => {
+    if (tag) {
+      setTagList(
+        (prev) => [...prev, tag]
+      );
+      setValue(name, [...tagList, tag]);
+      setTag("");
+    } else {
+      return
+    }
+  }
 
   return (
     <div>
@@ -62,13 +75,7 @@ const TagInput = ({ name, label, register, errors, setValue, placeholder }) => {
         />
         <div
           className="px-3 text-2xl bg-richblack-800 cursor-pointer"
-          onClick={() => {
-            if (tag) {
-              setTagList([...tagList, tag]);
-              setValue(name, [...tagList]);
-              setTag("");
-            }
-          }}
+          onClick={handleUpdateTag}
         ><IoIosAdd /></div>
       </div>
       {errors[name] && (
