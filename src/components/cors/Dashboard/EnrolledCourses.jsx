@@ -1,5 +1,5 @@
 import React, { useDebugValue, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import { getUserCourses } from "../services/operations/profileAPI";
 import { SyncLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom"
@@ -11,10 +11,11 @@ const EnrolledCourses = () => {
   const token = useSelector((state) => state.auth.token);
   const [enrolledCourses, setEnrolledCourses] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const getEnrolledCourses = async () => {
     try {
-      const response = await getUserCourses(token);
+      const response = await getUserCourses(token, dispatch);
       setEnrolledCourses(response);
     } catch (e) {
       console.log("unable to fetch enrolled courses", e);

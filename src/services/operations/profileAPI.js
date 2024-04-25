@@ -136,6 +136,7 @@ export const updatePassword = async (token, formData, dispatch) => {
 
 // get user enrolled courses
 export async function getUserCourses(token, dispatch) {
+  dispatch(setProgress(40));
   const toastId = toast.loading("Loading...");
   let result = [];
   try {
@@ -151,6 +152,7 @@ export async function getUserCourses(token, dispatch) {
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
+    dispatch(setProgress(60));
     result = response.data.data;
     // toast.success("fetched all enrolled courses // remove from profileAPI.getUserCourses")
   } catch (error) {
