@@ -173,6 +173,7 @@ const SignupForm = ({
                   placeholder="password"
                   className="w-full py-3 px-3 md:text-xl bg-richblack-800 text-richblack-5 focus:outline-none "
                   type={showPass === true ? "text" : "password"}
+                  autoComplete=""
                   onChange={handleOnChange}
                   name="password"
                   value={FormData.password}
@@ -201,6 +202,7 @@ const SignupForm = ({
                   placeholder="cofirm password"
                   className="w-full py-3 px-3 md:text-xl bg-richblack-800 text-richblack-5 focus:outline-none "
                   type={showConfirmPass === true ? "text" : "password"}
+                  autoComplete=""
                   onChange={handleOnChange}
                   name="confirmPassword"
                   value={FormData.confirmPassword}

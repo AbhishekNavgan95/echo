@@ -5,7 +5,7 @@ import { timeline } from '../../../data/timeline'
 const TimeLineSection = () => {
 
     return (
-    <div className='my-10 lg:my-20 group'>
+    <div className='my-10 lg:my-20 '>
         <div className="flex flex-col-reverse md:flex-row items-center gap-10 nd:gap-2 justify-between">
             {/* timeline */}
             <div className="flex flex-col items-center lg:items-start gap-5 md:gap-10 w-full lg:w-2/5">
@@ -25,7 +25,7 @@ const TimeLineSection = () => {
             </div>
             {/* image */}
             <div className="flex flex-col w-11/12 lg:w-3/5 relative rounded-lg overflow-hidden md:overflow-visible md:rounded-none">
-                <div className='overflow-hidden md:rounded-lg'>
+                <div className='overflow-hidden md:rounded-lg group'>
                     <img className='w-full group-hover:scale-105 transition-scale delay-100 duration-300 ' src={TimelineImage} alt="" />
                 </div>
                 <div className='w-auto lg:w-3/4 md:absolute left-[50%] bottom-0 md:translate-x-[-50%] md:translate-y-[50%] flex justify-center  gap-2 lg:gap-4 bg-caribbeangreen-700 text-richblack-5 uppercase py-5 px-5 md:rounded-lg '>

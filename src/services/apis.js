@@ -47,7 +47,8 @@ export const courseEndpoints = {
   SEARCH_COURSES_API: BASE_URL + "/course/searchCourse",
   CREATE_CATEGORY_API: BASE_URL + "/course/createCategory",
   EDIT_COURSE_STATUS: BASE_URL + "/course/editStatus",
-  GET_CATEGORY_AND_COURSE_DETAILS: BASE_URL + "/course/getAllCategoryAndCourses"
+  GET_CATEGORY_AND_COURSE_DETAILS: BASE_URL + "/course/getAllCategoryAndCourses",
+  SEARCH_COURSE: BASE_URL + "/course/search"
 };
 
 // RATINGS AND REVIEWS

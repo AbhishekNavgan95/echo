@@ -12,6 +12,7 @@ const {
   makeCoursePublic,
   getInstructorCourses,
   deleteCourse,
+  searchCourse
 } = require("../controllers/Course")
 
 const {
@@ -78,8 +79,12 @@ router.post("/editStatus", auth, isInstructor, makeCoursePublic)
 
 // Get all Courses Under a Specific Instructor
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
+
 // Delete a Course
 router.delete("/deleteCourse", auth, isInstructor, deleteCourse)
+
+// search course
+router.post("/search", searchCourse);
 
 router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 

@@ -366,7 +366,7 @@ exports.getCourseDetails = async (req, res) => {
       })
       .populate({
         path: "category",
-        select: "name description"
+        select: "name description",
       })
       .populate("ratingAndReviews")
       .populate({
@@ -530,31 +530,31 @@ exports.getFullCourseDetails = async (req, res) => {
 
     // console.log("courseId", courseId);
 
-    if(!courseId || !userId) {
+    if (!courseId || !userId) {
       return res.status(400).json({
-        success:false,
-        message: "Course Id is required"
-      })
+        success: false,
+        message: "Course Id is required",
+      });
     }
 
-    const courseDetails = await Course.findById({_id :courseId})
-    .populate({
-      path: "instructor",
-      select: "firstName lastName email image",
-      populate: {
-        select: "contactNumber",
-        path: "additionalDetails",
-      },
-    })
-    .populate("category")
-    .populate("ratingAndReviews")
-    .populate({
-      path: "courseContent",
-      populate: {
-        path: "subSection",
-      },
-    })
-    .exec();
+    const courseDetails = await Course.findById({ _id: courseId })
+      .populate({
+        path: "instructor",
+        select: "firstName lastName email image",
+        populate: {
+          select: "contactNumber",
+          path: "additionalDetails",
+        },
+      })
+      .populate("category")
+      .populate("ratingAndReviews")
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
+      .exec();
 
     console.log("course Id : ", courseId);
     console.log("user Id : ", userId);
@@ -601,5 +601,38 @@ exports.getFullCourseDetails = async (req, res) => {
       success: false,
       message: error.message,
     });
+  }
+};
+
+exports.searchCourse = async (req, res) => {
+  try {
+    const { searchParam } = req.body;
+
+    const courses = await Course.find({
+      $or: [
+        {courseTitle : {$regex : searchParam , $options : "i"}},
+        // {courseDescription : {$regex : searchParam , $options : "i"}}, // gives lots of unnecessory courses by matching words from description
+        {tag : {$regex : searchParam , $options : "i"}},
+      ]
+    })
+    
+    if(!courses) {
+      return res.status(404).json({
+        success: false,
+        message: "No courses found"
+      })
+    }
+    
+    res.status(200).json({
+      success: true,
+      message: "Fetched Courses successfully",
+      data : courses
+    })
+  } catch(e) {
+    console.log("error : ", e);
+    res.status(500).json({
+      success: false,
+      message: "Could not find any courses"
+    })
   }
 };

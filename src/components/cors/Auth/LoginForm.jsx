@@ -71,6 +71,7 @@ const LoginForm = ({ title, description1, description2 }) => {
                 required
                 className="w-full py-3 px-3 md:text-xl bg-richblack-800 text-richblack-5  focus:outline-none"
                 type={showPass === true ? "text" : "password"}
+                autoComplete=""
                 placeholder="Enter passoword"
                 onChange={handleOnChange}
                 name="password"

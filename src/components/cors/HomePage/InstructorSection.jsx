@@ -6,9 +6,9 @@ import { MdArrowRight } from "react-icons/md";
 
 const InstructorSection = () => {
   return (
-    <div className="flex group flex-col lg:flex-row justify-between w-full text-richblack-5 gap-10">
+    <div className="flex  flex-col lg:flex-row justify-between w-full text-richblack-5 gap-10">
       <div className="w-11/12 mx-auto lg:w-1/2 relative">
-        <div className="overflow-hidden rounded-lg">
+        <div className="overflow-hidden rounded-lg group">
           <img src={Instructor} className="group-hover:scale-105 transition-scale duration-300 delay-100 w-full aspect-2/3 object-cover z-[2] relative" alt="" />
         </div>
         <div className="absolute z-[0] bg-richblue-500 blur-2xl inset-0"></div>
