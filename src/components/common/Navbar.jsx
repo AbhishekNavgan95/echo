@@ -139,9 +139,9 @@ const Navbar = () => {
                 );
               })}
               <div className="cursor-pointer" onClick={() => { setSearchBarActive(); setSearchActive(!searchActive) }}>
-                <span className="text-richblack-5 text-lg">
+                <button className="text-richblack-5 text-lg flex items-center justify-center px-2 py-1">
                   <FaSearch />
-                </span>
+                </button>
               </div>
             </div>
 
@@ -159,7 +159,7 @@ const Navbar = () => {
               )}
               {token !== null && <ProfileDropdown />}
               {user && user?.accountType === ACCOUNT_TYPE.STUDENT && (
-                <Link to="/dashboard/cart" onClick={() => dispatch(setProgress(100))} className="relative">
+                <Link to="/dashboard/cart" onClick={() => dispatch(setProgress(100))} className="relative px-2 py-1">
                   <FiShoppingBag />
                   {totalItems > 0 && <span className="absolute top-[50%] right-[-50%] text-xs font-bold bg-yellow-100 rounded-full px-2 text-richblack-900">{totalItems}</span>}
                 </Link>
@@ -168,13 +168,13 @@ const Navbar = () => {
 
             <div className="flex gap-3 items-center md:hidden">
               {/* mobile nav search button */}
-              <div onClick={() => {
+              <button onClick={() => {
                 setSearchBarActive();
                 setSearchActive(!searchActive);
                 setNavOpen(false);
               }} className="text-richblack-5 text-lg ">
                 <FaSearch />
-              </div>
+              </button>
               {/* nav button */}
               <div className="md:hidden items-center cursor-pointer text-richblack-5 text-3xl" onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}>
                 {
@@ -320,19 +320,22 @@ const Navbar = () => {
               {
                 coursesFound.length > 0 &&
                 coursesFound.map((course) => (
-                  <p
+                  <Link
+                  to={`courses/${course?._id}`}
+                      tabIndex="0"
+                    className="bg-richblack-5 focus:bg-richblack-200 hover:bg-richblack-200 transition-all duration-300 outline-none"
                     onClick={() => {
-                      navigate(`courses/${course?._id}`);
+                      // navigate();
                       setCoursesFound([]);
                       setSearchBarActive();
                       setSearchActive(!searchActive);
-                    }} key={course?._id} className=""
+                    }} key={course?._id}  
                   >
-                    <span className=" py-2  px-3 flex items-center justify-start gap-3 border border-richblack-600 hover:bg-richblack-100 transition-all duration-300 cursor-pointer">
+                    <span className=" py-2  px-3 flex items-center justify-start gap-3 border">
                       <GoDash />
                       <p className="line-clamp-1">{course?.courseTitle}</p>
                     </span>
-                  </p>))
+                  </Link>))
               }
             </div>
           </div>
