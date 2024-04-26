@@ -9,10 +9,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdArrowRight } from "react-icons/md";
 import React from "react";
 import TimeLineSection from "../components/cors/HomePage/TimeLineSection";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReviewSlider from "../components/common/ReviewSlider";
+import { setProgress } from "../slices/loadingBarSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const user = useSelector((state) => state.profile.user);
   const navigate = useNavigate()
@@ -30,7 +32,10 @@ const Home = () => {
                 <div className="text-3xl xl:text-4xl border-b border-richblack-600 pb-6 flex flex-col md:flex-row gap-3">
                   <p>Welcome Back</p> <HighlightText text={user.firstName + " " + user.lastName} />
                 </div>
-                <div onClick={() => navigate("/dashboard/my-profile")} className="mx-auto group cursor-pointer rounded-full bg-richblack-700 font-bold text-richblack-200 transition-all duration-200 active:scale-95 shadow-sm shadow-richblack-300 border border-richblack-600">
+                <div onClick={() => {
+                  navigate("/dashboard/my-profile");
+                  dispatch(setProgress(100));
+                }} className="mx-auto group cursor-pointer rounded-full bg-richblack-700 font-bold text-richblack-200 transition-all duration-200 active:scale-95 shadow-sm shadow-richblack-300 border border-richblack-600">
                   <div className="flex items-center gap-3 rounded-full py-1 transition-all duration-200 text-lg group-hover:bg-richblack-800 px-5">
                     <p>Go to Dashboard</p>
                     <MdArrowRight className="group-hover:translate-x-1 transition-all duration-300" />
@@ -210,7 +215,7 @@ const Home = () => {
             </div>
             <div className="py-10 flex flex-col gap-10">
               <h2 className="text-center text-richblack-5 text-3xl xl:text-4xl  font-bold">
-                Reviews from other learners
+                Reviews from other <HighlightText text={"learners"} />
               </h2>
               <div>
                 <ReviewSlider />

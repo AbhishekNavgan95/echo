@@ -3,6 +3,7 @@ import { AiOutlineCaretDown } from "react-icons/ai";
 import { VscDashboard, VscSignOut } from "react-icons/vsc";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { setProgress } from "../../../slices/loadingBarSlice";
 
 // import useOnClickOutside from "../../../hooks/useOnClickOutside"
 import { logout } from "../../../services/operations/authAPI";
@@ -23,7 +24,9 @@ export default function ProfileDropdown() {
   return (
     <button
       className="relative rounded-full pr-3"
-      onClick={() => setOpen(!open)}
+      onClick={() => {
+        setOpen(!open);
+      }}
     >
       <div className="flex items-center gap-x-1">
         <img
@@ -35,7 +38,10 @@ export default function ProfileDropdown() {
       </div>
       {open && (
         <div
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(setProgress(100))
+          }}
           className="absolute left-[50%] top-[150%] translate-x-[-50%] z-[11] overflow-hidden rounded-md border border-richblack-600 bg-richblack-800"
           ref={ref}
         >

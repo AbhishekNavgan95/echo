@@ -36,7 +36,7 @@ const EnrolledCourses = () => {
     <div>
       <section className="flex flex-col w-full px-5 gap-10 justify-center mx-auto py-10  xl:py-20">
         <h2 className="text-3xl xl:text-4xl">My Courses</h2>
-        <div className="flex w-full flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-800 p-5 lg:p-10 rounded-lg">
+        <div className="flex w-full flex-col xl:flex-row gap-5 justify-between items-center bg-richblack-900 border border-richblack-600 p-5 lg:p-10 rounded-lg">
           {!enrolledCourses ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 w-full 50 gap-5 ">
               <EnrolledCourseSkeleton count={6} />
@@ -48,7 +48,7 @@ const EnrolledCourses = () => {
                 {enrolledCourses?.courses?.map((course, index) => (
                   <div key={index}
                     onClick={() => navigate(`/view-course/${course?._id}/section/${course?.courseContent?.[0]?._id}/sub-section/${course?.courseContent?.[0]?.subSection?.[0]?._id}`)}
-                    className="flex cursor-pointer hover:border-richblack-600 transition-all duration-300 justify-between flex-col items-start gap-1 p-3 border group border-transparent bg-richblack-900 rounded-lg shadow-xs shadow-richblack-300">
+                    className="flex cursor-pointer border-richblack-600 transition-all duration-300 justify-between flex-col items-start gap-1 p-3 border group bg-richblack-800 rounded-lg shadow-xs shadow-richblack-300">
                     <div className="flex flex-col gap-3 items-start w-full">
                       <div className="overflow-hidden">
                         <img src={course.thumbnail} className="min-w-full aspect-video object-cover rounded-sm group-hover:scale-105 transition-scale duration-300" alt="" />

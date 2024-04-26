@@ -14,6 +14,7 @@ import Modal from "./Modal";
 import { logout } from "../../services/operations/authAPI";
 import { IoClose } from "react-icons/io5";
 import { ACCOUNT_TYPE } from "../../utils/constants";
+import { setProgress } from "../../slices/loadingBarSlice";
 
 const Navbar = () => {
   const token = useSelector((state) => state.auth.token);
@@ -46,7 +47,7 @@ const Navbar = () => {
         <div className="flex max-w-maxContent mx-auto justify-between px-5 items-center relative z-[10]">
           {/* logo */}
 
-          <Link to={"/"} className="">
+          <Link to={"/"} onClick={() => dispatch(setProgress(100))} className="">
             <img className="max-w-[5rem]" src={logo} alt="" />
           </Link>
 
@@ -69,16 +70,17 @@ const Navbar = () => {
                         : subLinks.map((category, index) => (
                           <NavLink
                             to={`/catalog/${category.name}`}
-                            className="relative z-[5] rounded-lg transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center"
+                            className={`relative z-[5] rounded-lg transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center ${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-100 " : ""}`}
                             key={index}
                           >
-                            <p className="text-nowrap">{category.name}</p>
+                            <p className={`text-nowrap ` }>{category.name}</p>
                           </NavLink>
                         ))}
                   </div>
                 </button>
               ) : (
                 <NavLink
+                  onClick={() => dispatch(setProgress(100))}
                   className={({ isActive }) =>
                     isActive ? "text-yellow-100" : "text-richblack-25"
                   }
@@ -105,7 +107,7 @@ const Navbar = () => {
             )}
             {token !== null && <ProfileDropdown />}
             {user && user?.accountType === ACCOUNT_TYPE.STUDENT && (
-              <Link to="/dashboard/cart" className="relative">
+              <Link to="/dashboard/cart" onClick={() => dispatch(setProgress(100))} className="relative">
                 <FiShoppingBag />
                 {totalItems > 0 && <span className="absolute top-[50%] right-[-50%] text-xs font-bold bg-yellow-100 rounded-full px-2 text-richblack-900">{totalItems}</span>}
               </Link>
@@ -137,7 +139,7 @@ const Navbar = () => {
                   <MdOutlineKeyboardArrowDown className={`${subNav ? "rotate-[180deg] transition-rotate duration-300" : "rotate-[0deg] transition-rotate duration-300"}`} />
                 </div>
                 <div className={
-                  `absolute top-[100%] ${subNav ? "scale-y-100 visible" : "invisible scale-y-0"} transition-scale duration-100 origin-top w-10/12 px-3 flex flex-col bg-richblack-800 rounded-lg py-2 border border-richblack-600 translate-y-3`
+                  `absolute text-lg top-[100%] ${subNav ? "scale-y-100 visible" : "invisible scale-y-0"} transition-scale duration-100 origin-top w-10/12 px-3 flex flex-col bg-richblack-900 rounded-lg py-2 border border-richblack-600 translate-y-3`
                 }
                 >
                   {
@@ -147,7 +149,7 @@ const Navbar = () => {
                       subLinks?.map((category, index) => (
                         <NavLink
                           to={`/catalog/${category.name}`}
-                          className={`py-2 text-richblack-5 rounded-lg hover:bg-richblack-100 hover:text-richblack-900 ${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-300" : ""}`}
+                          className={`py-2 text-richblack-5 rounded-lg hover:bg-richblack-100 hover:text-richblack-900 ${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-800" : ""}`}
                           key={index}
                           onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}
                         >
@@ -163,7 +165,7 @@ const Navbar = () => {
                 }
                 key={index}
                 to={link?.path}
-                onClick={() => setNavOpen(false)}
+                onClick={() => { setNavOpen(false); dispatch(setProgress(100)) }}
               >
                 <p>{link.title}</p>
               </NavLink>
@@ -177,6 +179,7 @@ const Navbar = () => {
                 to={"/dashboard/my-profile"}
                 onClick={() => {
                   setNavOpen(!navOpen);
+                  dispatch(setProgress(100))
                 }}
                 className={({ isActive }) =>
                   isActive ? "text-yellow-100" : "text-richblack-25"

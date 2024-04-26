@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ReactStars from 'react-rating-stars-component';
 import ActionButton from '../../common/ActionButton';
 import { createRating } from '../../../services/operations/courseDetailsAPI';
@@ -11,6 +11,7 @@ const ReviewModal = ({ reviewModal, setReviewModal }) => {
   const { user } = useSelector(state => state.profile);
   const { token } = useSelector(state => state.auth);
   const {courseEntireData} = useSelector(state => state.viewCourse)
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -26,7 +27,7 @@ const ReviewModal = ({ reviewModal, setReviewModal }) => {
   }, [])
 
   const onSubmit = async (data) => {
-    await createRating({ courseId:courseEntireData._id, rating: data?.courseRating, review: data.reviewField }, token)
+    await createRating({ courseId:courseEntireData._id, rating: data?.courseRating, review: data.reviewField }, token, dispatch)
     setReviewModal(false);
   }
 
@@ -48,7 +49,7 @@ const ReviewModal = ({ reviewModal, setReviewModal }) => {
         <div>
           <div className='flex items-center justify-center flex-col gap-3 pt-3'>
             <img src={user?.image} className='rounded-full w-[100px] aspect-square border border-richblack-600 object-cover' alt="" />
-            <div className='text-xl flex flex-col gap-1'>
+            <div className='text-xl flex items-center flex-col gap-1'>
               <p>{user?.firstName} {user?.lastName}</p>
               <p className='text-lg text-richblack-300'>Posting Publically</p>
             </div>

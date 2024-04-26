@@ -404,7 +404,8 @@ export const markLectureAsComplete = async (data, token) => {
 };
 
 // create a rating for course
-export const createRating = async (data, token) => {
+export const createRating = async (data, token, dispatch) => {
+  dispatch(setProgress(40));
   const toastId = toast.loading("Loading...");
   let success = false;
   try {
@@ -415,6 +416,7 @@ export const createRating = async (data, token) => {
     if (!response?.data?.success) {
       throw new Error("Could Not Create Rating");
     }
+    dispatch(setProgress(60));
     toast.success("Rating Posted");
     success = true;
   } catch (error) {
@@ -423,6 +425,7 @@ export const createRating = async (data, token) => {
     // toast.error(error?.response?.data?.message);
   }
   toast.dismiss(toastId);
+  dispatch(setProgress(100));
   return success;
 };
 
@@ -478,7 +481,8 @@ export const searchCourses = async (searchQuery, dispatch) => {
 };
 
 //create category
-export const createCategory = async (data, token) => {
+export const createCategory = async (data, token, dispatch) => {
+  dispatch(setProgress(40));
   const toastId = toast.loading("Loading...");
   let success = false;
   let response = null;
@@ -494,6 +498,7 @@ export const createCategory = async (data, token) => {
       console.log(response?.data?.error);
       throw new Error("Could Not Create Category");
     }
+    dispatch(setProgress(60));
 
     toast.success("Category Created");
     success = true;
@@ -504,10 +509,12 @@ export const createCategory = async (data, token) => {
   }
 
   toast.dismiss(toastId);
+  dispatch(setProgress(100));
   return success;
 };
 
-export const getCategoryAndCourseDetails = async (token) => {
+export const getCategoryAndCourseDetails = async (token, dispatch) => {
+  dispatch(setProgress(40));
   const toastId = toast.loading("Loading...");
   let data = [];
 
@@ -528,6 +535,7 @@ export const getCategoryAndCourseDetails = async (token) => {
     if (!response?.data?.success) {
       throw new Error("Could Not Fetch Category and courses");
     }
+    dispatch(setProgress(60));
 
     data = response?.data?.data;
   } catch (e) {
@@ -536,5 +544,6 @@ export const getCategoryAndCourseDetails = async (token) => {
   }
 
   toast.dismiss(toastId);
+  dispatch(setProgress(100));
   return data;
 };

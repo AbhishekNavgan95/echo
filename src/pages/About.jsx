@@ -175,7 +175,7 @@ const About = () => {
         <div className="max-w-maxContent mx-auto px-def">
           <div className="pb-10 flex flex-col gap-10">
             <h2 className="text-center text-richblack-5 text-3xl xl:text-4xl  font-bold">
-              Reviews from other learners
+              Reviews from other <HighlightText text="learners" />
             </h2>
             <div>
               <ReviewSlider />

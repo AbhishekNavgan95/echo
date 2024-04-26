@@ -40,6 +40,7 @@ import { ACCOUNT_TYPE } from "./utils/constants";
 import AdminDashboard from "./components/cors/Dashboard/AdminDashboard";
 import AddCategory from "./components/cors/Dashboard/AddCategory";
 import { setProgress } from "./slices/loadingBarSlice";
+import { useEffect } from "react";
 
 function App() {
   const user = useSelector((state) => state.profile.user);

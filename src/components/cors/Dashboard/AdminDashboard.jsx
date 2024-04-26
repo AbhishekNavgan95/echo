@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getCategoryAndCourseDetails } from '../../../services/operations/courseDetailsAPI';
 import { GiCardKingClubs } from 'react-icons/gi';
@@ -12,10 +12,11 @@ const AdminDashboard = () => {
     const [categoryData, setCategoryData] = useState([]);
     const { token } = useSelector(state => state.auth);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const fetchCategoryData = async (token) => {
         setLoading(true);
-        const res = await getCategoryAndCourseDetails(token);
+        const res = await getCategoryAndCourseDetails(token, dispatch);
         setCategoryData(res);
         setLoading(false);
     }

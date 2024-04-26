@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ActionButton from "../../common/ActionButton"
 import { createCategory } from '../../../services/operations/courseDetailsAPI';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AdminInstruction from './createCategory/AdminInstruction';
 
 const AddCategory = () => {
@@ -12,6 +12,7 @@ const AddCategory = () => {
     description: ""
   });
   const { token } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
   const changeHandler = (e) => {
     setFormData({
@@ -26,7 +27,7 @@ const AddCategory = () => {
       name: formData.CategoryName,
       description: formData.description
     }
-    const res = await createCategory(data, token);
+    const res = await createCategory(data, token, dispatch);
     if (res) {
       setFormData({
         CategoryName: "",

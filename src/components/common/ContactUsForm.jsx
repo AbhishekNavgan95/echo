@@ -5,10 +5,14 @@ import { contactusEndpoint } from "../../services/apis";
 import cuntryCodes from "../../data/countrycode.json";
 import ActionButton from "./ActionButton";
 import toast from "react-hot-toast";
+import { setProgress } from "../../slices/loadingBarSlice";
+import { useDispatch } from "react-redux";
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const {
+    setValue,
     register,
     handleSubmit,
     reset,
@@ -28,16 +32,20 @@ const ContactUsForm = () => {
   }, [isSubmitSuccessfull, reset]);
 
   const submitContactForm = async (data) => {
+    dispatch(setProgress(40))
     const toastId = toast.loading("Loading...")
     try {
       setLoading(true);
       const response = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
+      dispatch(setProgress(60))
       setLoading(false);
-      toast.success("Query Submitted Successfully")
+      toast.success("Submitted Successfully")
+      reset();
     } catch (e) {
       setLoading(false);
-      toast.success("Something went wrong")
+      toast.error("Something went wrong")
     }
+    dispatch(setProgress(100))
     toast.dismiss(toastId);
   };
 
@@ -110,15 +118,16 @@ const ContactUsForm = () => {
               id="phone"
               placeholder="123 456 7890"
               className="md:text-xl w-full bg-richblack-800 py-3 px-4 shadow-sm shadow-richblack-300 rounded-lg focus:outline-none"
-              {...register("phone", {required: true,
-                maxLength: {value: 10, message: "Invalid Phone Number!"},
-                minLength: {value: 8, message: "Invalid Phone Number"}
-            })}
+              {...register("phone", {
+                required: true,
+                maxLength: { value: 10, message: "Invalid Phone Number!" },
+                minLength: { value: 8, message: "Invalid Phone Number" }
+              })}
             />
             {
-                errors.phone && (
-                    <span>{errors?.phone?.message}</span>
-                )
+              errors.phone && (
+                <span>{errors?.phone?.message}</span>
+              )
             }
           </div>
         </div>
@@ -142,12 +151,12 @@ const ContactUsForm = () => {
         </div>
 
         <ActionButton
-        disabled={loading}
+          disabled={loading}
           active
           type="submit"
         >
           {
-            loading? "Loading..." : "Send message"
+            loading ? "Loading..." : "Send message"
           }
         </ActionButton>
       </div>
