@@ -46,7 +46,6 @@ const Navbar = () => {
   };
 
   const setSearchBarActive = () => {
-    searchBarRef?.current?.focus();
     if (searchActive) {
       setCoursesFound([])
       setSearchVal("");
@@ -138,7 +137,13 @@ const Navbar = () => {
                   </NavLink>
                 );
               })}
-              <div className="cursor-pointer" onClick={() => { setSearchBarActive(); setSearchActive(!searchActive) }}>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  searchBarRef?.current?.focus();
+                  setSearchActive(true)
+                }}
+              >
                 <button className="text-richblack-5 text-lg flex items-center justify-center px-2 py-1">
                   <FaSearch />
                 </button>
@@ -169,9 +174,10 @@ const Navbar = () => {
             <div className="flex gap-3 items-center md:hidden">
               {/* mobile nav search button */}
               <button onClick={() => {
-                setSearchBarActive();
-                setSearchActive(!searchActive);
+                searchBarRef?.current?.focus();
+                setSearchActive(true)
                 setNavOpen(false);
+                setSubNav(false)
               }} className="text-richblack-5 text-lg ">
                 <FaSearch />
               </button>
@@ -288,8 +294,8 @@ const Navbar = () => {
         </div>
 
         {/* search bar */}
-        <div className={`bg-richblack-900 py-3 md:py-5 fixed w-full top-0 z-[10] transition-all border-b border-richblack-600 duration-100 ${!searchActive ? "translate-y-[-102%]" : "translate-y-0"}`}>
-          
+        <div className={`bg-richblack-900 py-3 md:py-5 fixed w-full top-0 z-[10] transition-all border-b border-richblack-600 duration-100 ${searchActive ? "translate-y-0" : "translate-y-[-102%] "}`}>
+
           {/* input */}
           <div className={`max-w-maxContent relative inset-0 z-[11] text-richblack-300 flex flex-col gap-3 mx-auto w-full`}>
             <div className="flex items-center justify-between w-full gap-5 px-3">
@@ -321,15 +327,13 @@ const Navbar = () => {
                 coursesFound.length > 0 &&
                 coursesFound.map((course) => (
                   <Link
-                  to={`courses/${course?._id}`}
-                      tabIndex="0"
+                    to={`courses/${course?._id}`}
+                    tabIndex="0"
                     className="bg-richblack-5 focus:bg-richblack-200 hover:bg-richblack-200 transition-all duration-300 outline-none"
                     onClick={() => {
-                      // navigate();
-                      setCoursesFound([]);
                       setSearchBarActive();
-                      setSearchActive(!searchActive);
-                    }} key={course?._id}  
+                      setSearchActive(false);
+                    }} key={course?._id}
                   >
                     <span className=" py-2  px-3 flex items-center justify-start gap-3 border">
                       <GoDash />
