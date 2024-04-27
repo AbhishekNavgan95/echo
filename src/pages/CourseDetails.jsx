@@ -18,6 +18,7 @@ import { addToCart } from "../slices/CartSlice"
 import Accordian from '../components/cors/courseDetails/Accordian';
 import { buyCourse } from '../services/operations/StudentFeaturesAPI'
 import { SyncLoader } from 'react-spinners'
+import ReviewSlider from "../components/common/ReviewSlider"
 
 const CourseDetails = () => {
 
@@ -33,7 +34,7 @@ const CourseDetails = () => {
     const [avgReviewCount, setAvgReviewCount] = useState(0)
     const [totalNumberOflectures, setTotalNumberOfLectures] = useState(0);
     const [confirmationModal, setConfirmationModal] = useState();
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(true);
     const [tags, setTags] = useState([]);
 
     const getFullCourseDetails = async () => {
@@ -41,7 +42,6 @@ const CourseDetails = () => {
         try {
             const res = await fetchCourseDetails(courseId, dispatch);
             setCourseData(res);
-            // console.log('full course details : ', res);
         } catch (e) {
             navigate("/error")
             console.log("COULD NOT FETCH COURSE DETAILS!", e);
@@ -114,7 +114,7 @@ const CourseDetails = () => {
     return (
         <div className=" text-richblack-5">
             {
-                !courseData
+                (!courseData && loading)
                     ? <div className='text-white flex items-center justify-center min-h-[calc(100vh-6rem)]'>
                         <SyncLoader color="#E7C009" />
                     </div>
@@ -209,7 +209,11 @@ const CourseDetails = () => {
                                         </div>
                                     </div>
                                 </div>
-
+                            </section>
+                        </div>
+                        <div className='w-full py-5 bg-richblack-900 text-richblack-5'>
+                            <section className=" py-5 px-3 relative text-richblack-5 max-w-maxContent mx-auto flex flex-col gap-5">
+                                <ReviewSlider reviewArray={courseData?.ratingAndReviews} />
                             </section>
                         </div>
                         {

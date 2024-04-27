@@ -368,16 +368,21 @@ exports.getCourseDetails = async (req, res) => {
         path: "category",
         select: "name description",
       })
-      .populate("ratingAndReviews")
+      .populate({
+        path: "ratingAndReviews",
+        populate: {
+          path: "user",
+          select: "firstName image lastName"
+        }
+      })
       .populate({
         path: "courseContent",
         populate: {
           path: "subSection",
+          select: "description duraiton title"
         },
       })
       .exec();
-
-    // console.log("course details : ", courseDetails);
 
     // validation
     if (!courseDetails) {
@@ -555,9 +560,6 @@ exports.getFullCourseDetails = async (req, res) => {
         },
       })
       .exec();
-
-    console.log("course Id : ", courseId);
-    console.log("user Id : ", userId);
 
     const courseProgressCount = await CourseProgress.findOne({
       courseId: courseId,

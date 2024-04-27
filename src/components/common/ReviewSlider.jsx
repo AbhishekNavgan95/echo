@@ -9,9 +9,10 @@ import { apiConnector } from "../../services/apiconnector";
 import { FaSearch } from "react-icons/fa";
 import { ratingsEndpoints } from '../../services/apis'
 
-const ReviewSlider = () => {
+const ReviewSlider = ({reviewArray}) => {
 
     const [reviews, setReviews] = useState([]);
+
     const allReviews = async () => {
         const res = await apiConnector("GET", ratingsEndpoints.REVIEWS_DETAILS_API)
         // console.log("response : ", res);
@@ -21,8 +22,11 @@ const ReviewSlider = () => {
     }
 
     useEffect(() => {
-        allReviews();
-        // console.log("allReviews : ", reviews);
+        if(!reviewArray) {
+            allReviews();
+        } else {
+            setReviews([...reviewArray])
+        }
     }, [])
 
     return (

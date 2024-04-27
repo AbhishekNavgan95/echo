@@ -57,14 +57,11 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    console.log("searchval : ", searchVal);
-
     if (searchVal) {
       const id = setTimeout(async () => {
 
         try {
           const res = await apiConnector("POST", courseEndpoints.SEARCH_COURSE, { searchParam: searchVal });
-          console.log("res : ", res);
           setCoursesFound(res?.data?.data);
         } catch (e) {
           console.log("error : ", e);
