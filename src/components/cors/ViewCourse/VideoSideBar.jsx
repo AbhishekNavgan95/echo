@@ -5,9 +5,11 @@ import ActionButton from "../../common/ActionButton"
 import { MdArrowBack } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoCheckmarkDone } from "react-icons/io5";
+import { MdOutlineClose } from "react-icons/md";
+import CtaButton from '../../common/CtaButton';
 
 
-const VideoSideBar = ({ reviewModal, setReviewModal }) => {
+const VideoSideBar = ({ reviewModal, setReviewModal, sideBarActive, setSideBarActive }) => {
 
   const [activeStatus, setActiveStatus] = useState("");
   const [videoBarActive, setVideoBarActive] = useState("");
@@ -44,15 +46,16 @@ const VideoSideBar = ({ reviewModal, setReviewModal }) => {
 
 
   return (
-    <div className='bg-richblack-900 py-5 px-5 w-[320px] xl:w-[500px] max-w-[500px] h-full z-[3] shadow-richblack-300 transition-all duration-300 absolute translate-x-[-95%] hover:translate-x-0 active:translate-x-0 border-r border-richblack-600 xl:border-none xl:static xl:translate-x-0'>
-      <div className='flex flex-col gap-3'>
-        <div className='flex justify-between gap-3 items-center '>
-          <span className='text-xl border-2 p-2 rounded-full hover:bg-richblack-5 hover:text-richblack-900 transition-all duration-300 cursor-pointer' onClick={() => navigate("/dashboard/enrolled-courses")}>
-            <MdArrowBack />
-          </span>
-          <div>
-            <ActionButton active onClick={() => setReviewModal(true)} >Add review</ActionButton>
-          </div>
+    <div className={`bg-richblack-900 py-5 px-5 w-[320px] md:w-[500px] max-w-[500px] h-full z-[3] shadow-richblack-300 transition-all duration-300 absolute border-r border-richblack-600 ${sideBarActive ? "translate-x-0" : "translate-x-[-100%]"}`}>
+      <div className='flex flex-col w-full gap-3'>
+        <span className='w-full mb-3'>
+          <p onClick={() => navigate("/dashboard/enrolled-courses")} className='text-yellow-100 hover:text-yellow-200 transition-all duration-300 text-xl md:text-2xl cursor-pointer flex gap-3 items-center' active ><MdArrowBack /> Back to all courses</p>
+        </span>
+        <div className='flex justify-between gap-3 items-center flex-row-reverse'>
+          <button onClick={() => setSideBarActive(false)} className='text-xl border-2 p-2 rounded-full hover:bg-richblack-5 hover:text-richblack-900 transition-all duration-300 cursor-pointer'>
+            <span className='text-2xl'><MdArrowBack /></span>
+          </button>
+          <ActionButton active onClick={() => setReviewModal(true)} >Add review</ActionButton>
         </div>
 
         <div className='flex flex-col gap-1 my-3'>
@@ -111,7 +114,6 @@ const VideoSideBar = ({ reviewModal, setReviewModal }) => {
           ))
         }
       </div>
-
     </div>
   )
 }

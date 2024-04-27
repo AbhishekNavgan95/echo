@@ -36,7 +36,7 @@ const ReviewModal = ({ reviewModal, setReviewModal }) => {
   }
 
   return (
-    <div className='absolute z-10 top-0 w-full bg-opec text-richblack-5 flex items-center justify-center h-full'>
+    <div className='fixed z-10 top-0 w-full bg-opec text-richblack-5 flex items-center justify-center h-full'>
       <div className='flex flex-col gap-3 bg-richblack-800 p-5 rounded-lg mx-5'>
         <div className='text-xl flex justify-between'>
           <p className=''>Add Review</p>

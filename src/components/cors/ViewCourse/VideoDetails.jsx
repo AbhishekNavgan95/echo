@@ -1,12 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useOutletContext, useParams } from 'react-router-dom'
 import { markLectureAsComplete } from '../../../services/operations/courseDetailsAPI';
 import { setCompletedLectures } from '../../../slices/viewCourseSlice';
 import ReactPlayer from 'react-player'
 import ActionButton from '../../common/ActionButton';
+import { HiMenuAlt2 } from "react-icons/hi";
 
-const VideoDetails = () => {
+const VideoDetails = ({sideBarActive, setSideBarActive}) => {
+
+  const context = useOutletContext();
+
 
   const { courseId, sectionId, subSectionId } = useParams();
   const navigate = useNavigate();
@@ -153,7 +157,15 @@ const VideoDetails = () => {
         !videoData
           ? <div className='text-center text-xl'>No data found</div>
           : <div className='w-full h-full flex flex-col gap-3'>
-            <div className='flex gap-3 justify-end'>
+            <div className='flex gap-3  justify-between items-center text-2xl mb-5'>
+              <button onClick={() => context.setSideBarActive(true)} className='flex items-center gap-3 hover:gap-5 transition-all duration-300'>
+                <span className='text-yellow-100 hover:text-yellow-200 transition-all duration-300'>
+                <HiMenuAlt2 />
+                </span>
+                <span className='hidden md:block'>
+                  {courseEntireData?.courseTitle}
+                </span>
+              </button>
               {
                 !completedLectures?.includes(subSectionId) &&
 

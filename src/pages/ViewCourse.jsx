@@ -15,6 +15,7 @@ const ViewCourse = () => {
     const [loading, setLoading] = useState(true);
     const [reviewModal, setReviewModal] = useState();
     const { courseId } = useParams();
+    const [sideBarActive,setSideBarActive] = useState(true);
     const dispatch = useDispatch();
 
     const setCourseSpecificDetails = async () => {
@@ -42,9 +43,9 @@ const ViewCourse = () => {
             {
                 !loading ?
                     <div className=' flex'>
-                        <VideoSideBar reviewModal={reviewModal} setReviewModal={setReviewModal} />
+                        <VideoSideBar setSideBarActive={setSideBarActive} sideBarActive={sideBarActive} reviewModal={reviewModal} setReviewModal={setReviewModal} />
                         <div className='w-full min-h-screen px-5 py-5 xl:px-24 xl:py-10 border-l border-richblack-600 bg-richblack-800 flex items-start'>
-                            <Outlet />
+                            <Outlet context={{sideBarActive, setSideBarActive}}/>
                         </div>
                     </div>
                     : <div className='flex flex-col min-h-screen items-center justify-center'>
