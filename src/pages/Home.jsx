@@ -175,11 +175,11 @@ const Home = () => {
         <div className="max-w-maxContent mx-auto my-0 lg:mt-32 w-11/12">
           <div className="lg:py-5 flex flex-col justify-between items-center">
             <div className="flex items-center justify-center gap-5">
-              <CtaButton active="true">
+              <CtaButton linkTo={"/about"} active="true">
                 Explore full catalog
                 <MdArrowRight />
               </CtaButton>
-              <CtaButton active={false}>Learn more</CtaButton>
+              <CtaButton linkTo={"/about"} active={false}>Learn more</CtaButton>
             </div>
           </div>
 
@@ -195,7 +195,7 @@ const Home = () => {
                 The modern Echo is the dictates its our terms, Today, to be a
                 compititive specialist requires more than professional skills.
               </p>
-              <CtaButton active="true">Learn more <MdArrowRight /></CtaButton>
+              <CtaButton linkTo={"/about"} active="true">Learn more <MdArrowRight /></CtaButton>
             </div>
           </div>
 

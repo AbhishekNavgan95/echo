@@ -332,7 +332,7 @@ const Navbar = () => {
                     <Link
                       to={`courses/${course?._id}`}
                       tabIndex="0"
-                      className="transition-all duration-300 px-3 outline-none flex items-start gap-3 hover:gap-5 hover:text-yellow-200 py-2"
+                      className="transition-all focus:text-yellow-200 duration-300 px-3 outline-none flex items-start gap-3 hover:gap-5 focus:gap-5 hover:text-yellow-200 py-2"
                       onClick={() => {
                         setSearchBarActive();
                         setSearchActive(false);

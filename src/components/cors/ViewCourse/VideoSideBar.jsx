@@ -46,10 +46,10 @@ const VideoSideBar = ({ reviewModal, setReviewModal, sideBarActive, setSideBarAc
 
   return (
     <div className={`w-full bg-opec z-[12] transition-all duration-100 fixed h-screen top-0 ${sideBarActive ? "visible opacity-100" : "invisible opacity-0"}`} onClick={() => setSideBarActive(false)}>
-      <div className={`bg-richblack-900 py-5 px-5 w-[320px] md:w-[500px] max-w-[500px] h-full z-[3] shadow-richblack-300 transition-all duration-300 absolute border-r border-richblack-600 ${!sideBarActive ? "translate-x-[-100%]" : "translate-x-0"}`}>
+      <div onClick={(e) => e.stopPropagation()} className={`bg-richblack-900 py-5 px-5 w-[320px] md:w-[500px] max-w-[500px] h-full z-[3] shadow-richblack-300 transition-all duration-300 absolute border-r border-richblack-600 ${!sideBarActive ? "translate-x-[-100%]" : "translate-x-0"}`}>
         <div className='flex flex-col w-full gap-3'>
           <span className='w-full mb-3'>
-            <p onClick={() => navigate("/dashboard/enrolled-courses")} className='text-yellow-100 hover:text-yellow-200 transition-all duration-300 text-xl md:text-2xl cursor-pointer flex gap-3 items-center' active ><MdArrowBack /> Back to all courses</p>
+            <p onClick={() => navigate("/dashboard/enrolled-courses")} className='text-yellow-100 hover:text-yellow-200 transition-all duration-300 text-xl md:text-2xl cursor-pointer flex gap-3 hover:gap-5  items-center' active ><MdArrowBack /> Back to all courses</p>
           </span>
           <div className='flex justify-between gap-3 items-center flex-row-reverse'>
             <button onClick={() => setSideBarActive(false)} className='text-xl border-2 p-2 rounded-full hover:bg-richblack-5 hover:text-richblack-900 transition-all duration-300 cursor-pointer'>
