@@ -45,7 +45,7 @@ import { useEffect } from "react";
 function App() {
   const user = useSelector((state) => state.profile.user);
   const location = useLocation();
-  const {progress} = useSelector(state => state.loadingBar);
+  const { progress } = useSelector(state => state.loadingBar);
   const dispatch = useDispatch();
 
   return (
@@ -56,7 +56,10 @@ function App() {
         progress={progress}
         onLoaderFinished={() => dispatch(setProgress(0))}
       />
-      <Navbar />
+      {
+        !location?.pathname?.includes("view-course") &&
+        <Navbar />
+      }
       <ScrollToTop />
 
       <Routes>

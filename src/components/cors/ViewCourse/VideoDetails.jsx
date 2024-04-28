@@ -7,7 +7,7 @@ import ReactPlayer from 'react-player'
 import ActionButton from '../../common/ActionButton';
 import { HiMenuAlt2 } from "react-icons/hi";
 
-const VideoDetails = ({sideBarActive, setSideBarActive}) => {
+const VideoDetails = ({ sideBarActive, setSideBarActive }) => {
 
   const context = useOutletContext();
 
@@ -159,8 +159,8 @@ const VideoDetails = ({sideBarActive, setSideBarActive}) => {
           : <div className='w-full h-full flex flex-col gap-3'>
             <div className='flex gap-3  justify-between items-center text-2xl mb-5'>
               <button onClick={() => context.setSideBarActive(true)} className='flex items-center gap-3 hover:gap-5 transition-all duration-300'>
-                <span className='text-yellow-100 hover:text-yellow-200 transition-all duration-300'>
-                <HiMenuAlt2 />
+                <span className='text-yellow-100 hover:text-yellow-200 transition-all duration-300 text-3xl'>
+                  <HiMenuAlt2 />
                 </span>
                 <span className='hidden md:block'>
                   {courseEntireData?.courseTitle}

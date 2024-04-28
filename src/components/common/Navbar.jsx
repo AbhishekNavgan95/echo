@@ -18,6 +18,8 @@ import { setProgress } from "../../slices/loadingBarSlice";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import { GoDash } from "react-icons/go";
+import DangerButton from "../common/DangerButton"
+import ScrollLock from "../../hooks/ScrollLock";
 
 
 const Navbar = () => {
@@ -66,7 +68,7 @@ const Navbar = () => {
         } catch (e) {
           console.log("error : ", e);
         }
-      }, 800);
+      }, 500);
 
       return () => {
         clearTimeout(id)
@@ -77,7 +79,7 @@ const Navbar = () => {
     }
   }, [searchVal])
 
-  const searchBarRef = useRef();
+  const searchBarRef = useRef(null);
 
   useEffect(() => {
     fetchSublinks();
@@ -105,7 +107,7 @@ const Navbar = () => {
                     <p>{link.title}</p>
                     <MdOutlineKeyboardArrowDown />
                     <div
-                      className="bg-richblack-5 text-richblack-900 absolute min-w-[250px] rounded-lg p-1 top-[120%] left-[100%] z-[5] translate-x-[-70%] translate-y-[0] scale-y-0 origin-top group-hover:scale-y-100 group-focus:scale-y-100 transition-all duration-300 group-hover:opacity-100 flex flex-col items-center"
+                      className="bg-richblack-5 text-richblack-900 absolute min-w-[250px] rounded-lg p-1 top-[120%] left-[100%] z-[5] translate-x-[-70%] translate-y-[15px] transition-all delay-100 duration-100 group-hover:visible group-hover:opacity-100 group-hover:translate-y-[0px] flex flex-col items-center opacity-0 invisible"
                     >
                       {
                         subLinks?.length <= 0
@@ -113,7 +115,7 @@ const Navbar = () => {
                           : subLinks.map((category, index) => (
                             <NavLink
                               to={`/catalog/${category.name}`}
-                              className={`relative z-[5] rounded-lg transition-all group duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center ${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-100 " : ""}`}
+                              className={`relative z-[5] rounded-lg transition-all duration-200 hover:bg-richblack-100 overflow-hidden px-5 py-3 w-full text-center ${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-100 " : ""}`}
                               key={index}
                             >
                               <p className={`text-nowrap `}>{category.name}</p>
@@ -171,10 +173,10 @@ const Navbar = () => {
             <div className="flex gap-3 items-center md:hidden">
               {/* mobile nav search button */}
               <button onClick={() => {
-                searchBarRef?.current?.focus();
                 setSearchActive(true)
                 setNavOpen(false);
                 setSubNav(false)
+                searchBarRef?.current?.focus();
               }} className="text-richblack-5 text-lg ">
                 <FaSearch />
               </button>
@@ -191,159 +193,165 @@ const Navbar = () => {
           </div>
 
           {/* mobile navbar */}
-          <div className={`absolute z-[7] w-full md:hidden top-[100%]  ${navOpen ? "translate-y-0" : "translate-y-[-150%]"} transition-all duration-300 border border-richblack-600 bg-opec flex flex-col gap-5 items-center justify-center py-20 text-xl`}>
-            {NavbarLinks.map((link, index) => {
-              return link.title === "Catalog" ? (
-                <button
-                  className={`text-richblack-5 w-full relative group hover:cursor-pointer flex flex-col items-center gap-2 ${location?.pathname?.includes("catalog") ? "text-yellow-100" : "text-richblack-5"}`}
-                  key={index}
-                  onClick={() => setSubNav(!subNav)}
-                >
-                  <div className="flex items-center gap-1 group">
-                    <p>{link.title}</p>
-                    <MdOutlineKeyboardArrowDown className={`${subNav ? "rotate-[180deg] transition-rotate duration-300" : "rotate-[0deg] transition-rotate duration-300"}`} />
-                  </div>
-                  <div className={
-                    `absolute text-lg top-[100%] ${subNav ? "scale-y-100 visible" : "invisible scale-y-0"} transition-scale duration-100 origin-top w-10/12 px-3 flex flex-col bg-richblack-900 rounded-lg py-2 border border-richblack-600 translate-y-3`
-                  }
+          <div className={`bg-opec z-[7] w-full h-[100vh] fixed transition-all duration-100 top-0 ${navOpen ? "visible opacity-100" : "invisible opacity-0"}`} onClick={() => setNavOpen(!navOpen)}>
+            <div className={`absolute w-full h-full md:hidden top-0 border-richblack-600 flex flex-col gap-5 items-center justify-center py-20 text-xl`}>
+              {NavbarLinks.map((link, index) => {
+                return link.title === "Catalog" ? (
+                  <button
+                    className={`text-richblack-5 w-full hover:cursor-pointer flex flex-col items-center gap-4 ${location?.pathname?.includes("catalog") ? "text-yellow-100" : "text-richblack-5"}`}
+                    key={index}
+                    onClick={() => setSubNav(!subNav)}
                   >
-                    {
-                      subLinks?.length <= 0 ?
-                        <div className="py-1">No categories found</div>
-                        :
-                        subLinks?.map((category, index) => (
-                          <NavLink
-                            to={`/catalog/${category.name}`}
-                            className={`py-2 text-richblack-5 rounded-lg hover:bg-richblack-100 hover:text-richblack-900 ${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-800" : ""}`}
-                            key={index}
-                            onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}
-                          >
-                            <p className="">{category.name}</p>
-                          </NavLink>
-                        ))}
-                  </div>
-                </button>
-              ) : (
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-yellow-100" : "text-richblack-25"
-                  }
-                  key={index}
-                  to={link?.path}
-                  onClick={() => { setNavOpen(false); dispatch(setProgress(100)) }}
-                >
-                  <p>{link.title}</p>
-                </NavLink>
-              );
-            })}
-            <div className="flex items-center flex-col gap-y-5">
-              {
-                token &&
-                <NavLink
-                  active='true'
-                  to={"/dashboard/my-profile"}
-                  onClick={() => {
-                    setNavOpen(!navOpen);
-                    dispatch(setProgress(100))
-                  }}
-                  className={({ isActive }) =>
-                    isActive ? "text-yellow-100" : "text-richblack-25"
-                  }
-                >
-                  Dashboard
-                </NavLink>
-              }
-              {
-                token &&
-                <button
-                  onClick={() => setConfirmationModal({
-                    heading: "Are you sure?",
-                    subHeading: "You'll be logged out",
-                    btn1Text: "Log out",
-                    btn2Text: "Cancel",
-                    btn1Handler: () => dispatch(logout(navigate)),
-                    btn2Handler: () => setConfirmationModal(null),
-                  })}
-                  className="text-center flex items-center px-4 py-2 rounded-md text-lg bg-[#721414] hover:bg-[#511515] text-richblack-5 focus:bg-[#511515] active:scale-95 focus:scale-95 transition-all duration-200 shadow-sm shadow-richblack-300">Log out</button>
-              }
-              <div className="flex gap-5">
-                {token === null && (
-                  <button onClick={() => {
-                    setNavOpen(!navOpen)
-                  }}>
-                    <CtaButton active="true" linkTo={"/login"}>
-                      Log in
-                    </CtaButton>
+                    <div className={
+                      ` text-lg flex flex-col gap-5`
+                    }
+                    >
+                      {
+                        subLinks?.length <= 0 ?
+                          <div className="py-1">No categories found</div>
+                          :
+                          subLinks?.map((category, index) => (
+                            <NavLink
+                              to={`/catalog/${category.name}`}
+                              className={`text-richblack-5${location?.pathname?.includes(category.name.replaceAll(" ", "%20")) ? "bg-richblack-800" : ""}`}
+                              key={index}
+                              onClick={() => { setNavOpen(!navOpen); setSubNav(false) }}
+                            >
+                              <p className="">{category.name}</p>
+                            </NavLink>
+                          ))}
+                    </div>
                   </button>
-                )}
-                {token === null && (
-                  <button onClick={() => {
-                    setNavOpen(!navOpen)
-                  }}>
-                    <CtaButton active={false} linkTo={"/signup"}>
-                      Sign up
-                    </CtaButton>
-                  </button>
-                )}
+                ) : (
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "text-yellow-100" : "text-richblack-25"
+                    }
+                    key={index}
+                    to={link?.path}
+                    onClick={() => { setNavOpen(false); dispatch(setProgress(100)) }}
+                  >
+                    <p>{link.title}</p>
+                  </NavLink>
+                );
+              })}
+              <div className="flex items-center gap-5 gap-y-5">
+                {
+                  token &&
+                  <CtaButton
+                    active='true'
+                    linkTo={"/dashboard/my-profile"}
+                    onClick={() => {
+                      setNavOpen(!navOpen);
+                      dispatch(setProgress(100))
+                    }}
+                    className={({ isActive }) =>
+                      isActive ? "text-yellow-100" : "text-richblack-25"
+                    }
+                  >
+                    Dashboard
+                  </CtaButton>
+                }
+                {
+                  token &&
+                  <DangerButton
+                    action={() => setConfirmationModal({
+                      heading: "Are you sure?",
+                      subHeading: "You'll be logged out",
+                      btn1Text: "Log out",
+                      btn2Text: "Cancel",
+                      btn1Handler: () => dispatch(logout(navigate)),
+                      btn2Handler: () => setConfirmationModal(null),
+                    })}
+                  >
+                    Log out
+                  </DangerButton>
+                }
+                <div className="flex gap-5">
+                  {token === null && (
+                    <button onClick={() => {
+                      setNavOpen(!navOpen)
+                    }}>
+                      <CtaButton active="true" linkTo={"/login"}>
+                        Log in
+                      </CtaButton>
+                    </button>
+                  )}
+                  {token === null && (
+                    <button onClick={() => {
+                      setNavOpen(!navOpen)
+                    }}>
+                      <CtaButton active={false} linkTo={"/signup"}>
+                        Sign up
+                      </CtaButton>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
+          {
+            navOpen &&
+            <ScrollLock />
+          }
         </div>
 
         {/* search bar */}
-        <div className={`bg-richblack-900 py-3 md:py-5 fixed w-full top-0 z-[10] transition-all border-b border-richblack-600 duration-100 ${searchActive ? "translate-y-0" : "translate-y-[-102%] "}`}>
-
-          {/* input */}
-          <div className={`max-w-maxContent relative inset-0 z-[11] text-richblack-300 flex flex-col gap-3 mx-auto w-full`}>
-            <div className="flex items-center justify-between w-full gap-5 px-3">
-              <div className="w-full">
-                <input
-                  type="text"
-                  ref={searchBarRef}
-                  className="w-full py-2 bg-richblack-900 outline-none text-richblack-5 text-xl"
-                  name=""
-                  value={searchVal}
-                  onChange={(e) => handleSearchQueryChange(e)}
-                  id=""
-                  placeholder="Search"
-                />
+        <div className={`w-full h-screen bg-opec top-0 z-[12] fixed transition-all duration-100 ${searchActive ? "visible opacity-100" : "invisible opacity-0"}`} onClick={() => { setSearchActive(false); setSearchBarActive() }}>
+          <div className={`bg-richblack-900 py-3 md:py-5 fixed w-full top-0 z-[10] transition-all border-b border-richblack-600 duration-100`} onClick={(e) => e.stopPropagation()}>
+            {/* input */}
+            <div className={`max-w-maxContent relative inset-0 z-[11] text-richblack-300 flex flex-col gap-3 mx-auto w-full`}>
+              <div className="flex items-center justify-between w-full gap-5 px-3">
+                <div className="w-full">
+                  <input
+                    type="text"
+                    ref={searchBarRef}
+                    className="w-full py-2 bg-richblack-900 outline-none text-richblack-5 text-xl"
+                    name=""
+                    value={searchVal}
+                    onChange={(e) => handleSearchQueryChange(e)}
+                    id=""
+                    placeholder="Search"
+                  />
+                </div>
+                <button onClick={() => {
+                  setSearchBarActive()
+                  setSearchActive(!searchActive);
+                }} className="text-3xl text-richblack-5">
+                  <IoCloseSharp />
+                </button>
               </div>
-              <button onClick={() => {
-                setSearchBarActive()
-                setSearchActive(!searchActive);
-              }} className="text-3xl text-richblack-5">
-                <IoCloseSharp />
-              </button>
             </div>
-          </div>
 
-          {/* output courses */}
-          <div className="text-richblack-900 text-lg absolute w-full top-[100%]">
-            <div className="max-w-maxContent mx-auto bg-richblack-5  rounded-lg flex flex-col text-xl overflow-hidden">
-              {
-                coursesFound.length > 0 &&
-                coursesFound.map((course) => (
-                  <Link
-                    to={`courses/${course?._id}`}
-                    tabIndex="0"
-                    className="bg-richblack-5 focus:bg-richblack-200 hover:bg-richblack-200 transition-all duration-300 outline-none"
-                    onClick={() => {
-                      setSearchBarActive();
-                      setSearchActive(false);
-                    }} key={course?._id}
-                  >
-                    <span className=" py-2  px-3 flex items-center justify-start gap-3 border">
-                      <GoDash />
-                      <p className="line-clamp-1">{course?.courseTitle}</p>
-                    </span>
-                  </Link>))
-              }
+            {/* output courses */}
+            <div className="text-richblack-900 text-lg absolute w-full top-[100%]">
+              <div className="max-w-maxContent mx-auto text-richblack-5 flex flex-col text-xl py-2">
+                {
+                  coursesFound.length > 0 &&
+                  coursesFound.map((course) => (
+                    <Link
+                      to={`courses/${course?._id}`}
+                      tabIndex="0"
+                      className="transition-all duration-300 px-3 outline-none flex items-start gap-3 hover:gap-5 hover:text-yellow-200 py-2"
+                      onClick={() => {
+                        setSearchBarActive();
+                        setSearchActive(false);
+                      }} key={course?._id}
+                    >
+                      <GoDash className="translate-y-[5px]" />
+                      <p className="">{course?.courseTitle}</p>
+                    </Link>))
+                }
+              </div>
             </div>
           </div>
         </div>
       </div>
       {
         confirmationModal && <Modal modalData={confirmationModal} />
+      }
+      {
+        searchActive && <ScrollLock />
       }
     </>
   );

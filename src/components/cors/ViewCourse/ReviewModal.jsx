@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
 import ReactStars from 'react-rating-stars-component';
 import ActionButton from '../../common/ActionButton';
+import ScrollLock from '../../../hooks/ScrollLock';
 import { createRating } from '../../../services/operations/courseDetailsAPI';
 import { MdClose } from "react-icons/md";
 
@@ -36,8 +37,8 @@ const ReviewModal = ({ reviewModal, setReviewModal }) => {
   }
 
   return (
-    <div className='fixed z-10 top-0 w-full bg-opec text-richblack-5 flex items-center justify-center h-full'>
-      <div className='flex flex-col gap-3 bg-richblack-800 p-5 rounded-lg mx-5'>
+    <div className='fixed z-10 top-0 w-full bg-opec text-richblack-5 flex items-center justify-center h-full' onClick={() => setReviewModal(false)}>
+      <div className='flex flex-col gap-3 bg-richblack-800 p-5 rounded-lg mx-5' onClick={(e) => e.stopPropagation()}>
         <div className='text-xl flex justify-between'>
           <p className=''>Add Review</p>
           <button onClick={() => setReviewModal(false)}>
@@ -84,6 +85,7 @@ const ReviewModal = ({ reviewModal, setReviewModal }) => {
           </form>
         </div>
       </div>
+      <ScrollLock/>
     </div>
   )
 }
