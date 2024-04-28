@@ -5,8 +5,6 @@ import ActionButton from "../../common/ActionButton"
 import { MdArrowBack } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoCheckmarkDone } from "react-icons/io5";
-import { MdOutlineClose } from "react-icons/md";
-import CtaButton from '../../common/CtaButton';
 import ScrollLock from '../../../hooks/ScrollLock';
 
 

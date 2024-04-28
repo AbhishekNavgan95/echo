@@ -21,7 +21,6 @@ const Cart = () => {
                 <p> {totalItems} items in Wishlist</p> 
                 <ActionButton text="Clear all" onClick={() => dispatch(resetCart())} active="true" >
                   <span className="flex items-center gap-3">
-                    <MdDelete />
                     Clear all
                   </span>
                   </ActionButton>

@@ -165,7 +165,7 @@ const Navbar = () => {
               {user && user?.accountType === ACCOUNT_TYPE.STUDENT && (
                 <Link to="/dashboard/cart" onClick={() => dispatch(setProgress(100))} className="relative px-2 py-1">
                   <FiShoppingBag />
-                  {totalItems > 0 && <span className="absolute top-[50%] right-[-50%] text-xs font-bold bg-yellow-100 rounded-full px-2 text-richblack-900">{totalItems}</span>}
+                  {totalItems > 0 && <span className="absolute top-[-5px] right-0 aspect-square flex items-center text-xs font-bold bg-yellow-100 rounded-full px-2 text-richblack-900">{totalItems}</span>}
                 </Link>
               )}
             </div>

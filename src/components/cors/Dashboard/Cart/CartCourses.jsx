@@ -5,28 +5,38 @@ import { MdDelete } from "react-icons/md";
 import { removeFromCart } from "../../../../slices/CartSlice";
 import ActionButton from "../../../common/ActionButton";
 import RatingStars from "../../../common/RatingStars";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartCourses = () => {
 
   const { cartItems } = useSelector(state => state.cart);
-  // console.log("cartItems : ", cartItems);
   const dispatch = useDispatch();
 
+  const calculateAvgRating = (course) => {
+    let avgRating = 0;
+    if(course.length > 0) {
+      avgRating = course.reduce((acc, curr) => acc + curr.rating , 0)
+      avgRating = avgRating / course.length
+    } 
+    return avgRating;
+  }
+
   return (
-    <div className="flex flex-col text-richblack-5">
+    <div className="flex flex-col text-richblack-5 gap-3">
       {cartItems.map((course, index) => (
-        <div
-          key={index}
-          className="w-full flex flex-col lg:flex-row gap-y-3 items-start lg:items-center justify-between py-5 md:py-10 border-t border-richblack-600"
+        <Link
+        to={`../../courses/${course?._id}`}
+        key={index}
+          className="w-full flex flex-col cursor-pointer lg:flex-row gap-y-3 items-start lg:items-center justify-between border border-richblack-600 hover:bg-richblack-800 transition-all duration-300 rounded-lg p-3"
         >
-          <div className="w-full flex gap-5 items-stretch md:items-center">
-            <img className="w-[90px] aspect-video md:w-[250px] rounded-lg object-cover" src={course?.thumbnail} alt="" />
+          <div className="w-full flex flex-col md:flex-row gap-5 items-stretch md:items-center">
+            <img className="w-full aspect-video md:w-[250px] rounded-lg object-cover" src={course?.thumbnail} alt="" />
             <div className="flex items-start flex-col gap-2">
-              <h3 className="text-xl text-start font-semibold">{course?.courseTitle}</h3>
+              <h3 className="text-xl text-start font-semibold line-clamp-1">{course?.courseTitle}</h3>
               <p className="py-1 border text-yellow-100 border-yellow-100 text-sm font-semibold w-max px-3 rounded-lg ">{course?.category?.name}</p>
               <div className="flex items-center gap-3">
-                <div className="text-xl">4.5</div>
-                <RatingStars reviewCount={course?.ratingAndReviews?.length} />
+                <div className="text-xl">{calculateAvgRating(course?.ratingAndReviews)}</div>
+                <RatingStars reviewCount={calculateAvgRating(course?.ratingAndReviews)} />
               </div>
               <p className="text-richblack-300">Total Ratings : {course?.ratingAndReviews?.length}</p>
             </div>
@@ -43,12 +53,11 @@ const CartCourses = () => {
               onClick={() => dispatch(removeFromCart(course?._id))}
             >
               <span className="flex items-center gap-3">
-              <MdDelete />
-              Remove
+                <MdDelete /> Remove
               </span>
             </ActionButton>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
