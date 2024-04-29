@@ -125,7 +125,7 @@ const CourseDetails = () => {
                                     <div className='flex flex-col items-center lg:items-start gap-y-5 relative text-xl'>
                                         <div className='flex flex-col items-center lg:items-start gap-2 lg:w-7/12'>
                                             <p className='text-3xl xl:text-4xl mb-1 line-clamp-2 text-center md:text-start'>{courseData?.courseTitle}</p>
-                                            <p className=' text-richblack-300 text-lg text-center md:text-start line-clamp-4'>{courseData?.courseDescription} </p>
+                                            <p className=' text-richblack-300 text-lg text-center lg:text-start line-clamp-4'>{courseData?.courseDescription} </p>
                                             <div className='flex gap-2 justify-center lg:justify-start flex-wrap my-3'>
                                                 {
                                                     tags?.map((tag, index) => (
@@ -142,13 +142,13 @@ const CourseDetails = () => {
                                                 <span>{`${courseData?.studentsEnrolled?.length} Students`}</span>
                                             </div>
 
-                                            <p className=''>
+                                            <p className='text-center'>
                                                 {
                                                     ` Created by : ${courseData?.instructor?.firstName} ${courseData?.instructor?.lastName}`
                                                 }
                                             </p>
-                                            <div className='flex gap-x-3 gap-y-1 flex-col items-center lg:items-start md:flex-row'>
-                                                <span className='flex items-center gap-1 text-2xl'><IoMdInformationCircleOutline /> <span className='text-xl'>{`Created at : ${formatDate(courseData?.createdAt)}`}</span></span>
+                                            <div className='flex gap-y-2 flex-col items-center lg:items-start '>
+                                                <span className='flex items-center gap-1 text-2xl'><IoMdInformationCircleOutline /> <span className='text-xl text-center'>{`Created at : ${formatDate(courseData?.createdAt)}`}</span></span>
                                                 <span className='flex items-center gap-1 text-2xl'><MdOutlineLanguage /> <span className='text-xl'> English </span></span>
                                             </div>
                                         </div>
@@ -211,8 +211,9 @@ const CourseDetails = () => {
                                 </div>
                             </section>
                         </div>
-                        <div className='w-full py-5 bg-richblack-900 text-richblack-5'>
+                        <div className='w-full pb-5 bg-richblack-900 text-richblack-5'>
                             <section className=" py-5 px-3 relative text-richblack-5 max-w-maxContent mx-auto flex flex-col gap-5">
+                            <h4 className='text-3xl xl:text-4xl'>Reviews</h4>
                                 <ReviewSlider reviewArray={courseData?.ratingAndReviews} />
                             </section>
                         </div>

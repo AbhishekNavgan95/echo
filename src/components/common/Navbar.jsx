@@ -36,6 +36,7 @@ const Navbar = () => {
   const [searchActive, setSearchActive] = useState(false);
   const [searchVal, setSearchVal] = useState("");
   const [coursesFound, setCoursesFound] = useState([]);
+  const searchBarRef = useRef(null);
 
 
   const fetchSublinks = async () => {
@@ -78,8 +79,6 @@ const Navbar = () => {
       setSearchBarActive();
     }
   }, [searchVal])
-
-  const searchBarRef = useRef(null);
 
   useEffect(() => {
     fetchSublinks();
@@ -136,17 +135,12 @@ const Navbar = () => {
                   </NavLink>
                 );
               })}
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  searchBarRef?.current?.focus();
-                  setSearchActive(true)
-                }}
-              >
-                <button className="text-richblack-5 text-lg flex items-center justify-center px-2 py-1">
-                  <FaSearch />
-                </button>
-              </div>
+              <button onClick={() => {
+                setSearchActive(true)
+                searchBarRef?.current?.focus();
+              }} className="text-richblack-5 text-lg flex items-center justify-center px-2 py-1">
+                <FaSearch />
+              </button>
             </div>
 
             {/* Login / signup / dashboard */}

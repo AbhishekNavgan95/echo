@@ -37,7 +37,7 @@ const ReviewModal = ({ reviewModal, setReviewModal }) => {
   }
 
   return (
-    <div className='fixed z-10 top-0 w-full bg-opec text-richblack-5 flex items-center justify-center h-full' onClick={() => setReviewModal(false)}>
+    <div className='fixed z-[16] top-0 w-full bg-opec text-richblack-5 flex items-center justify-center h-full' onClick={() => setReviewModal(false)}>
       <div className='flex flex-col gap-3 bg-richblack-800 p-5 rounded-lg mx-5' onClick={(e) => e.stopPropagation()}>
         <div className='text-xl flex justify-between'>
           <p className=''>Add Review</p>
